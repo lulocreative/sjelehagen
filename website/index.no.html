@@ -464,6 +464,49 @@ footer a{text-decoration:none}
   .intro-grid{grid-template-columns:1.5fr 1fr;align-items:end;gap:64px}
   .intro-text{padding-bottom:12px}
 }
+/* Promo pop-up: lead magnet, opens a few seconds after load, once per visit */
+.promo{padding:0;border:0;background:transparent;max-width:min(880px, calc(100% - 32px));width:100%;max-height:calc(100% - 32px);overflow:visible;color:var(--ink)}
+.promo::backdrop{background:rgba(20,28,22,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.promo[open]{animation:promoIn .55s cubic-bezier(.2,.7,.2,1) both}
+.promo[open]::backdrop{animation:fadeIn .4s ease both}
+@keyframes promoIn{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.promo-card{position:relative;display:grid;background:var(--rose-bg);color:var(--rose-ink);box-shadow:0 40px 80px -30px rgba(0,0,0,.55);overflow:hidden;max-height:calc(100svh - 32px);overflow-y:auto}
+.promo-media{position:relative;min-height:180px}
+.promo-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+.promo-body{display:grid;gap:16px;padding:28px 24px 24px}
+.promo-body .eyebrow{color:var(--rose-ink);opacity:.8}
+.promo-body h2{font-size:clamp(1.9rem, 6vw, 2.7rem);color:var(--rose-ink)}
+.promo-body h2 em{color:var(--action-text)}
+.promo-sub{font-size:1.02rem;max-width:40ch}
+.promo-phases{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.promo-phases li{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;padding:5px 10px 5px 6px;border-radius:999px;background:color-mix(in srgb,var(--surface) 65%,transparent)}
+.promo-phases i{width:12px;height:12px;border-radius:50%}
+.promo-form{display:grid;gap:10px}
+.promo-form input{height:52px;border-radius:14px;border:1.5px solid color-mix(in srgb,var(--rose-ink) 25%,transparent);background:var(--surface);color:var(--ink);padding:0 16px;font:16px var(--f-body);width:100%}
+.promo-form input:focus{outline:none;border-color:var(--action);box-shadow:0 0 0 4px color-mix(in srgb,var(--action) 18%,transparent)}
+.promo-err{font-size:.8rem;color:#b3342f;min-height:1em}
+.promo-fine{font-size:.75rem;opacity:.75}
+.promo-no{background:none;border:0;color:inherit;font:500 .88rem var(--f-body);text-decoration:underline;text-underline-offset:3px;cursor:pointer;justify-self:center;padding:6px;opacity:.8}
+.promo-no:hover{opacity:1}
+.promo-x{position:absolute;top:12px;right:12px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.9);color:#222;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 14px -6px rgba(0,0,0,.4);transition:transform .2s}
+.promo-x:hover{transform:rotate(90deg)}
+.promo-x svg{width:18px;height:18px}
+.promo-ok{display:grid;gap:14px;justify-items:start}
+@media (max-width:699px){
+  .promo{max-width:100%;width:100%;margin:auto 0 0;max-height:100%}
+  .promo[open]{animation:sheetUp .5s cubic-bezier(.2,.7,.2,1) both}
+  .promo-card{border-radius:22px 22px 0 0;max-height:92svh;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .promo-media{min-height:150px;max-height:22svh}
+  .promo-body{padding-left:var(--gut-l);padding-right:var(--gut-r)}
+}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:none}}
+@media (min-width:700px){
+  .promo-card{grid-template-columns:.85fr 1.15fr}
+  .promo-media{min-height:100%}
+  .promo-body{padding:44px 40px 32px}
+}
+@media (prefers-reduced-motion: reduce){.promo[open],.promo[open]::backdrop{animation:none}}
 /* square photos: no rounded corners on any image */
 .ph,.pillar .ph,.founder .ph,.plan-card,.plan-card .ph{border-radius:0}
 </style>
@@ -518,9 +561,6 @@ footer a{text-decoration:none}
     <source src="video/hero-mobil.mp4" type="video/mp4" media="(orientation: portrait)">
     <source src="video/hero.mp4" type="video/mp4">
   </video>
-  <div class="hero-ui">
-    <button class="vid-btn" id="vidBtn" type="button" aria-label="Pause bakgrunnsvideo"><svg viewBox="0 0 24 24" id="vidIcon"><path fill="currentColor" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg></button>
-  </div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="pill ld"><b>7 dager</b> gratis · ingen binding</span>
@@ -825,6 +865,28 @@ footer a{text-decoration:none}
   </div>
 </footer>
 
+
+<dialog class="promo" id="promo" aria-labelledby="promoTitle">
+  <div class="promo-card">
+    <button class="promo-x" type="button" id="promoX" aria-label="Lukk"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="promo-media"><img src="img/cecilie.webp" alt="Cecilie i palmehagen" width="720" height="900" loading="lazy" decoding="async"></div>
+    <div class="promo-body" id="promoBody">
+      <span class="eyebrow">Gratis guide</span>
+      <h2 id="promoTitle">Lev i kontakt <em>med kroppen din.</em></h2>
+      <p class="promo-sub">Få <b>Syklus-kompasset</b>: dine 4 faser forklart, rett i innboksen.</p>
+      <ul class="promo-phases"><li><i style="background:#8f6e55"></i>Indre vinter</li><li><i style="background:#a9bb8a"></i>Indre vår</li><li><i style="background:#d4b06a"></i>Indre sommer</li><li><i style="background:#77805a"></i>Indre høst</li></ul>
+      <form class="promo-form" id="promoForm" novalidate>
+        <label class="sr" for="promo-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">E-post</label>
+        <input id="promo-email" type="email" autocomplete="email" inputmode="email" placeholder="Din e-post">
+        <span class="promo-err" id="promoErr" aria-live="polite"></span>
+        <button class="btn btn-cta btn-block" type="submit">Send meg guiden <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></button>
+        <p class="promo-fine">Ved å legge igjen e-posten din blir du med på Sjelehagens e-postliste. Meld deg av når du vil.</p>
+      </form>
+      <button class="promo-no" type="button" id="promoNo">Nei takk, kanskje senere</button>
+    </div>
+  </div>
+</dialog>
+
 <div class="sticky" id="sticky" aria-hidden="true">
   <div class="txt"><b>7 dager gratis</b>Deretter fra 167 kr/mnd</div>
   <a class="btn btn-cta" href="#priser" tabindex="-1">Kom i gang</a>
@@ -846,14 +908,36 @@ footer a{text-decoration:none}
   const endObs = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? ends.add(e.target) : ends.delete(e.target)); endIn = ends.size > 0; syncSticky(); }, {threshold:.15});
   endObs.observe(priser); endObs.observe(finalBox); endObs.observe($('#plan'));
 
-  /* Hero video: pause control, respects reduced motion, pauses off-screen */
-  const vid = $('#heroVideo'), vbtn = $('#vidBtn'), vicon = $('#vidIcon');
-  let userPaused = reduce;
-  const PAUSE = '<path fill="currentColor" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/>', PLAY = '<path fill="currentColor" d="M8 5v14l11-7z"/>';
-  const syncVid = (playing) => { vicon.innerHTML = playing ? PAUSE : PLAY; vbtn.setAttribute('aria-label', playing ? 'Pause bakgrunnsvideo' : 'Spill av bakgrunnsvideo'); hero.querySelector('.hero-bg').style.animationPlayState = playing ? 'running' : 'paused'; };
-  if (reduce) { vid.removeAttribute('autoplay'); vid.pause(); vid.hidden = true; vbtn.hidden = true; }
-  vbtn.addEventListener('click', () => { userPaused = !userPaused; if (userPaused) vid.pause(); else vid.play().catch(() => {}); syncVid(!userPaused); });
-  new IntersectionObserver(([e]) => { if (userPaused) return; e.isIntersecting ? vid.play().catch(() => {}) : vid.pause(); }).observe(hero);
+  /* Hero video: plays while on screen, pauses off-screen; hidden for reduced motion */
+  const vid = $('#heroVideo');
+  if (reduce) { vid.removeAttribute('autoplay'); vid.pause(); vid.hidden = true; }
+  else new IntersectionObserver(([e]) => { e.isIntersecting ? vid.play().catch(() => {}) : vid.pause(); }).observe(hero);
+
+  /* Promo pop-up: opens 5 s after load, once per visit; Esc, X, backdrop or "no thanks" closes */
+  const promo = $('#promo');
+  if (promo && promo.showModal) {
+    let seen = false; try { seen = sessionStorage.getItem('sh-promo') === '1'; } catch (e) {}
+    const remember = () => { try { sessionStorage.setItem('sh-promo', '1'); } catch (e) {} };
+    let opener = null;
+    const close = () => { promo.close(); };
+    promo.addEventListener('close', () => { remember(); if (opener && opener.focus) opener.focus(); });
+    $('#promoX').onclick = close; $('#promoNo').onclick = close;
+    promo.addEventListener('click', e => { if (e.target === promo) close(); });
+    const tryOpen = () => {
+      const a = document.activeElement;
+      if (a && /INPUT|TEXTAREA|SELECT/.test(a.tagName)) { setTimeout(tryOpen, 4000); return; }
+      opener = a; promo.showModal();
+    };
+    if (!seen) setTimeout(tryOpen, 5000);
+    $('#promoForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const v = $('#promo-email').value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { $('#promoErr').textContent = 'Skriv inn en gyldig e-postadresse, for eksempel navn@epost.no.'; $('#promo-email').focus(); return; }
+      remember();
+      $('#promoBody').innerHTML = `<div class="promo-ok swap"><span class="eyebrow">Gratis guide</span><h2 id="promoTitle">Guiden er på vei.</h2><p class="promo-sub">Sjekk innboksen din for Syklus-kompasset. Vil du prøve en økt allerede i dag?</p><a class="btn btn-cta" href="#priser" id="promoGo">Start 7 dager gratis <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a></div>`;
+      $('#promoGo').onclick = () => promo.close();
+    });
+  }
 
   /* Count-up (HTML already shows final values) */
   if (!reduce) {
