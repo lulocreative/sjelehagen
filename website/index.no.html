@@ -327,7 +327,10 @@ blockquote.big{margin:0;font:italic 300 1.3rem/1.4 var(--f-display);border-left:
 .tst{scroll-snap-align:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);padding:24px;display:grid;gap:16px;align-content:space-between;min-width:0}
 .tst q{font:400 1.12rem/1.5 var(--f-display);quotes:"«" "»"}
 .tst .who{display:flex;gap:12px;align-items:center;font-size:.88rem}
-.tst .who i{width:44px;height:44px;border-radius:50%;background:linear-gradient(140deg,var(--teal),var(--sage-bg));flex:none}
+.tst .who i{width:44px;height:44px;border-radius:50%;background:#2f4d4a;color:#fff;flex:none;display:grid;place-items:center;font:normal 500 1.15rem/1 var(--f-display)}
+.tst:nth-child(4n+2) .who i{background:#8f6e55}
+.tst:nth-child(4n+3) .who i{background:#77805a}
+.tst:nth-child(4n+4) .who i{background:#5f8a7e}
 .tst .who b{display:block}
 .tst .result{display:inline-block;padding:4px 10px;border-radius:999px;background:var(--mint-bg);color:var(--sage-ink);font-size:.75rem;font-weight:700}
 .dots{display:flex;gap:8px;justify-content:center;margin-top:18px}
@@ -671,10 +674,10 @@ footer a{text-decoration:none}
       <h2 class="rv">Kvinner som har funnet <em>rytmen sin.</em></h2>
     </div>
     <div class="tst-track" id="tst">
-      <figure class="tst" style="margin:0"><span class="result">Sterkere kropp på 8 uker</span><q>Gjennom pilates har kroppen min blitt sterkere, samtidig som yoga og meditasjon gir meg ro. Jeg er så takknemlig for alt hun gir.</q><figcaption class="who"><i></i><span><b>Heidi</b>Medlem siden 2024</span></figcaption></figure>
-      <figure class="tst" style="margin:0"><span class="result">Trener 4x i uka</span><q>For første gang har jeg holdt på i mer enn en måned. Det at planen tilpasser seg syklusen gjør at jeg ikke føler at jeg feiler på dårlige dager.</q><figcaption class="who"><i></i><span><b>Marte</b>Medlem siden 2025</span></figcaption></figure>
-      <figure class="tst" style="margin:0"><span class="result">Mindre PMS-plager</span><q>Oppskriftene og ritualene har endret hvordan jeg har det i lutealfasen. Jeg forstår endelig kroppen min.</q><figcaption class="who"><i></i><span><b>Ingrid</b>Medlem siden 2024</span></figcaption></figure>
-      <figure class="tst" style="margin:0"><span class="result">20 min om dagen</span><q>Som mamma til to har jeg ikke tid til gymmen. Korte økter hjemme har gitt meg både styrke og et pusterom.</q><figcaption class="who"><i></i><span><b>Silje</b>Medlem siden 2025</span></figcaption></figure>
+      <figure class="tst" style="margin:0"><span class="result">Sterkere kropp på 8 uker</span><q>Gjennom pilates har kroppen min blitt sterkere, samtidig som yoga og meditasjon gir meg ro. Jeg er så takknemlig for alt hun gir.</q><figcaption class="who"><i aria-hidden="true">H</i><span><b>Heidi</b>Medlem siden 2024</span></figcaption></figure>
+      <figure class="tst" style="margin:0"><span class="result">Trener 4x i uka</span><q>For første gang har jeg holdt på i mer enn en måned. Det at planen tilpasser seg syklusen gjør at jeg ikke føler at jeg feiler på dårlige dager.</q><figcaption class="who"><i aria-hidden="true">M</i><span><b>Marte</b>Medlem siden 2025</span></figcaption></figure>
+      <figure class="tst" style="margin:0"><span class="result">Mindre PMS-plager</span><q>Oppskriftene og ritualene har endret hvordan jeg har det i lutealfasen. Jeg forstår endelig kroppen min.</q><figcaption class="who"><i aria-hidden="true">I</i><span><b>Ingrid</b>Medlem siden 2024</span></figcaption></figure>
+      <figure class="tst" style="margin:0"><span class="result">20 min om dagen</span><q>Som mamma til to har jeg ikke tid til gymmen. Korte økter hjemme har gitt meg både styrke og et pusterom.</q><figcaption class="who"><i aria-hidden="true">S</i><span><b>Silje</b>Medlem siden 2025</span></figcaption></figure>
     </div>
     <div class="dots" id="dots" aria-label="Velg anmeldelse"></div>
   </div>

@@ -327,7 +327,10 @@ blockquote.big{margin:0;font:italic 300 1.3rem/1.4 var(--f-display);border-left:
 .tst{scroll-snap-align:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);padding:24px;display:grid;gap:16px;align-content:space-between;min-width:0}
 .tst q{font:400 1.12rem/1.5 var(--f-display);quotes:"«" "»"}
 .tst .who{display:flex;gap:12px;align-items:center;font-size:.88rem}
-.tst .who i{width:44px;height:44px;border-radius:50%;background:linear-gradient(140deg,var(--teal),var(--sage-bg));flex:none}
+.tst .who i{width:44px;height:44px;border-radius:50%;background:#2f4d4a;color:#fff;flex:none;display:grid;place-items:center;font:normal 500 1.15rem/1 var(--f-display)}
+.tst:nth-child(4n+2) .who i{background:#8f6e55}
+.tst:nth-child(4n+3) .who i{background:#77805a}
+.tst:nth-child(4n+4) .who i{background:#5f8a7e}
 .tst .who b{display:block}
 .tst .result{display:inline-block;padding:4px 10px;border-radius:999px;background:var(--mint-bg);color:var(--sage-ink);font-size:.75rem;font-weight:700}
 .dots{display:flex;gap:8px;justify-content:center;margin-top:18px}
@@ -671,10 +674,10 @@ footer a{text-decoration:none}
       <h2 class="rv">Women who have found <em>their rhythm.</em></h2>
     </div>
     <div class="tst-track" id="tst">
-      <figure class="tst" style="margin:0"><span class="result">Stronger body in 8 weeks</span><q>Through Pilates my body has become stronger, while yoga and meditation give me calm. I’m so grateful for everything she gives.</q><figcaption class="who"><i></i><span><b>Heidi</b>Member since 2024</span></figcaption></figure>
-      <figure class="tst" style="margin:0"><span class="result">Trains 4x a week</span><q>For the first time I’ve kept going for more than a month. Because the plan adapts to my cycle, I don’t feel like I’m failing on bad days.</q><figcaption class="who"><i></i><span><b>Marte</b>Member since 2025</span></figcaption></figure>
-      <figure class="tst" style="margin:0"><span class="result">Fewer PMS symptoms</span><q>The recipes and rituals have changed how I feel in my luteal phase. I finally understand my body.</q><figcaption class="who"><i></i><span><b>Ingrid</b>Member since 2024</span></figcaption></figure>
-      <figure class="tst" style="margin:0"><span class="result">20 min a day</span><q>As a mum of two I don’t have time for the gym. Short sessions at home have given me both strength and some breathing space.</q><figcaption class="who"><i></i><span><b>Silje</b>Member since 2025</span></figcaption></figure>
+      <figure class="tst" style="margin:0"><span class="result">Stronger body in 8 weeks</span><q>Through Pilates my body has become stronger, while yoga and meditation give me calm. I’m so grateful for everything she gives.</q><figcaption class="who"><i aria-hidden="true">H</i><span><b>Heidi</b>Member since 2024</span></figcaption></figure>
+      <figure class="tst" style="margin:0"><span class="result">Trains 4x a week</span><q>For the first time I’ve kept going for more than a month. Because the plan adapts to my cycle, I don’t feel like I’m failing on bad days.</q><figcaption class="who"><i aria-hidden="true">M</i><span><b>Marte</b>Member since 2025</span></figcaption></figure>
+      <figure class="tst" style="margin:0"><span class="result">Fewer PMS symptoms</span><q>The recipes and rituals have changed how I feel in my luteal phase. I finally understand my body.</q><figcaption class="who"><i aria-hidden="true">I</i><span><b>Ingrid</b>Member since 2024</span></figcaption></figure>
+      <figure class="tst" style="margin:0"><span class="result">20 min a day</span><q>As a mum of two I don’t have time for the gym. Short sessions at home have given me both strength and some breathing space.</q><figcaption class="who"><i aria-hidden="true">S</i><span><b>Silje</b>Member since 2025</span></figcaption></figure>
     </div>
     <div class="dots" id="dots" aria-label="Choose review"></div>
   </div>
