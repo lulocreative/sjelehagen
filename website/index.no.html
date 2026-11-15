@@ -102,7 +102,7 @@ section{padding-block:72px;scroll-margin-top:70px}
 /* Header */
 /* nav floats transparent over the hero video, turns solid once the page scrolls */
 .top{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);z-index:50;background:transparent;border-bottom:1px solid transparent;transition:background .35s ease, border-color .35s, box-shadow .35s}
-.top.scrolled{background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line);box-shadow:0 6px 20px -16px rgba(0,0,0,.4)}
+.top.scrolled{background:var(--bg);border-color:var(--line);box-shadow:0 6px 20px -16px rgba(0,0,0,.4)}
 .top .nav a,.top .login{transition:color .35s}
 .top:not(.scrolled) .nav a,.top:not(.scrolled) .login{color:rgba(255,255,255,.92)}
 .top:not(.scrolled) .nav a:hover,.top:not(.scrolled) .login:hover{color:#fff}
