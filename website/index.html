@@ -26,7 +26,7 @@
   --surface:#ffffff;
   --line:#dfe8d8;
   --logo-ink:#33473b;
-  --logo-filter:none;
+  --show-dark-logo:block; --show-light-logo:none;
   --on-cta:#ffffff;
   --shadow:0 18px 40px -22px rgba(37,55,26,.35);
   --f-display:"Fraunces", "Iowan Old Style", Georgia, serif;
@@ -45,11 +45,12 @@
   --logo-ink:#dcebe0; --on-cta:#06262a;
   --shadow:0 18px 40px -22px rgba(0,0,0,.7);
   color-scheme:dark;
-  --logo-filter:invert(1) hue-rotate(180deg) brightness(1.1);
+  --show-dark-logo:none; --show-light-logo:block;
 }}
-.logo img{filter:var(--logo-filter)}
+.logo-dark{display:var(--show-dark-logo)!important}
+.logo-light{display:var(--show-light-logo)!important}
 :root[data-theme="dark"]{
-  --logo-filter:invert(1) hue-rotate(180deg) brightness(1.1);
+  --show-dark-logo:none; --show-light-logo:block;
   --teal:#5fcfc3; --cta:#1bb0bb; --cta-hover:#25c3ce; --action:#3f6b66; --action-hover:#4d7d77; --action-text:#9fd8cf; --pink:#2b3d27; --clay:#5a4a35;
   --ink:#eef3ec; --ink-soft:#b9c4bb;
   --rose-bg:#211d17; --rose-ink:#e8dcc6;
@@ -103,8 +104,7 @@ section{padding-block:72px;scroll-margin-top:70px}
 .top .nav a,.top .login{transition:color .35s}
 .top:not(.scrolled) .nav a,.top:not(.scrolled) .login{color:rgba(255,255,255,.92)}
 .top:not(.scrolled) .nav a:hover,.top:not(.scrolled) .login:hover{color:#fff}
-.top .logo img{transition:filter .35s}
-.top:not(.scrolled) .logo img{filter:brightness(0) invert(1)}
+.top:not(.scrolled){--show-dark-logo:none;--show-light-logo:block}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:64px}
 .logo{display:flex;align-items:center;text-decoration:none}
 .logo img{height:34px;width:auto;display:block}
@@ -446,7 +446,7 @@ footer a{text-decoration:none}
 
 <header class="top" id="top">
   <div class="wrap">
-    <a class="logo" href="#" aria-label="Sjelehagen home"><img src="img/logo.png" alt="Sjelehagen" width="372" height="68"></a>
+    <a class="logo" href="#" aria-label="Sjelehagen home"><img class="logo-dark" src="img/logo.png" alt="Sjelehagen" width="372" height="68"><img class="logo-light" src="img/logo-white.png" alt="Sjelehagen" width="438" height="68"></a>
     <nav class="nav" aria-label="Main menu">
       <a href="#innhold">What you get</a>
       <a href="#syklus">Cycle</a>
@@ -767,7 +767,7 @@ footer a{text-decoration:none}
 
 <footer>
   <div class="wrap">
-    <a class="logo" href="#" aria-label="Sjelehagen"><img src="img/logo.png" alt="Sjelehagen" width="372" height="68" style="height:28px" loading="lazy"></a>
+    <a class="logo" href="#" aria-label="Sjelehagen"><img class="logo-dark" src="img/logo.png" alt="Sjelehagen" width="372" height="68" style="height:28px" loading="lazy"><img class="logo-light" src="img/logo-white.png" alt="Sjelehagen" width="438" height="68" style="height:28px" loading="lazy"></a>
     <nav aria-label="Footer menu"><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Contact</a><a href="#">Instagram</a></nav>
     <p>© 2026 Sjelehagen</p>
   </div>
