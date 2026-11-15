@@ -9,9 +9,10 @@
 /* Layout: mobile-first single column that opens into a two-column editorial grid at 900px.
    Mint/sage "garden beds" alternate with white so each section reads as a new bed. */
 :root{
-  --teal:#4ec1b5;        /* primary brand */
-  --cta:#16a2ad;         /* main sign-up CTA */
-  --cta-hover:#11878f;
+  --brand-teal:#16a2ad; --brand-teal-hover:#11878f;   /* header "Try free" only */
+  --teal:#d2ad94;        /* soft clay: rings, markers */
+  --cta:#9a6a55;         /* dusty clay accent: italic headlines, eyebrows, ticks */
+  --cta-hover:#855946;
   --action:#2f4d4a;      /* CTA buttons */
   --action-hover:#243b39;
   --action-text:#2f4d4a;
@@ -38,7 +39,7 @@
   --gut-r:max(16px, env(safe-area-inset-right, 0px));
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --teal:#5fcfc3; --cta:#1bb0bb; --cta-hover:#25c3ce; --action:#3f6b66; --action-hover:#4d7d77; --action-text:#9fd8cf; --final-bg:#3a2f23; --final-ink:#efe4d2; --final-em:#c9dcb8; --pink:#2b3d27; --clay:#5a4a35;
+  --teal:#a8826b; --cta:#dcb59d; --cta-hover:#e6c4ae; --action:#3f6b66; --action-hover:#4d7d77; --action-text:#9fd8cf; --final-bg:#3a2f23; --final-ink:#efe4d2; --final-em:#c9dcb8; --pink:#2b3d27; --clay:#5a4a35;
   --ink:#eef3ec; --ink-soft:#b9c4bb;
   --rose-bg:#211d17; --rose-ink:#e8dcc6;
   --sage-bg:#1c2a1f; --sage-ink:#d4ebc6;
@@ -52,7 +53,7 @@
 .logo-light{display:var(--show-light-logo)!important}
 :root[data-theme="dark"]{
   --show-dark-logo:none; --show-light-logo:block;
-  --teal:#5fcfc3; --cta:#1bb0bb; --cta-hover:#25c3ce; --action:#3f6b66; --action-hover:#4d7d77; --action-text:#9fd8cf; --final-bg:#3a2f23; --final-ink:#efe4d2; --final-em:#c9dcb8; --pink:#2b3d27; --clay:#5a4a35;
+  --teal:#a8826b; --cta:#dcb59d; --cta-hover:#e6c4ae; --action:#3f6b66; --action-hover:#4d7d77; --action-text:#9fd8cf; --final-bg:#3a2f23; --final-ink:#efe4d2; --final-em:#c9dcb8; --pink:#2b3d27; --clay:#5a4a35;
   --ink:#eef3ec; --ink-soft:#b9c4bb;
   --rose-bg:#211d17; --rose-ink:#e8dcc6;
   --sage-bg:#1c2a1f; --sage-ink:#d4ebc6;
@@ -86,8 +87,8 @@ section{padding-block:72px;scroll-margin-top:70px}
 .btn:active{transform:scale(.97)}
 .btn-cta{background:var(--action);color:#fff;box-shadow:0 10px 24px -10px rgba(47,77,74,.7)}
 .btn-cta:hover{background:var(--action-hover);transform:translateY(-2px)}
-.top .btn-cta{background:var(--cta);color:var(--on-cta);box-shadow:0 10px 24px -10px rgba(22,162,173,.75)}
-.top .btn-cta:hover{background:var(--cta-hover)}
+.top .btn-cta{background:var(--brand-teal);color:#fff;box-shadow:0 10px 24px -10px rgba(22,162,173,.75)}
+.top .btn-cta:hover{background:var(--brand-teal-hover)}
 .hero .btn-cta{box-shadow:inset 0 0 0 1px rgba(255,255,255,.3),0 10px 24px -10px rgba(0,0,0,.5)}
 .btn-soft{background:var(--pink);color:var(--sage-ink)}
 .btn-soft:hover{transform:translateY(-2px)}
@@ -120,6 +121,9 @@ footer .logo img{width:auto}
 /* Images */
 .ph.has-img::before{display:none}
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ph.has-img{background:var(--ph-c, var(--rose-bg))}
+.js-img .ph.has-img img{opacity:0;transition:opacity .6s ease, transform .9s cubic-bezier(.2,.7,.2,1)}
+.js-img .ph.has-img img.loaded{opacity:1}
 /* Image placeholders */
 .ph{position:relative;overflow:hidden;border-radius:var(--r-l);background:
   radial-gradient(120% 80% at 15% 10%, #8fd4c0 0%, transparent 55%),
@@ -154,7 +158,7 @@ footer .logo img{width:auto}
 .pill{display:inline-flex;align-items:center;gap:8px;width:fit-content;padding:6px 12px 6px 6px;border-radius:999px;background:rgba(255,255,255,.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;font-size:.82rem;font-weight:600;border:1px solid rgba(255,255,255,.25)}
 .pill b{background:#e6f2da;color:#25371a;border-radius:999px;padding:2px 9px;font-weight:700}
 .hero h1{color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.25)}
-.hero h1 em{color:#a8ece3}
+.hero h1 em{color:#f1d6c1}
 .hero h1 .line{display:block}
 .hero .lede{color:rgba(255,255,255,.9)}
 .hero-ctas{display:grid;gap:10px}
@@ -162,7 +166,7 @@ footer .logo img{width:auto}
 .hero .btn-ghost:hover{background:rgba(255,255,255,.18);box-shadow:inset 0 0 0 1.5px #fff}
 .micro{font-size:.85rem;color:rgba(255,255,255,.88);display:flex;flex-wrap:wrap;gap:6px 16px}
 .micro span{display:inline-flex;gap:6px;align-items:center}
-.micro svg{width:16px;height:16px;color:#a8ece3}
+.micro svg{width:16px;height:16px;color:#f1d6c1}
 .proof{display:flex;align-items:center;gap:12px;font-size:.88rem;color:rgba(255,255,255,.88)}
 .avatars{display:flex}
 .avatars i{width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,.9);margin-left:-10px;background:linear-gradient(140deg,var(--teal),var(--sage-bg))}
@@ -193,6 +197,7 @@ footer .logo img{width:auto}
 }
 @keyframes peek{from{transform:translateY(28px) scale(.98)}to{transform:none}}
 @media (prefers-reduced-motion: reduce){
+  .pillar .ph img,.plan-card .ph img{transition:none}
   .ld,.rv,.float,.ph::before,.leaf-anim,.marquee-track,.hero-bg,.hero-bg::before,.hero-bg::after{animation:none!important}
 }
 
@@ -216,8 +221,10 @@ footer .logo img{width:auto}
 .pillars{display:grid;grid-auto-flow:column;grid-auto-columns:78%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;margin-inline:calc(var(--gut-l) * -1) calc(var(--gut-r) * -1);padding-inline:var(--gut-l) var(--gut-r);scrollbar-width:none}
 .pillars::-webkit-scrollbar{display:none}
 .pillar{scroll-snap-align:start;display:grid;gap:12px;align-content:start;min-width:0}
-.pillar .ph{aspect-ratio:4/5;border-radius:var(--r-m);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.pillar:hover .ph{transform:scale(1.02) rotate(-.5deg)}
+.pillar .ph{aspect-ratio:4/5;border-radius:var(--r-m)}
+/* hover: subtle zoom inside the frame, no tilt */
+.pillar .ph img,.plan-card .ph img{transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.pillar:hover .ph img,.plan-card:hover .ph img{transform:scale(1.05)}
 .pillar p{color:var(--ink-soft);font-size:.95rem}
 .pillar .tagline{font-size:.78rem;font-weight:700;color:var(--cta);letter-spacing:.06em;text-transform:uppercase}
 .swipe-hint{display:flex;gap:8px;align-items:center;font-size:.82rem;color:var(--ink-soft);margin-top:6px}
@@ -249,6 +256,7 @@ input[type=range]{width:100%;accent-color:var(--cta)}
 .phase-list{display:grid;gap:12px;margin:0;padding:0;list-style:none}
 .phase-list li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
 .phase-list .ic{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:var(--sage-bg);color:var(--sage-ink)}
+.phase-list .ic svg{width:20px;height:20px}
 .phase-list b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
 .swap{animation:swapIn .45s ease both}
 @keyframes swapIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -275,7 +283,7 @@ input[type=range]{width:100%;accent-color:var(--cta)}
 .week{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
 .week div{display:grid;gap:4px;justify-items:center;font-size:.7rem;color:var(--ink-soft);font-weight:600}
 .week i{width:100%;aspect-ratio:1;border-radius:8px;background:var(--surface);display:grid;place-items:center;font-style:normal;font-size:.62rem;color:var(--sage-ink);font-weight:700}
-.week i.p{background:var(--teal);color:#063a36}
+.week i.p{background:var(--teal);color:#3a2a20}
 .week i.y{background:var(--sage-bg)}
 .week i.r{background:var(--rose-bg);color:var(--rose-ink)}
 .field{display:grid;gap:6px}
@@ -309,7 +317,7 @@ input[type=range]{width:100%;accent-color:var(--cta)}
 /* Steps */
 .steps{display:grid;gap:14px;counter-reset:s;list-style:none;padding:0;margin:0}
 .steps li{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;padding:20px;border-radius:var(--r-m);background:var(--surface);border:1px solid var(--line)}
-.steps li::before{counter-increment:s;content:counter(s);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--teal);color:#063a36;font:500 1.2rem var(--f-display)}
+.steps li::before{counter-increment:s;content:counter(s);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--rose-bg);color:var(--rose-ink);font:500 1.2rem var(--f-display)}
 .steps h3{font-size:1.2rem;margin-bottom:4px}
 .steps p{color:var(--ink-soft);font-size:.95rem}
 
@@ -345,8 +353,8 @@ blockquote.big{margin:0;font:italic 300 1.3rem/1.4 var(--f-display);border-left:
 .pricing{background:var(--mint-bg)}
 .price-grid{display:grid;gap:16px}
 .price{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);padding:24px;display:grid;gap:14px;align-content:start;position:relative}
-.price.best{border:2px solid var(--cta);order:-1;box-shadow:var(--shadow)}
-.price .badge{position:absolute;top:-13px;left:24px;background:var(--cta);color:var(--on-cta);padding:5px 12px;border-radius:999px;font-size:.75rem;font-weight:700}
+.price.best{border:2px solid var(--action);order:-1;box-shadow:var(--shadow)}
+.price .badge{position:absolute;top:-13px;left:24px;background:var(--action);color:#fff;padding:5px 12px;border-radius:999px;font-size:.75rem;font-weight:700}
 .price h3{font-family:var(--f-body);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
 .amount{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
 .amount strong{font:400 2.6rem/1 var(--f-display);font-variant-numeric:tabular-nums}
@@ -525,6 +533,8 @@ footer a{text-decoration:none}
   <symbol id="i-t3" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 12V3A9 9 0 1 1 3 12Z" fill="currentColor"/></symbol>
   <symbol id="i-seed" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 20v-5M12 15c-3 0-5-2-5-5 3 0 5 2 5 5zM12 14c0-2.6 1.8-4.6 4.6-4.6 0 2.6-1.8 4.6-4.6 4.6zM7 20h10"/></symbol>
   <symbol id="i-flame" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 21c3.9 0 6.5-2.7 6.5-6.2 0-4.3-3.8-6.4-4.3-10.8-3.2 2-4.7 5.1-4.4 7.6-1.2-.8-2-2-2.2-3.3C5.9 10.1 5.5 12.2 5.5 14.8 5.5 18.3 8.1 21 12 21z"/></symbol>
+  <symbol id="i-bowl" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 12h18a9 8 0 0 1-18 0zM9 8c0-1.4.9-2.4 2-3M13.5 8c0-1.8 1.2-3.3 3-4"/></symbol>
+  <symbol id="i-candle" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8 21h8M10 21v-9h4v9M12 12v-2M12 3.5c1.3 1.5 2 2.6 2 3.6a2 2 0 0 1-4 0c0-1 .7-2.1 2-3.6z"/></symbol>
   <symbol id="logoleaves" viewBox="0 0 64 44">
     <path d="M14 42C4 36 2 24 8 14c8 7 11 18 6 28z" fill="#a6e0d8"/>
     <path d="M24 42C16 30 18 14 30 4c8 12 6 28-6 38z" fill="#7dd2c7"/>
@@ -556,7 +566,7 @@ footer a{text-decoration:none}
     <source srcset="img/hero-mobil.webp" media="(orientation: portrait)" width="750" height="1000">
     <img src="img/hero.webp" alt="" width="1920" height="1280" fetchpriority="high" decoding="async">
   </picture>
-  <!-- Hero loop: full video_programs_2.mp4 (14 s), re-encoded for web, no audio. A calmer 6.8 s cut is in website/video/hero-calm*.mp4. -->
+  <!-- Hero loop: video/background_desktop.mp4 (15 s), re-encoded for web, no audio. -->
   <video class="hero-video" id="heroVideo" poster="img/hero-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
     <source src="video/hero-mobil.mp4" type="video/mp4" media="(orientation: portrait)">
     <source src="video/hero.mp4" type="video/mp4">
@@ -600,22 +610,22 @@ footer a{text-decoration:none}
     </div>
     <div class="pillars" tabindex="0" aria-label="Innhold i medlemskapet">
       <article class="pillar">
-        <div class="ph has-img"><img src="img/pilates.webp" alt="Cecilie i en pilatesøvelse på matte i palmehagen" width="600" height="750" loading="lazy" decoding="async"></div>
+        <div class="ph has-img" style="--ph-c:#7f836d"><img src="img/pilates.webp" srcset="img/pilates-400.webp 400w, img/pilates.webp 600w" sizes="(min-width:900px) 270px, (min-width:600px) 44vw, 78vw" alt="Cecilie i en pilatesøvelse på matte i palmehagen" width="600" height="750" loading="lazy" decoding="async"></div>
         <span class="tagline">Styrke</span><h3>Pilates</h3>
         <p>Matte, power og sculpt med fokus på styrke, pust og kontroll.</p>
       </article>
       <article class="pillar">
-        <div class="ph has-img"><img src="img/yoga.webp" alt="Cecilie i oppadgående hund på yogamatte utendørs" width="600" height="750" loading="lazy" decoding="async"></div>
+        <div class="ph has-img" style="--ph-c:#868a6d"><img src="img/yoga.webp" srcset="img/yoga-400.webp 400w, img/yoga.webp 600w" sizes="(min-width:900px) 270px, (min-width:600px) 44vw, 78vw" alt="Cecilie i oppadgående hund på yogamatte utendørs" width="600" height="750" loading="lazy" decoding="async"></div>
         <span class="tagline">Bevegelighet</span><h3>Yoga</h3>
         <p>Fra dynamisk flyt og myke strekk til yin og guidet hvile.</p>
       </article>
       <article class="pillar">
-        <div class="ph has-img"><img src="img/mat.webp" alt="Fargerike boller med grønnkål, ris, kikerter og rødbeter" width="600" height="750" loading="lazy" decoding="async"></div>
+        <div class="ph has-img" style="--ph-c:#6d6665"><img src="img/mat.webp" srcset="img/mat-400.webp 400w, img/mat.webp 600w" sizes="(min-width:900px) 270px, (min-width:600px) 44vw, 78vw" alt="Fargerike boller med grønnkål, ris, kikerter og rødbeter" width="600" height="750" loading="lazy" decoding="async"></div>
         <span class="tagline">Næring</span><h3>Mat &amp; næring</h3>
         <p>Oppskrifter og matglede med inspirasjon fra sesongene og Ayurveda.</p>
       </article>
       <article class="pillar">
-        <div class="ph has-img"><img src="img/ritual.webp" alt="Cecilie ligger i meditasjon med hendene på bryst og mage" width="600" height="750" loading="lazy" decoding="async"></div>
+        <div class="ph has-img" style="--ph-c:#372e29"><img src="img/ritual.webp" srcset="img/ritual-400.webp 400w, img/ritual.webp 600w" sizes="(min-width:900px) 270px, (min-width:600px) 44vw, 78vw" alt="Cecilie ligger i meditasjon med hendene på bryst og mage" width="600" height="750" loading="lazy" decoding="async"></div>
         <span class="tagline">Hormoner</span><h3>Syklisk egenomsorg</h3>
         <p>Små ritualer og ayurvedisk inspirasjon gjennom syklus og årstider.</p>
       </article>
@@ -691,7 +701,7 @@ footer a{text-decoration:none}
     </div>
     <div class="plan-cards">
       <article class="plan-card rv">
-        <div class="ph has-img"><img src="img/plan-energi.webp" alt="Pilatesøkt på treplatting mellom palmer" width="800" height="500" loading="lazy" decoding="async"></div>
+        <div class="ph has-img" style="--ph-c:#82876a"><img src="img/plan-energi.webp" srcset="img/plan-energi-520.webp 520w, img/plan-energi.webp 800w" sizes="(min-width:900px) 330px, (min-width:600px) 48vw, 100vw" alt="Pilatesøkt på treplatting mellom palmer" width="800" height="500" loading="lazy" decoding="async"></div>
         <div class="plan-body">
           <span class="chip energy">Når du har overskudd</span>
           <h3>Energi &amp; kraft</h3>
@@ -701,7 +711,7 @@ footer a{text-decoration:none}
         </div>
       </article>
       <article class="plan-card rv">
-        <div class="ph has-img"><img src="img/plan-ro.webp" alt="Rolig ryggbøy på matte i palmehagen" width="800" height="500" loading="lazy" decoding="async"></div>
+        <div class="ph has-img" style="--ph-c:#8f936f"><img src="img/plan-ro.webp" srcset="img/plan-ro-520.webp 520w, img/plan-ro.webp 800w" sizes="(min-width:900px) 330px, (min-width:600px) 48vw, 100vw" alt="Rolig ryggbøy på matte i palmehagen" width="800" height="500" loading="lazy" decoding="async"></div>
         <div class="plan-body">
           <span class="chip calm">Når du trenger ro</span>
           <h3>Ro &amp; flyt</h3>
@@ -732,7 +742,7 @@ footer a{text-decoration:none}
 <!-- FOUNDER -->
 <section class="founder" id="cecilie">
   <div class="wrap founder-grid">
-    <div class="ph has-img"><img src="img/cecilie.webp" alt="Cecilie, grunnlegger av Sjelehagen, i en grønn palmehage" width="720" height="900" loading="lazy" decoding="async"></div>
+    <div class="ph has-img" style="--ph-c:#2f3d26"><img src="img/cecilie.webp" srcset="img/cecilie-480.webp 480w, img/cecilie.webp 720w" sizes="(min-width:900px) 440px, 100vw" alt="Cecilie, grunnlegger av Sjelehagen, i en grønn palmehage" width="720" height="900" loading="lazy" decoding="async"></div>
     <div class="founder-copy">
       <span class="eyebrow" style="color:var(--sage-ink)">Møt grunnleggeren</span>
       <h2 class="rv">Møt Cecilie bak <em>Sjelehagen</em></h2>
@@ -939,6 +949,13 @@ footer a{text-decoration:none}
     });
   }
 
+  /* Images: soft fade-in over a colour sampled from each photo (no green flash) */
+  document.documentElement.classList.add('js-img');
+  document.querySelectorAll('.ph.has-img img').forEach(img => {
+    const done = () => img.classList.add('loaded');
+    if (img.complete && img.naturalWidth) done(); else { img.addEventListener('load', done, {once:true}); img.addEventListener('error', done, {once:true}); }
+  });
+
   /* Count-up (HTML already shows final values) */
   if (!reduce) {
     const cObs = new IntersectionObserver(es => es.forEach(e => {
@@ -994,7 +1011,7 @@ footer a{text-decoration:none}
     tabs.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-selected', j === i));
     card.setAttribute('aria-labelledby', 'tab-' + p.key);
     card.innerHTML = `<div class="swap" style="display:grid;gap:16px"><div><span class="days">Dag ${p.from}–${p.to} · ${p.season}</span><h3>${p.name}</h3></div>
-      <ul class="phase-list"><li>${ic('leaf')}<div><b>Trening</b>${p.train}</div></li><li>${ic('leaf')}<div><b>Mat</b>${p.food}</div></li><li>${ic('leaf')}<div><b>Ritual</b>${p.ritual}</div></li></ul>
+      <ul class="phase-list"><li>${ic('i-strength')}<div><b>Trening</b>${p.train}</div></li><li>${ic('i-bowl')}<div><b>Mat</b>${p.food}</div></li><li>${ic('i-candle')}<div><b>Ritual</b>${p.ritual}</div></li></ul>
       <a class="btn btn-cta" href="#plan">Få planen for din fase <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a></div>`;
   }
   $('#day').addEventListener('input', e => setDay(e.target.value));
