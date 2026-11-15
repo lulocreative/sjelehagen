@@ -238,6 +238,10 @@ footer .logo img{width:auto}
 .seg:hover{opacity:.9}
 .seg.on{transform:scale(1.045)}
 .seg:focus{outline:none}
+html{-webkit-tap-highlight-color:transparent}
+#wheel,#wheel *,.phase-tabs button,.opt{-webkit-tap-highlight-color:transparent}
+#wheel:focus,#wheel *:focus{outline:none}
+@media (hover:none){.seg:focus-visible{stroke:none}}
 .seg:focus-visible{outline:none;stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
 .wheel-center{position:absolute;inset:0;display:grid;place-items:center;text-align:center;pointer-events:none}
 .wheel-center div{display:grid;gap:2px}
@@ -884,7 +888,7 @@ footer a{text-decoration:none}
       <span class="eyebrow">Gratis guide</span>
       <h2 id="promoTitle">Lev i kontakt <em>med kroppen din.</em></h2>
       <p class="promo-sub">Få <b>Syklus-kompasset</b>: dine 4 faser forklart, rett i innboksen.</p>
-      <ul class="promo-phases"><li><i style="background:#8f6e55"></i>Indre vinter</li><li><i style="background:#a9bb8a"></i>Indre vår</li><li><i style="background:#d4b06a"></i>Indre sommer</li><li><i style="background:#77805a"></i>Indre høst</li></ul>
+      <ul class="promo-phases"><li><i style="background:#9a6470"></i>Indre vinter</li><li><i style="background:#e2bfb2"></i>Indre vår</li><li><i style="background:#d9a07c"></i>Indre sommer</li><li><i style="background:#b47e6c"></i>Indre høst</li></ul>
       <form class="promo-form" id="promoForm" novalidate>
         <label class="sr" for="promo-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">E-post</label>
         <input id="promo-email" type="email" autocomplete="email" inputmode="email" placeholder="Din e-post">
@@ -969,13 +973,13 @@ footer a{text-decoration:none}
 
   /* Cycle wheel */
   const phases = [
-    {key:'men', name:'Menstruasjon', from:1, to:5, color:'#8f6e55', season:'Indre vinter',
+    {key:'men', name:'Menstruasjon', from:1, to:5, color:'#9a6470', season:'Indre vinter',
      train:'Yin, myk yoga og pusteøvelser. 10–20 min.', food:'Varme supper, rødbeter og jernrike linser.', ritual:'Varm olje på føttene og tidlig kveld.'},
-    {key:'fol', name:'Follikulær', from:6, to:13, color:'#a9bb8a', season:'Indre vår',
+    {key:'fol', name:'Follikulær', from:6, to:13, color:'#e2bfb2', season:'Indre vår',
      train:'Pilates power og ny teknikk. Energien stiger.', food:'Friske grønnsaker, spirer og fermentert mat.', ritual:'Sett nye mål og prøv noe nytt.'},
-    {key:'ovu', name:'Eggløsning', from:14, to:16, color:'#d4b06a', season:'Indre sommer',
+    {key:'ovu', name:'Eggløsning', from:14, to:16, color:'#d9a07c', season:'Indre sommer',
      train:'Sculpt og dynamisk flyt med høy intensitet.', food:'Lette måltider, bær og kjølende urter.', ritual:'Del energien: tren sammen med en venn.'},
-    {key:'lut', name:'Luteal', from:17, to:28, color:'#77805a', season:'Indre høst',
+    {key:'lut', name:'Luteal', from:17, to:28, color:'#b47e6c', season:'Indre høst',
      train:'Moderat styrke, deretter mer mobilitet mot slutten.', food:'Komplekse karbohydrater, magnesium og søtpotet.', ritual:'Journaling, rolig gange og varm te.'}
   ];
   const wheel = $('#wheel'), NS = 'http://www.w3.org/2000/svg', C = 180, R1 = 168, R0 = 118;

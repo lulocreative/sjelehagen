@@ -238,6 +238,10 @@ footer .logo img{width:auto}
 .seg:hover{opacity:.9}
 .seg.on{transform:scale(1.045)}
 .seg:focus{outline:none}
+html{-webkit-tap-highlight-color:transparent}
+#wheel,#wheel *,.phase-tabs button,.opt{-webkit-tap-highlight-color:transparent}
+#wheel:focus,#wheel *:focus{outline:none}
+@media (hover:none){.seg:focus-visible{stroke:none}}
 .seg:focus-visible{outline:none;stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
 .wheel-center{position:absolute;inset:0;display:grid;place-items:center;text-align:center;pointer-events:none}
 .wheel-center div{display:grid;gap:2px}
@@ -884,7 +888,7 @@ footer a{text-decoration:none}
       <span class="eyebrow">Free guide</span>
       <h2 id="promoTitle">Live in connection <em>with your body.</em></h2>
       <p class="promo-sub">Get <b>The Cycle Compass</b>: your 4 phases explained, straight to your inbox.</p>
-      <ul class="promo-phases"><li><i style="background:#8f6e55"></i>Inner winter</li><li><i style="background:#a9bb8a"></i>Inner spring</li><li><i style="background:#d4b06a"></i>Inner summer</li><li><i style="background:#77805a"></i>Inner autumn</li></ul>
+      <ul class="promo-phases"><li><i style="background:#9a6470"></i>Inner winter</li><li><i style="background:#e2bfb2"></i>Inner spring</li><li><i style="background:#d9a07c"></i>Inner summer</li><li><i style="background:#b47e6c"></i>Inner autumn</li></ul>
       <form class="promo-form" id="promoForm" novalidate>
         <label class="sr" for="promo-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email</label>
         <input id="promo-email" type="email" autocomplete="email" inputmode="email" placeholder="Your email">
@@ -969,13 +973,13 @@ footer a{text-decoration:none}
 
   /* Cycle wheel */
   const phases = [
-    {key:'men', name:'Menstruation', from:1, to:5, color:'#8f6e55', season:'Inner winter',
+    {key:'men', name:'Menstruation', from:1, to:5, color:'#9a6470', season:'Inner winter',
      train:'Yin, gentle yoga and breathwork. 10–20 min.', food:'Warm soups, beetroot and iron-rich lentils.', ritual:'Warm oil on your feet and an early night.'},
-    {key:'fol', name:'Follicular', from:6, to:13, color:'#a9bb8a', season:'Inner spring',
+    {key:'fol', name:'Follicular', from:6, to:13, color:'#e2bfb2', season:'Inner spring',
      train:'Power Pilates and new technique. Energy is rising.', food:'Fresh vegetables, sprouts and fermented food.', ritual:'Set new goals and try something new.'},
-    {key:'ovu', name:'Ovulation', from:14, to:16, color:'#d4b06a', season:'Inner summer',
+    {key:'ovu', name:'Ovulation', from:14, to:16, color:'#d9a07c', season:'Inner summer',
      train:'Sculpt and high-intensity dynamic flow.', food:'Light meals, berries and cooling herbs.', ritual:'Share the energy: train with a friend.'},
-    {key:'lut', name:'Luteal', from:17, to:28, color:'#77805a', season:'Inner autumn',
+    {key:'lut', name:'Luteal', from:17, to:28, color:'#b47e6c', season:'Inner autumn',
      train:'Moderate strength, then more mobility towards the end.', food:'Complex carbs, magnesium and sweet potato.', ritual:'Journaling, slow walks and warm tea.'}
   ];
   const wheel = $('#wheel'), NS = 'http://www.w3.org/2000/svg', C = 180, R1 = 168, R0 = 118;
