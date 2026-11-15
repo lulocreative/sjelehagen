@@ -379,7 +379,7 @@ footer a{text-decoration:none}
   section{padding-block:110px}
   .nav,.login{display:flex}
   .hero{min-height:min(86vh,860px)}
-  .hero-grid{padding-block:160px 72px}
+  .hero-grid{padding-block:160px 72px;max-width:none;margin:0;padding-left:max(clamp(24px, 6vw, 112px), env(safe-area-inset-left, 0px))}
   .hero::after{background:linear-gradient(90deg,rgba(8,26,19,.78) 0%,rgba(8,26,19,.45) 45%,rgba(8,26,19,.05) 80%)}
   .hero-ui{top:auto;bottom:24px}
   .pillars{grid-auto-flow:row;grid-template-columns:repeat(4,1fr);overflow:visible;margin-inline:0;padding-inline:0}
