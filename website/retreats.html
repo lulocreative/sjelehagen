@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sjelehagen Retreats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..600,50..100&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Retreats starter page: same tokens as the landing page; full design to follow */
+:root{
+  --teal:#4ec1b5; --cta:#16a2ad; --action:#2f4d4a; --action-hover:#243b39;
+  --ink:#222222; --ink-soft:#4b524d; --bg:#fcfdfa; --surface:#ffffff; --line:#dfe8d8;
+  --sand:#efe9dd; --sand-ink:#43382a; --mint-bg:#f0f7e9;
+  --show-dark-logo:block; --show-light-logo:none;
+  --f-display:"Fraunces","Iowan Old Style",Georgia,serif;
+  --f-body:"Figtree","Segoe UI",system-ui,sans-serif;
+  --gut-l:max(16px, env(safe-area-inset-left, 0px)); --gut-r:max(16px, env(safe-area-inset-right, 0px));
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --ink:#eef3ec; --ink-soft:#b9c4bb; --bg:#111814; --surface:#18221c; --line:#2a382f;
+  --sand:#211d17; --sand-ink:#e8dcc6; --mint-bg:#17221b; --action:#3f6b66; --action-hover:#4d7d77;
+  --show-dark-logo:none; --show-light-logo:block; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --ink:#eef3ec; --ink-soft:#b9c4bb; --bg:#111814; --surface:#18221c; --line:#2a382f;
+  --sand:#211d17; --sand-ink:#e8dcc6; --mint-bg:#17221b; --action:#3f6b66; --action-hover:#4d7d77;
+  --show-dark-logo:none; --show-light-logo:block; color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+h1,h2{font-family:var(--f-display);font-weight:400;line-height:1.05;letter-spacing:-.015em;margin:0;text-wrap:balance;font-variation-settings:"SOFT" 100}
+h1 em,h2 em{font-style:italic;color:var(--action)}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1160px;margin:0 auto;padding-left:var(--gut-l);padding-right:var(--gut-r)}
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cta)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo img{width:150px;height:auto}
+.logo-dark{display:var(--show-dark-logo)}.logo-light{display:var(--show-light-logo)}
+.back{font-weight:500;font-size:.92rem;text-decoration:none;color:var(--ink-soft)}
+.back:hover{color:var(--ink)}
+.hero{display:grid;gap:28px;padding-block:32px 72px}
+.hero-copy{display:grid;gap:18px;align-content:center}
+h1{font-size:clamp(2.6rem, 10vw, 5rem)}
+.lede{font-size:1.08rem;color:var(--ink-soft);max-width:52ch}
+.hero img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{padding:7px 12px;border-radius:999px;background:var(--mint-bg);font-size:.85rem;font-weight:600}
+.interest{background:var(--sand);color:var(--sand-ink);padding-block:64px}
+.interest .wrap{display:grid;gap:20px;max-width:720px}
+.interest h2{font-size:clamp(1.9rem, 6vw, 2.8rem)}
+form{display:grid;gap:12px}
+label{font-size:.85rem;font-weight:600}
+input[type=email]{height:52px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:0 16px;font:16px var(--f-body);width:100%}
+input[type=email]:focus{outline:none;border-color:var(--action)}
+.row{display:grid;gap:10px}
+button{height:52px;border:0;border-radius:999px;background:var(--action);color:#fff;font:600 1rem var(--f-body);padding:0 26px;cursor:pointer}
+button:hover{background:var(--action-hover)}
+.note{font-size:.82rem;min-height:1.2em}
+.placeholder{font-size:.8rem;color:var(--ink-soft);border-top:1px solid var(--line);padding-block:24px 40px}
+@media (min-width:700px){.row{grid-template-columns:1fr auto}}
+@media (min-width:900px){.hero{grid-template-columns:1.1fr .9fr;gap:64px;padding-block:56px 110px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Sjelehagen home"><img class="logo-dark" src="img/logo.png" alt="Sjelehagen" width="411" height="64"><img class="logo-light" src="img/logo-white.png" alt="Sjelehagen" width="411" height="64"></a>
+    <a class="back" href="index.html">← Back to Sjelehagen</a>
+  </div>
+</header>
+<main>
+  <section class="wrap hero">
+    <div class="hero-copy">
+      <span class="eyebrow">Sjelehagen Retreats</span>
+      <h1>Step out of everyday life, <em>into the garden.</em></h1>
+      <p class="lede">Small-group retreats with Cecilie: Pilates and yoga every day, seasonal Ayurvedic food, and time to rest in nature. Dates and locations are being planned now.</p>
+      <div class="facts"><span>Small groups</span><span>Pilates &amp; yoga daily</span><span>Seasonal food</span><span>Nature</span></div>
+    </div>
+    <img src="img/ritual.webp" alt="Cecilie lying in meditation on a mat among rocks" width="600" height="750">
+  </section>
+  <section class="interest">
+    <div class="wrap">
+      <span class="eyebrow">Be the first to know</span>
+      <h2>Get the retreat dates before anyone else.</h2>
+      <p>Leave your email and we’ll let you know when the next retreat opens for booking. Members get first access.</p>
+      <form id="rForm" novalidate>
+        <label for="r-email">Email</label>
+        <div class="row"><input id="r-email" type="email" autocomplete="email" placeholder="name@email.com"><button type="submit">Notify me</button></div>
+        <p class="note" id="rNote" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+  <p class="wrap placeholder">Starter page: the full retreats page (programme, dates, venue, prices, booking) will be designed here.</p>
+</main>
+<script>
+document.getElementById('rForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const v = document.getElementById('r-email').value.trim(), n = document.getElementById('rNote');
+  n.textContent = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? 'Thanks! We’ll email you when retreat booking opens.' : 'Enter a valid email address, for example name@email.com.';
+});
+</script>
+</body>
+</html>
