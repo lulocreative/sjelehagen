@@ -153,8 +153,8 @@ footer .logo img{width:auto}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
 .hero-bg::before{display:none}
 .hero-bg::after{z-index:1}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,26,19,.2) 0%,rgba(8,26,19,.4) 35%,rgba(8,26,19,.85) 100%)}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:sepia(.14) saturate(1.04) brightness(1.02)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(48,32,22,.18) 0%,rgba(48,32,22,.32) 35%,rgba(40,27,18,.82) 100%)}
 @keyframes kenburns{to{transform:scale(1.08) translate(-1.5%,-1%)}}
 @keyframes dapple{to{transform:translate(4%,3%) scale(1.15);opacity:.6}}
 .hero-grid{display:grid;padding-block:140px 36px}
@@ -423,7 +423,7 @@ footer a{text-decoration:none}
   .hero{min-height:min(86vh,860px)}
   /* landscape screens: hero box takes the video's own 16:9 shape so the full frame shows */
   .hero-grid{padding-block:160px 72px;max-width:none;margin:0;padding-left:max(clamp(24px, 6vw, 112px), env(safe-area-inset-left, 0px))}
-  .hero::after{background:linear-gradient(90deg,rgba(8,26,19,.78) 0%,rgba(8,26,19,.45) 45%,rgba(8,26,19,.05) 80%)}
+  .hero::after{background:linear-gradient(90deg,rgba(44,30,20,.72) 0%,rgba(48,32,22,.38) 45%,rgba(48,32,22,0) 80%)}
   .hero-ui{top:auto;bottom:24px}
   .pillars{grid-auto-flow:row;grid-template-columns:repeat(4,1fr);overflow:visible;margin-inline:0;padding-inline:0}
   .swipe-hint{display:none}
