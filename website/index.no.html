@@ -15,6 +15,7 @@
   --action:#2f4d4a;      /* CTA buttons */
   --action-hover:#243b39;
   --action-text:#2f4d4a;
+  --final-bg:#d8c4a6; --final-ink:#2e2418; --final-em:#2f4d4a;
   --pink:#dcebc9;        /* generic buttons: light green (pink retired) */
   --clay:#d9c7a7;
   --ink:#222222;
@@ -37,7 +38,7 @@
   --gut-r:max(16px, env(safe-area-inset-right, 0px));
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --teal:#5fcfc3; --cta:#1bb0bb; --cta-hover:#25c3ce; --action:#3f6b66; --action-hover:#4d7d77; --action-text:#9fd8cf; --pink:#2b3d27; --clay:#5a4a35;
+  --teal:#5fcfc3; --cta:#1bb0bb; --cta-hover:#25c3ce; --action:#3f6b66; --action-hover:#4d7d77; --action-text:#9fd8cf; --final-bg:#3a2f23; --final-ink:#efe4d2; --final-em:#c9dcb8; --pink:#2b3d27; --clay:#5a4a35;
   --ink:#eef3ec; --ink-soft:#b9c4bb;
   --rose-bg:#211d17; --rose-ink:#e8dcc6;
   --sage-bg:#1c2a1f; --sage-ink:#d4ebc6;
@@ -51,7 +52,7 @@
 .logo-light{display:var(--show-light-logo)!important}
 :root[data-theme="dark"]{
   --show-dark-logo:none; --show-light-logo:block;
-  --teal:#5fcfc3; --cta:#1bb0bb; --cta-hover:#25c3ce; --action:#3f6b66; --action-hover:#4d7d77; --action-text:#9fd8cf; --pink:#2b3d27; --clay:#5a4a35;
+  --teal:#5fcfc3; --cta:#1bb0bb; --cta-hover:#25c3ce; --action:#3f6b66; --action-hover:#4d7d77; --action-text:#9fd8cf; --final-bg:#3a2f23; --final-ink:#efe4d2; --final-em:#c9dcb8; --pink:#2b3d27; --clay:#5a4a35;
   --ink:#eef3ec; --ink-soft:#b9c4bb;
   --rose-bg:#211d17; --rose-ink:#e8dcc6;
   --sage-bg:#1c2a1f; --sage-ink:#d4ebc6;
@@ -367,10 +368,10 @@ blockquote.big{margin:0;font:italic 300 1.3rem/1.4 var(--f-display);border-left:
 .faq details p{padding-bottom:18px;color:var(--ink-soft)}
 
 /* Final CTA */
-.final{padding-block:24px 96px}
-.final-box{position:relative;overflow:hidden;border-radius:var(--r-l);padding:48px 24px;text-align:center;display:grid;gap:18px;justify-items:center;background:linear-gradient(150deg,#16a2ad,#4ec1b5 60%,#8fd4c0);color:#05302f}
-.final-box h2{color:#05302f}
-.final-box h2 em{color:#ffffff}
+.final{padding-block:88px;background:var(--final-bg);color:var(--final-ink)}
+.final-box{text-align:center;display:grid;gap:18px;justify-items:center}
+.final-box h2{color:var(--final-ink)}
+.final-box h2 em{color:var(--final-em)}
 .final-box p{max-width:46ch;font-size:1.05rem}
 .final-box .btn{background:#2f4d4a;color:#fff}
 .final-box .btn:hover{background:#243b39}
@@ -400,7 +401,6 @@ footer a{text-decoration:none}
   .pain-grid{grid-template-columns:1fr 1fr}
   .plan-cards{grid-template-columns:1fr 1fr}
   .tst-track{grid-auto-columns:60%}
-  .final-box{padding:72px 40px}
 }
 @media (min-width:900px){
   section{padding-block:110px}
@@ -757,8 +757,6 @@ footer a{text-decoration:none}
 <section class="final">
   <div class="wrap">
     <div class="final-box rv">
-      <svg class="leaf-anim l1" viewBox="0 0 64 44" aria-hidden="true"><use href="#logoleaves"/></svg>
-      <svg class="leaf-anim l2" viewBox="0 0 64 44" aria-hidden="true"><use href="#logoleaves"/></svg>
       <h2>Klar for å trene og leve <em>på lag med kroppen?</em></h2>
       <p>Ukentlige programmer, klasser, oppskrifter og ritualer designet for den sykliske kroppen.</p>
       <a class="btn" href="#priser">Start 7 dager gratis <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a>
