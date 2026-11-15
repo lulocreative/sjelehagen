@@ -14,6 +14,7 @@
   --cta-hover:#11878f;
   --action:#2f4d4a;      /* CTA buttons */
   --action-hover:#243b39;
+  --action-text:#2f4d4a;
   --pink:#dcebc9;        /* generic buttons: light green (pink retired) */
   --clay:#d9c7a7;
   --ink:#222222;
@@ -36,7 +37,7 @@
   --gut-r:max(16px, env(safe-area-inset-right, 0px));
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --teal:#5fcfc3; --cta:#1bb0bb; --cta-hover:#25c3ce; --action:#3f6b66; --action-hover:#4d7d77; --pink:#2b3d27; --clay:#5a4a35;
+  --teal:#5fcfc3; --cta:#1bb0bb; --cta-hover:#25c3ce; --action:#3f6b66; --action-hover:#4d7d77; --action-text:#9fd8cf; --pink:#2b3d27; --clay:#5a4a35;
   --ink:#eef3ec; --ink-soft:#b9c4bb;
   --rose-bg:#211d17; --rose-ink:#e8dcc6;
   --sage-bg:#1c2a1f; --sage-ink:#d4ebc6;
@@ -49,7 +50,7 @@
 .logo img{filter:var(--logo-filter)}
 :root[data-theme="dark"]{
   --logo-filter:invert(1) hue-rotate(180deg) brightness(1.1);
-  --teal:#5fcfc3; --cta:#1bb0bb; --cta-hover:#25c3ce; --action:#3f6b66; --action-hover:#4d7d77; --pink:#2b3d27; --clay:#5a4a35;
+  --teal:#5fcfc3; --cta:#1bb0bb; --cta-hover:#25c3ce; --action:#3f6b66; --action-hover:#4d7d77; --action-text:#9fd8cf; --pink:#2b3d27; --clay:#5a4a35;
   --ink:#eef3ec; --ink-soft:#b9c4bb;
   --rose-bg:#211d17; --rose-ink:#e8dcc6;
   --sage-bg:#1c2a1f; --sage-ink:#d4ebc6;
@@ -420,6 +421,13 @@ footer a{text-decoration:none}
   footer{padding-bottom:40px}
   footer .wrap{grid-template-columns:1fr auto;align-items:center}
 }
+.plan-card{position:relative;cursor:pointer}
+.plan-link{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--action-text);text-decoration:none}
+.plan-link::after{content:"";position:absolute;inset:0}
+.plan-link .arr{transition:transform .25s ease}
+.plan-card:hover .plan-link .arr{transform:translateX(4px)}
+.plan-card:focus-within{outline:3px solid var(--teal);outline-offset:3px}
+.plan-link:focus-visible{outline:none}
 /* square photos: no rounded corners on any image */
 .ph,.pillar .ph,.founder .ph,.plan-card,.plan-card .ph{border-radius:0}
 </style>
@@ -607,6 +615,7 @@ footer a{text-decoration:none}
           <h3>Energi &amp; kraft</h3>
           <p>Høyere intensitet, dynamiske bevegelser og utfordring.</p>
           <div class="plan-meta"><div><b>1</b>uke</div><div><b>5</b>klasser</div><div><b>20–35</b>min</div></div>
+          <a class="plan-link" href="#priser">Start denne planen <svg class="arr" width="16" height="16"><use href="#arrow"/></svg></a>
         </div>
       </article>
       <article class="plan-card rv">
@@ -616,6 +625,7 @@ footer a{text-decoration:none}
           <h3>Ro &amp; flyt</h3>
           <p>Mykere bevegelse, mobilitet, ro eller restitusjon.</p>
           <div class="plan-meta"><div><b>1</b>uke</div><div><b>5</b>klasser</div><div><b>10–25</b>min</div></div>
+          <a class="plan-link" href="#priser">Start denne planen <svg class="arr" width="16" height="16"><use href="#arrow"/></svg></a>
         </div>
       </article>
     </div>
