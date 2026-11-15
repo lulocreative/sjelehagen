@@ -546,7 +546,9 @@ footer a{text-decoration:none}
 .wl-form{display:grid;gap:12px;width:100%;max-width:520px;text-align:left}
 .wl-form select{height:52px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:0 14px;font:16px var(--f-body)}
 .wl-row{display:grid;gap:12px}
-.retreat-hero .hero-bg img{object-position:50% 50%}
+.retreat-hero .hero-bg img{object-position:50% 25%}
+/* desktop: widen the photo so Cecilie sits right of the headline */
+@media (orientation: landscape) and (min-width:900px){.retreat-hero .hero-bg img{position:absolute;left:0;top:0;width:150%;max-width:none;height:100%;object-position:0 22%}}
 @media (min-width:600px){.wl-row{grid-template-columns:1fr 1fr}.season-grid{grid-template-columns:1fr 1fr}}
 @media (min-width:900px){
   .day-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
@@ -595,11 +597,10 @@ footer a{text-decoration:none}
 </header>
 <main>
 <section class="hero retreat-hero" aria-label="Retreats">
-  <picture class="hero-bg" aria-hidden="true"><img src="img/hero-poster.webp" alt="" width="1280" height="720" fetchpriority="high" decoding="async"></picture>
-  <video class="hero-video" id="heroVideo" poster="img/hero-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-    <source src="video/hero-mobil.mp4" type="video/mp4" media="(orientation: portrait)">
-    <source src="video/hero.mp4" type="video/mp4">
-  </video>
+  <picture class="hero-bg" aria-hidden="true">
+    <source srcset="img/hero-mobil.webp" media="(orientation: portrait)" width="750" height="1000">
+    <img src="img/hero.webp" alt="" width="1920" height="1280" fetchpriority="high" decoding="async">
+  </picture>
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="pill ld"><b>Spring 2027</b> small group · max 12</span>
@@ -745,9 +746,6 @@ footer a{text-decoration:none}
   const top = $('#top'), hero = $('.hero');
   const setTop = () => top.classList.toggle('scrolled', scrollY > 24);
   addEventListener('scroll', setTop, {passive:true}); setTop();
-  const vid = $('#heroVideo');
-  if (reduce) { vid.removeAttribute('autoplay'); vid.pause(); vid.hidden = true; }
-  else new IntersectionObserver(([e]) => { e.isIntersecting ? vid.play().catch(() => {}) : vid.pause(); }).observe(hero);
   
   document.querySelectorAll('.ph.has-img img').forEach(img => { const d = () => img.classList.add('loaded'); if (img.complete && img.naturalWidth) d(); else { img.addEventListener('load', d, {once:true}); img.addEventListener('error', d, {once:true}); } });
   $('#wlForm').addEventListener('submit', e => {
