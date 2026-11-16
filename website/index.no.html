@@ -757,6 +757,12 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
 .cycle .head{margin-bottom:0}
 @media (max-width:599px){ .flow{padding:16px 14px;margin-top:18px;gap:14px;margin-inline:-6px} }
 @media (prefers-reduced-motion: reduce){ .flow-panel{animation:none!important} }
+/* plan week tiles: icon + bigger label */
+.week{gap:6px}
+.week div{font-size:.78rem;gap:6px}
+.week i{aspect-ratio:auto;min-height:74px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:8px 2px;font-size:.74rem;font-weight:600}
+.week i svg{width:22px;height:22px}
+@media (max-width:599px){ .week{gap:4px} .week i{min-height:64px;font-size:.6rem;padding:6px 1px} .week i svg{width:18px;height:18px} }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1341,7 +1347,7 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
     'Hormonbalanse': {name:'Syklisk balanse', week:['P','Y','R','P','Y','R','Y']},
     'Komme i gang igjen': {name:'Myk restart', week:['Y','R','P','R','Y','R','P']}
   };
-  const lbl = {P:'Pil', Y:'Yoga', R:'Ro'}, cls = {P:'p', Y:'y', R:'r'};
+  const lbl = {P:'Pilates', Y:'Yoga', R:'Ro'}, wic = {P:'i-strength', Y:'leaf', R:'i-calm'}, cls = {P:'p', Y:'y', R:'r'};
   function render() {
     bar.style.width = ((step + 1) / (Q.length + 1) * 100) + '%';
     if (step < Q.length) {
@@ -1360,7 +1366,7 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
       body.innerHTML = `<div class="q-step swap">
         <span class="q-count">Din plan er klar</span>
         <div class="result-plan"><span class="chip energy">${phases[cur].name} · ${ans.level} · ${dur} min</span><h4>${p.name}</h4>
-          <div class="week" aria-label="Ukeplan">${['M','T','O','T','F','L','S'].map((d,i)=>`<div><i class="${cls[p.week[i]]}">${lbl[p.week[i]]}</i>${d}</div>`).join('')}</div>
+          <div class="week" aria-label="Ukeplan">${['M','T','O','T','F','L','S'].map((d,i)=>`<div><i class="${cls[p.week[i]]}"><svg aria-hidden="true"><use href="#${wic[p.week[i]]}"/></svg><span>${lbl[p.week[i]]}</span></i>${d}</div>`).join('')}</div>
         </div>
         <form class="lead-form" id="leadForm" novalidate>
           <div class="field"><label for="lf-name">Fornavn</label><input id="lf-name" autocomplete="given-name" placeholder="Ditt fornavn"></div>
