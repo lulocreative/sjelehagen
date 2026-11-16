@@ -827,6 +827,16 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
 .cycle::before{background:url("img/cycle-bg.webp") 50% 60%/cover no-repeat}
 .cycle::after{background:linear-gradient(180deg,rgba(52,36,24,.62),rgba(52,36,24,.42) 45%,rgba(44,30,20,.66))}
 @media (max-width:699px){ .cycle::before{background-image:url("img/cycle-bg-mobil.webp");background-position:50% 55%} }
+/* pop-up: vertically centred on all screens, more of the photo */
+.promo{margin:auto}
+@media (min-width:700px){ .promo-card{grid-template-columns:1fr 1fr} .promo-media img{object-position:50% 20%} }
+@media (max-width:699px){
+  .promo{margin:auto!important;width:calc(100% - 24px)}
+  .promo[open]{animation:promoIn .5s cubic-bezier(.2,.7,.2,1) both}
+  .promo-media{min-height:200px!important;max-height:200px!important}
+  .promo-media img{object-position:50% 18%}
+  .promo-card{max-height:88svh}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
