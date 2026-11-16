@@ -586,19 +586,22 @@ footer a{text-decoration:none}
   .cycle-bar{display:grid;gap:4px;width:100%;margin-top:6px}
   .cycle-scale{display:flex;justify-content:space-between;width:100%;font-size:.68rem;color:var(--ink-soft);font-weight:600;letter-spacing:.04em;margin-top:-4px}
 }
-/* Mobile energy wave */
+/* Mobile energy wave: filled area chart in the phase colours */
 .cycle-bar{position:relative}
 .cycle-bar svg{display:block;width:100%;height:auto;overflow:visible}
-.wv-band{cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}
-.wv-band rect{opacity:.28;transition:opacity .3s}
-.wv-band.on rect{opacity:.75}
-.wv-band text{font:500 11px var(--f-mono);fill:var(--ink-soft);letter-spacing:.02em}
-.wv-band.on text{fill:var(--ink)}
-.wv-area{fill:var(--ink);opacity:.06;pointer-events:none}
-.wv-line{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;pointer-events:none}
+.wv-band{fill:transparent;cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}
+.wv-area{opacity:1}
+.wv-line{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;opacity:.75;pointer-events:none}
+.wv-base{stroke:var(--line);stroke-width:1}
+.wv-tick{stroke:var(--ink);stroke-width:1;stroke-dasharray:3 3;opacity:.35;pointer-events:none}
+.wv-pt{fill:var(--bg);stroke:var(--ink);stroke-width:1.5;pointer-events:none}
+.wv-x{font:500 10.5px var(--f-mono);fill:var(--ink-soft);letter-spacing:.03em}
 .wv-dot{fill:var(--bg);stroke:var(--ink);stroke-width:2.5;pointer-events:none;transition:cx .5s cubic-bezier(.2,.7,.2,1),cy .5s cubic-bezier(.2,.7,.2,1)}
-.wv-label{position:absolute;left:0;bottom:calc(100% + 2px);font:500 .66rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
-@media (max-width:599px){ .cycle-bar{display:block!important;margin-top:20px} }
+.wv-tip{pointer-events:none;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.wv-tip rect,.wv-tip path{fill:var(--ink)}
+.wv-tip text{font:600 12px var(--f-body);fill:var(--bg)}
+.wv-label{position:absolute;left:0;top:-4px;font:500 .66rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+@media (max-width:599px){ .cycle-bar{display:block!important;margin-top:14px} .cycle-scale{display:none!important} }
 /* square photos: no rounded corners on any image */
 .ph,.pillar .ph,.founder .ph,.plan-card,.plan-card .ph{border-radius:0}
 
@@ -1167,35 +1170,49 @@ h2{font-size:clamp(2rem,6.4vw,3.4rem)}
   const NSs = 'http://www.w3.org/2000/svg';
   let barBtns = [];
   function drawWave() {
-    const W = cbar.clientWidth || 340, H = 128, top = 26, bot = 8, x = d => (d - 1) / 27 * W, y = v => top + (1 - v) * (H - top - bot);
+    const W = cbar.clientWidth || 340, H = 170, top = 40, bot = 26, x = d => 4 + (d - 1) / 27 * (W - 8), y = v => top + (1 - v) * (H - top - bot);
     const pts = E.map(([d, v]) => [x(d), y(v)]);
     let d = `M${pts[0][0]} ${pts[0][1]}`;
     for (let i = 0; i < pts.length - 1; i++) {
       const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
       d += ` C${p1[0] + (p2[0] - p0[0]) / 6} ${p1[1] + (p2[1] - p0[1]) / 6}, ${p2[0] - (p3[0] - p1[0]) / 6} ${p2[1] - (p3[1] - p1[1]) / 6}, ${p2[0]} ${p2[1]}`;
     }
-    const bands = phases.map((ph, i) => {
-      const x0 = (ph.from - 1) / 28 * W, w = (ph.to - ph.from + 1) / 28 * W;
-      return `<g class="wv-band" data-i="${i}" role="button" tabindex="0" aria-label="${segs[i].getAttribute('aria-label')}">
-        <rect x="${x0 + 1}" y="0" width="${w - 2}" height="${H}" fill="${ph.color}"/>
-        <text x="${x0 + w / 2}" y="15" text-anchor="middle">${ph.from}–${ph.to}</text></g>`;
-    }).join('');
-    cbar.innerHTML = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="false">${bands}
-      <path class="wv-area" d="${d} L${W} ${H} L0 ${H} Z"/><path class="wv-line" d="${d}"/>
-      <circle class="wv-dot" r="6" cx="0" cy="0"/></svg><span class="wv-label">Energy ↑</span>`;
+    const base = H - bot;
+    const stops = phases.map(ph => `<stop offset="${((ph.from + ph.to) / 2 - 1) / 27}" stop-color="${ph.color}"/>`).join('');
+    const marks = phases.map((ph, i) => { const m = (ph.from + ph.to) / 2, cx = x(m), cy = y(energyAt(m));
+      return `<line class="wv-tick" x1="${cx}" y1="${cy}" x2="${cx}" y2="${base}"/><circle class="wv-pt" cx="${cx}" cy="${cy}" r="4"/>`; }).join('');
+    const hits = phases.map((ph, i) => { const x0 = x(ph.from - .5 < 1 ? 1 : ph.from - .5), x1 = x(ph.to + .5 > 28 ? 28 : ph.to + .5);
+      return `<rect class="wv-band" data-i="${i}" role="button" tabindex="0" aria-label="${segs[i].getAttribute('aria-label')}" x="${x0}" y="0" width="${x1 - x0}" height="${H}"/>`; }).join('');
+    const ticks = [1, 6, 14, 17, 28].map(t => `<text class="wv-x" x="${x(t)}" y="${H - 6}" text-anchor="${t === 1 ? 'start' : t === 28 ? 'end' : 'middle'}">${t === 1 ? 'Day 1' : t}</text>`).join('');
+    cbar.innerHTML = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+      <defs><linearGradient id="wvH" x1="0" x2="1" y1="0" y2="0">${stops}</linearGradient>
+      <linearGradient id="wvV" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity=".5"/></linearGradient>
+      <mask id="wvM"><rect x="0" y="0" width="${W}" height="${H}" fill="url(#wvV)"/></mask></defs>
+      <line class="wv-base" x1="0" y1="${base}" x2="${W}" y2="${base}"/>
+      <path class="wv-area" d="${d} L${pts[pts.length - 1][0]} ${base} L${pts[0][0]} ${base} Z" fill="url(#wvH)" mask="url(#wvM)"/>
+      <path class="wv-line" d="${d}"/>${marks}${ticks}
+      <circle class="wv-dot" r="7" cx="0" cy="0"/>
+      <g class="wv-tip"><rect rx="12" ry="12" height="24"/><path d="M-5 0 L5 0 L0 6 Z"/><text text-anchor="middle" y="-7"></text></g>${hits}</svg>
+      <span class="wv-label">Energy ↑</span>`;
     barBtns = [...cbar.querySelectorAll('.wv-band')];
     barBtns.forEach(g => {
       const i = +g.dataset.i, pick = () => { wheel.dataset.touched = 1; stopAuto(); setPhase(i); };
       g.addEventListener('click', pick);
       g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
     });
-    cbar._x = x; cbar._y = y; syncBar();
+    cbar._x = x; cbar._y = y; cbar._W = W; syncBar();
   }
   const energyAt = day => { for (let k = 0; k < E.length - 1; k++) { const [d0, v0] = E[k], [d1, v1] = E[k + 1]; if (day >= d0 && day <= d1) return v0 + (v1 - v0) * (day - d0) / (d1 - d0); } return .3; };
   const syncBar = () => {
     barBtns.forEach((g, j) => { g.classList.toggle('on', j === cur); g.setAttribute('aria-pressed', j === cur); });
     const dot = cbar.querySelector('.wv-dot'); if (!dot || cur < 0) return;
-    const ph = phases[cur], mid = (ph.from + ph.to) / 2; dot.setAttribute('cx', cbar._x(mid)); dot.setAttribute('cy', cbar._y(energyAt(mid)));
+    const ph = phases[cur], mid = (ph.from + ph.to) / 2, cx = cbar._x(mid), cy = cbar._y(energyAt(mid));
+    dot.setAttribute('cx', cx); dot.setAttribute('cy', cy);
+    const tip = cbar.querySelector('.wv-tip'), t = tip.querySelector('text'); t.textContent = ph.name;
+    const tw = Math.max(64, ph.name.length * 7.4 + 22), tx = Math.min(Math.max(cx, tw / 2 + 2), cbar._W - tw / 2 - 2);
+    tip.setAttribute('transform', `translate(${tx} ${cy - 14})`);
+    const r = tip.querySelector('rect'); r.setAttribute('x', -tw / 2); r.setAttribute('y', -26); r.setAttribute('width', tw);
+    tip.querySelector('path').setAttribute('transform', `translate(${cx - tx} 0)`);
   };
   const _setPhase = setPhase; setPhase = i => { _setPhase(i); syncBar(); };
   drawWave();
