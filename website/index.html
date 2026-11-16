@@ -520,6 +520,24 @@ footer a{text-decoration:none}
   .promo-body{padding:44px 40px 32px}
 }
 @media (prefers-reduced-motion: reduce){.promo[open],.promo[open]::backdrop{animation:none}}
+/* Mobile menu: hamburger opens a full-screen panel under the header */
+.menu-btn{display:grid;place-items:center;width:44px;height:44px;margin-right:-6px;border:0;border-radius:50%;background:transparent;color:var(--ink);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:color .35s}
+.top:not(.scrolled) .menu-btn{color:#fff}
+.menu-btn i{position:relative;display:block;width:22px;height:14px}
+.menu-btn i::before,.menu-btn i::after{content:"";position:absolute;left:0;right:0;height:2px;border-radius:2px;background:currentColor;transition:transform .35s cubic-bezier(.2,.7,.2,1),top .35s}
+.menu-btn i::before{top:2px}.menu-btn i::after{top:10px}
+.menu-btn[aria-expanded="true"] i::before{top:6px;transform:rotate(45deg)}
+.menu-btn[aria-expanded="true"] i::after{top:6px;transform:rotate(-45deg)}
+.mnav{position:fixed;inset:0;z-index:45;background:var(--bg);display:flex;flex-direction:column;justify-content:space-between;gap:32px;padding:calc(96px + env(safe-area-inset-top,0px)) var(--gut-r) calc(28px + env(safe-area-inset-bottom,0px)) var(--gut-l);overflow-y:auto;opacity:0;transition:opacity .3s ease}
+.mnav.open{opacity:1}
+.mnav-links{display:grid;gap:4px}
+.mnav-links a{font:400 clamp(1.8rem,8vw,2.4rem)/1.25 var(--f-display);color:var(--ink);text-decoration:none;padding:6px 0;opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .45s cubic-bezier(.2,.7,.2,1),color .2s}
+.mnav-links a[aria-current="page"],.mnav-links a:hover{color:var(--cta)}
+.mnav.open .mnav-links a{opacity:1;transform:none}
+.mnav-foot{display:grid;gap:12px}
+.mnav-foot .login-m{justify-self:center;color:var(--ink-soft);font-weight:500;text-decoration:none;padding:8px}
+@media (min-width:900px){.menu-btn,.mnav{display:none!important}}
+@media (prefers-reduced-motion: reduce){.mnav,.mnav-links a{transition:none}}
 /* square photos: no rounded corners on any image */
 .ph,.pillar .ph,.founder .ph,.plan-card,.plan-card .ph{border-radius:0}
 </style>
@@ -558,11 +576,14 @@ footer a{text-decoration:none}
       <a href="retreats.html">Retreats</a>
     </nav>
     <div class="top-actions">
+      
       <a class="login" href="https://studio.sjelehagen.no/login">Log in</a>
       <a class="btn btn-cta" href="https://studio.sjelehagen.no/register">Try free</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><i aria-hidden="true"></i></button>
     </div>
   </div>
 </header>
+<div class="mnav" id="mnav" hidden></div>
 
 <main>
 <!-- HERO -->
@@ -1089,6 +1110,31 @@ footer a{text-decoration:none}
   items.forEach((it, i) => { const b = document.createElement('button'); b.type='button'; b.setAttribute('aria-label', `Review ${i+1}`); b.onclick = () => track.scrollTo({left: it.offsetLeft - track.offsetLeft - (track.clientWidth - it.clientWidth)/2, behavior: reduce ? 'auto' : 'smooth'}); dots.appendChild(b); });
   const setDot = () => { const mid = track.scrollLeft + track.clientWidth / 2; let best = 0, bd = 1e9; items.forEach((it,i) => { const c = it.offsetLeft - track.offsetLeft + it.clientWidth/2, d = Math.abs(c - mid); if (d < bd) { bd = d; best = i; } }); [...dots.children].forEach((d,i) => d.setAttribute('aria-current', i === best)); };
   track.addEventListener('scroll', () => requestAnimationFrame(setDot), {passive:true}); setDot();
+})();
+</script>
+<script>
+/* Mobile menu */
+(() => {
+  const btn = document.getElementById('menuBtn'), panel = document.getElementById('mnav'), top = document.getElementById('top');
+  if (!btn || !panel) return;
+  const links = [...document.querySelectorAll('.nav a')], login = document.querySelector('.top .login'), cta = document.querySelector('.top .btn-cta');
+  panel.innerHTML = '<nav class="mnav-links" aria-label="' + btn.getAttribute('aria-label') + '">' +
+    links.map((a, i) => `<a href="${a.getAttribute('href')}"${a.getAttribute('aria-current') ? ' aria-current="page"' : ''} style="transition-delay:${60 + i * 45}ms">${a.textContent}</a>`).join('') +
+    '</nav><div class="mnav-foot">' +
+    (cta ? `<a class="btn btn-cta btn-block" href="${cta.getAttribute('href')}">${cta.textContent.trim()}</a>` : '') +
+    (login ? `<a class="login-m" href="${login.getAttribute('href')}">${login.textContent.trim()}</a>` : '') + '</div>';
+  let open = false;
+  const set = v => {
+    open = v; btn.setAttribute('aria-expanded', v);
+    document.body.style.overflow = v ? 'hidden' : '';
+    if (v) { panel.hidden = false; top.classList.add('scrolled'); requestAnimationFrame(() => panel.classList.add('open')); panel.querySelector('a').focus({preventScroll:true}); }
+    else { panel.classList.remove('open'); top.classList.toggle('scrolled', scrollY > 24); setTimeout(() => { if (!open) panel.hidden = true; }, 300); }
+  };
+  btn.addEventListener('click', () => set(!open));
+  panel.addEventListener('click', e => { if (e.target.closest('a')) set(false); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && open) { set(false); btn.focus(); } });
+  addEventListener('scroll', () => { if (open) top.classList.add('scrolled'); }, {passive:true});
+  matchMedia('(min-width:900px)').addEventListener('change', e => { if (e.matches && open) set(false); });
 })();
 </script>
 </body></html>
