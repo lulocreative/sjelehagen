@@ -769,6 +769,9 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
 /* badge sits inside the annual card */
 .price .badge{position:static;width:fit-content;justify-self:start;margin-bottom:-4px}
 .price.best{transform:none}
+/* hide any native play/controls overlay on the background video */
+.hero-video{pointer-events:none}
+.hero-video::-webkit-media-controls,.hero-video::-webkit-media-controls-panel,.hero-video::-webkit-media-controls-overlay-play-button,.hero-video::-webkit-media-controls-start-playback-button{display:none!important;-webkit-appearance:none;opacity:0}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -821,7 +824,7 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
     <img src="img/hero.webp" alt="" width="1920" height="1280" fetchpriority="high" decoding="async">
   </picture>
   <!-- Hero loop: video/background_desktop.mp4 (15 s), re-encoded for web, no audio. -->
-  <video class="hero-video" id="heroVideo" poster="img/hero-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+  <video class="hero-video" id="heroVideo" poster="img/hero-poster.webp" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1">
     <source src="video/hero-mobil.mp4" type="video/mp4" media="(orientation: portrait)">
     <source src="video/hero.mp4" type="video/mp4">
   </video>
@@ -1158,8 +1161,12 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
 
   /* Hero video: plays while on screen, pauses off-screen; hidden for reduced motion */
   const vid = $('#heroVideo');
-  if (reduce) { vid.removeAttribute('autoplay'); vid.pause(); vid.hidden = true; }
-  else new IntersectionObserver(([e]) => { e.isIntersecting ? vid.play().catch(() => {}) : vid.pause(); }).observe(hero);
+  /* always autoplay (silent ambient loop); retry on first touch/scroll if the browser held it back */
+  vid.muted = true; vid.defaultMuted = true; vid.playsInline = true;
+  const tryPlay = () => { const pr = vid.play(); if (pr && pr.catch) pr.catch(() => {}); };
+  tryPlay(); vid.addEventListener('canplay', tryPlay, {once:true});
+  ['touchstart','pointerdown','scroll','keydown'].forEach(ev => addEventListener(ev, () => { if (vid.paused) tryPlay(); }, {once:true, passive:true}));
+  new IntersectionObserver(([e]) => { e.isIntersecting ? tryPlay() : vid.pause(); }).observe(hero);
 
   /* Promo pop-up: opens 5 s after load, once per visit; Esc, X, backdrop or "no thanks" closes */
   const promo = $('#promo');
