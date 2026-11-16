@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<title>Your 7-day starter plan</title>
+<!--
+  Sjelehagen: starter-plan email (sent when someone finishes the quiz on the landing page).
+  Merge fields to map in your email tool (Klaviyo / Mailchimp / MailerLite / Brevo):
+    {{first_name}}   first name from the form (fallback: "there")
+    {{plan_name}}    Energy & strength | Calm & flow | Cyclical balance | Gentle restart
+    {{session_length}} 10–15 | 20–30 | 45+ minutes
+    {{day1}} … {{day7}}  session for each day, e.g. "Pilates core, 20 min"
+  Images must be hosted on a public URL; replace https://YOUR-SITE/ below.
+-->
+</head>
+<body style="margin:0;padding:0;background:#f7f2e7;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">Your personal 7-day plan is here. Start whenever you're ready.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f7f2e7;">
+<tr><td align="center" style="padding:24px 12px;">
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background:#fffcf5;border:1px solid #e2dccd;">
+    <tr><td style="padding:28px 32px 8px;">
+      <img src="https://YOUR-SITE/website/email/img/logo.png" width="150" alt="Sjelehagen" style="display:block;width:150px;height:auto;border:0;">
+    </td></tr>
+    <tr><td style="padding:0;">
+      <img src="https://YOUR-SITE/website/email/img/hero.jpg" width="600" alt="Cecilie on the mat in the palm garden" style="display:block;width:100%;height:auto;border:0;">
+    </td></tr>
+    <tr><td style="padding:32px 32px 8px;font-family:'DM Mono',Menlo,monospace;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#4b524d;">
+      <span style="color:#d9a07c;">+</span> Your free starter plan
+    </td></tr>
+    <tr><td style="padding:0 32px;font-family:Georgia,'Times New Roman',serif;font-size:34px;line-height:40px;color:#222222;">
+      Hi {{first_name}}, here is<br><em style="color:#9a6a55;">your 7-day plan.</em>
+    </td></tr>
+    <tr><td style="padding:16px 32px 8px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:26px;color:#4b524d;">
+      Based on your answers we put together <strong style="color:#222222;">{{plan_name}}</strong>: {{session_length}} a day, mixing Pilates, yoga and rest so your body can find its rhythm. Follow it in order, or swap days to match how you feel.
+    </td></tr>
+    <tr><td style="padding:16px 32px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #e2dccd;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#222222;">
+        <tr><td width="70" style="padding:12px 0;border-bottom:1px solid #e2dccd;font-family:'DM Mono',Menlo,monospace;font-size:12px;color:#9a6a55;">DAY 1</td><td style="padding:12px 0;border-bottom:1px solid #e2dccd;">{{day1}}</td></tr>
+        <tr><td style="padding:12px 0;border-bottom:1px solid #e2dccd;font-family:'DM Mono',Menlo,monospace;font-size:12px;color:#9a6a55;">DAY 2</td><td style="padding:12px 0;border-bottom:1px solid #e2dccd;">{{day2}}</td></tr>
+        <tr><td style="padding:12px 0;border-bottom:1px solid #e2dccd;font-family:'DM Mono',Menlo,monospace;font-size:12px;color:#9a6a55;">DAY 3</td><td style="padding:12px 0;border-bottom:1px solid #e2dccd;">{{day3}}</td></tr>
+        <tr><td style="padding:12px 0;border-bottom:1px solid #e2dccd;font-family:'DM Mono',Menlo,monospace;font-size:12px;color:#9a6a55;">DAY 4</td><td style="padding:12px 0;border-bottom:1px solid #e2dccd;">{{day4}}</td></tr>
+        <tr><td style="padding:12px 0;border-bottom:1px solid #e2dccd;font-family:'DM Mono',Menlo,monospace;font-size:12px;color:#9a6a55;">DAY 5</td><td style="padding:12px 0;border-bottom:1px solid #e2dccd;">{{day5}}</td></tr>
+        <tr><td style="padding:12px 0;border-bottom:1px solid #e2dccd;font-family:'DM Mono',Menlo,monospace;font-size:12px;color:#9a6a55;">DAY 6</td><td style="padding:12px 0;border-bottom:1px solid #e2dccd;">{{day6}}</td></tr>
+        <tr><td style="padding:12px 0;border-bottom:1px solid #e2dccd;font-family:'DM Mono',Menlo,monospace;font-size:12px;color:#9a6a55;">DAY 7</td><td style="padding:12px 0;border-bottom:1px solid #e2dccd;">{{day7}}</td></tr>
+      </table>
+    </td></tr>
+    <tr><td align="center" style="padding:16px 32px 8px;">
+      <a href="https://studio.sjelehagen.no/register" style="display:inline-block;background:#2f4d4a;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:bold;text-decoration:none;padding:16px 32px;border-radius:999px;">Start 7 days free &rarr;</a>
+    </td></tr>
+    <tr><td align="center" style="padding:4px 32px 28px;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#4b524d;">
+      All sessions are in the studio. No charge before day 8, cancel in two clicks.
+    </td></tr>
+    <tr><td style="padding:24px 32px;background:#efe9dd;font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:28px;color:#43382a;">
+      <em>“Start small. Ten minutes on the mat is enough to feel the difference.”</em><br>
+      <span style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#4b524d;">Cecilie, founder of Sjelehagen</span>
+    </td></tr>
+    <tr><td style="padding:20px 32px 28px;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#7a7f78;">
+      You're getting this email because you asked for a starter plan on sjelehagen.no.<br>
+      <a href="{{unsubscribe_url}}" style="color:#7a7f78;">Unsubscribe</a> · Sjelehagen · Norway
+    </td></tr>
+  </table>
+</td></tr>
+</table>
+</body>
+</html>
