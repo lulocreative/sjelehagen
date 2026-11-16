@@ -586,25 +586,20 @@ footer a{text-decoration:none}
   .cycle-bar{display:grid;gap:4px;width:100%;margin-top:6px}
   .cycle-scale{display:flex;justify-content:space-between;width:100%;font-size:.68rem;color:var(--ink-soft);font-weight:600;letter-spacing:.04em;margin-top:-4px}
 }
-/* Mobile energy wave: layered glowing areas on a dark warm panel */
+/* Mobile energy wave: one soft warm area on the page background */
 .cycle-bar{position:relative}
 .cycle-bar svg{display:block;overflow:visible}
 .wv-band{fill:transparent;cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}
-.wv-area{mix-blend-mode:screen}
-.wv-line{fill:none;stroke:#f7dccb;stroke-width:1.6;stroke-linecap:round;opacity:.9;pointer-events:none}
-.wv-base{stroke:rgba(243,236,220,.18);stroke-width:1}
-.wv-tick{stroke:rgba(247,220,203,.45);stroke-width:1;pointer-events:none}
-.wv-pct{font:500 10px var(--f-mono);fill:rgba(247,236,224,.85);pointer-events:none}
-.wv-x{font:500 10px var(--f-mono);fill:rgba(243,236,220,.6);letter-spacing:.03em}
-.wv-dot{fill:#fff7ef;stroke:#e7a77f;stroke-width:3;pointer-events:none;transition:cx .5s cubic-bezier(.2,.7,.2,1),cy .5s cubic-bezier(.2,.7,.2,1)}
+.wv-line{fill:none;stroke:#b47e6c;stroke-width:1.8;stroke-linecap:round;pointer-events:none}
+.wv-base{stroke:var(--line);stroke-width:1}
+.wv-tick{stroke:#b47e6c;stroke-width:1;opacity:.35;pointer-events:none}
+.wv-x{font:500 10px var(--f-mono);fill:var(--ink-soft);letter-spacing:.03em}
+.wv-dot{fill:var(--bg);stroke:#b47e6c;stroke-width:3;pointer-events:none;transition:cx .5s cubic-bezier(.2,.7,.2,1),cy .5s cubic-bezier(.2,.7,.2,1)}
 .wv-tip{pointer-events:none;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.wv-tip rect,.wv-tip path{fill:#f7e3d4}
-.wv-tip text{font:600 12px var(--f-body);fill:#3b2a20}
-.wv-legend{display:flex;gap:14px;padding:8px 0 2px;font:500 .66rem var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:rgba(243,236,220,.75)}
-.wv-legend span{display:inline-flex;align-items:center;gap:6px}
-.wv-legend i{width:9px;height:9px;border-radius:50%}
+.wv-tip rect,.wv-tip path{fill:#9a6a55}
+.wv-tip text{font:600 12px var(--f-body);fill:#fff7ef}
 @media (max-width:599px){
-  .cycle-bar{display:block!important;margin-top:8px;background:#2e271e;padding:12px 12px 8px;width:100%}
+  .cycle-bar{display:block!important;margin-top:10px;width:100%}
   .cycle-scale{display:none!important}
 }
 /* square photos: no rounded corners on any image */
@@ -1174,10 +1169,7 @@ h2{font-size:clamp(2rem,6.4vw,3.4rem)}
   const E = [[1,.28],[3,.22],[5,.3],[8,.52],[11,.74],[13,.9],[14.5,1],[16,.92],[18,.78],[21,.64],[24,.48],[26,.36],[28,.3]];
   const NSs = 'http://www.w3.org/2000/svg';
   let barBtns = [];
-  const SERIES = [
-    {n:'Ro', c:'#b07d8c', pts:[[1,.68],[4,.74],[8,.42],[12,.26],[15,.3],[19,.44],[23,.6],[28,.7]]},
-    {n:'Styrke', c:'#c98a7a', pts:[[1,.18],[4,.16],[8,.46],[12,.78],[15,.86],[18,.6],[22,.44],[28,.24]]},
-    {n:'Energi', c:'#e7a77f', pts:E}];
+  const SERIES = [{n:'', c:'#d9a07c', pts:E}];
   function smooth(pts) {
     let d = `M${pts[0][0]} ${pts[0][1]}`;
     for (let i = 0; i < pts.length - 1; i++) {
@@ -1187,21 +1179,20 @@ h2{font-size:clamp(2rem,6.4vw,3.4rem)}
     return d;
   }
   function drawWave() {
-    const W = (cbar.clientWidth || 360) - 24, H = 176, top = 40, bot = 24, base = H - bot;
+    const W = cbar.clientWidth || 360, H = 176, top = 40, bot = 24, base = H - bot;
     const x = d => (d - 1) / 27 * W, y = v => top + (1 - v) * (base - top);
     const defs = SERIES.map((sr, k) => `<linearGradient id="wg${k}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${sr.c}" stop-opacity=".95"/><stop offset="1" stop-color="${sr.c}" stop-opacity=".04"/></linearGradient>`).join('');
     const areas = SERIES.map((sr, k) => { const P = sr.pts.map(([d, v]) => [x(d), y(v)]), d = smooth(P);
-      return `<path class="wv-area" d="${d} L${P[P.length - 1][0]} ${base} L${P[0][0]} ${base} Z" fill="url(#wg${k})"/>` + (k === 2 ? `<path class="wv-line" d="${d}"/>` : ''); }).join('');
+      return `<path class="wv-area" d="${d} L${P[P.length - 1][0]} ${base} L${P[0][0]} ${base} Z" fill="url(#wg${k})"/>` + `<path class="wv-line" d="${d}"/>`; }).join('');
     const marks = phases.map(ph => { const m = (ph.from + ph.to) / 2, cx = x(m), v = energyAt(m), cy = y(v);
-      return `<line class="wv-tick" x1="${cx}" y1="${top - 8}" x2="${cx}" y2="${base}"/><text class="wv-pct" x="${cx + 5}" y="${cy + 16}">${Math.round(v * 100)}%</text>`; }).join('');
+      return `<line class="wv-tick" x1="${cx}" y1="${top - 8}" x2="${cx}" y2="${base}"/>`; }).join('');
     const hits = phases.map((ph, i) => { const x0 = x(Math.max(1, ph.from - .5)), x1 = x(Math.min(28, ph.to + .5));
       return `<rect class="wv-band" data-i="${i}" role="button" tabindex="0" aria-label="${segs[i].getAttribute('aria-label')}" x="${x0}" y="0" width="${x1 - x0}" height="${H}"/>`; }).join('');
     const ticks = [1, 6, 14, 17, 28].map(t => `<text class="wv-x" x="${x(t)}" y="${H - 6}" text-anchor="${t === 1 ? 'start' : t === 28 ? 'end' : 'middle'}">${t === 1 ? 'Dag 1' : t}</text>`).join('');
     cbar.innerHTML = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><defs>${defs}</defs>
       <line class="wv-base" x1="0" y1="${base}" x2="${W}" y2="${base}"/>${areas}${marks}${ticks}
       <circle class="wv-dot" r="6" cx="0" cy="0"/>
-      <g class="wv-tip"><rect rx="12" ry="12" height="24"/><path d="M-5 0 L5 0 L0 6 Z"/><text text-anchor="middle" y="-9"></text></g>${hits}</svg>
-      <div class="wv-legend">${SERIES.slice().reverse().map(sr => `<span><i style="background:${sr.c}"></i>${sr.n}</span>`).join('')}</div>`;
+      <g class="wv-tip"><rect rx="12" ry="12" height="24"/><path d="M-5 0 L5 0 L0 6 Z"/><text text-anchor="middle" y="-9"></text></g>${hits}</svg>`;
     barBtns = [...cbar.querySelectorAll('.wv-band')];
     barBtns.forEach(g => {
       const i = +g.dataset.i, pick = () => { wheel.dataset.touched = 1; stopAuto(); setPhase(i); };
