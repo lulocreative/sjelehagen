@@ -4,7 +4,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,50..100;1,9..144,300..600,50..100&family=Figtree:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,50..100;1,9..144,300..600,50..100&family=Figtree:wght@400;500;600;700&family=Jost:wght@300;400;500&display=swap">
 <style>
 /* Layout: mobile-first single column that opens into a two-column editorial grid at 900px.
    Mint/sage "garden beds" alternate with white so each section reads as a new bed. */
@@ -624,7 +624,7 @@ footer a{text-decoration:none}
 /* ===== Visual style v2: editorial brand-identity look (square panels, grotesk type, mono labels, + markers) ===== */
 :root{
   --f-display:"Fraunces","Iowan Old Style",Georgia,serif;
-  --f-mono:"DM Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --f-mono:"Jost","Figtree",system-ui,sans-serif;
   --bg:#f7f2e7; --surface:#fffcf5; --line:#e2dccd;
   --dark:#2e271e; --on-dark:#f3ecdc; --plus:#d9a07c;
   --r-s:0; --r-m:0; --r-l:0;
@@ -697,6 +697,15 @@ h2{font-size:clamp(2rem,6.4vw,3.4rem)}
 .opt:hover{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--ink) 18%,transparent)!important}
 .stat-row{background:transparent;border:0;gap:8px}
 .plan-meta{border-top:0}
+/* Softer, more feminine utility type: Jost with airy tracking instead of mono */
+.eyebrow{font-family:var(--f-mono);font-weight:400;font-size:.74rem;letter-spacing:.2em}
+.micro,.pill{font-family:var(--f-mono);font-weight:400;letter-spacing:.14em}
+.days,.q-count,.plan-meta,.season-meta,.day-list time,.stat span,.price h3,.plan-body h3,.cycle-scale,.wheel-center small,.phase-list b,.wv-x,.wv-label{font-family:var(--f-mono);letter-spacing:.1em;font-weight:400}
+.chip,.status,.per b{font-family:var(--f-mono);font-weight:500;letter-spacing:.12em}
+.creds span{font-family:var(--f-body);text-transform:none;letter-spacing:.01em;font-size:.84rem;font-weight:500;padding:7px 14px}
+.wheel-center small{letter-spacing:.18em}
+.price,.price.best{border:0!important}
+.price.best{background:var(--surface);box-shadow:0 0 0 0 transparent}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
