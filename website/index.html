@@ -848,6 +848,14 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
   .flow .q-step > .q-count{grid-row:1}
   .flow .q-step h3{font-size:1.9rem}
 }
+/* result: plan calendar 60%, form 40% */
+@media (min-width:900px){
+  .flow .q-step:has(.result-plan){grid-template-columns:minmax(0,3fr) minmax(0,2fr);column-gap:40px}
+  .flow .result-plan{padding:24px}
+  .flow .result-plan h4{font-size:1.9rem}
+  .flow .week i{min-height:96px;font-size:.8rem}
+  .flow .week i svg{width:26px;height:26px}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
