@@ -720,6 +720,14 @@ h2{font-size:clamp(2rem,6.4vw,3.4rem)}
   .intro-split{min-height:calc(100svh - 64px)}
   .intro-words{padding-block:48px 40px}
 }
+/* cycle + quiz as one flow */
+.cycle-quiz{margin-top:56px;display:grid;gap:4px}
+.cycle-quiz .head{margin-bottom:20px}
+.cycle-quiz .quiz-wrap{margin:0;max-width:760px}
+@media (max-width:599px){.cycle-quiz{margin-top:40px}}
+/* larger section titles */
+h2{font-size:clamp(2.3rem,8vw,4.2rem)}
+.cycle h2{font-size:clamp(2.1rem,6.4vw,3.6rem)}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -783,7 +791,7 @@ h2{font-size:clamp(2rem,6.4vw,3.4rem)}
       <p class="lede ld d2">Pilates, yoga, food and cyclical self-care in one app. Short sessions that fit your everyday life and adapt to your body throughout the month.</p>
       <div class="hero-ctas ld d3">
         <a class="btn btn-cta" href="https://studio.sjelehagen.no/register">Start 7 days free <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a>
-        <a class="btn btn-ghost" href="#plan">Find your plan in 1 min</a>
+        <a class="btn btn-ghost" href="#syklus">Find your plan in 1 min</a>
       </div>
       <div class="micro ld d4">
         <span><svg><use href="#chk"/></svg>Cancel anytime</span>
@@ -847,9 +855,9 @@ h2{font-size:clamp(2rem,6.4vw,3.4rem)}
   <div class="wrap cycle-grid">
     <div class="cycle-left">
       <div class="head">
-        <span class="eyebrow">Cycle-synced training</span>
+        <span class="eyebrow">Step 1 · Cycle-synced training</span>
         <h2 class="rv">Train with your cycle, <em>not against it.</em></h2>
-        <p class="lede">Your energy shifts through the month. Tap a phase to see how training, food and rest adapt.</p>
+        <p class="lede">Your energy shifts through the month. Tap a phase to see how training, food and rest adapt. Pick your phase, answer three questions and get a free 7-day plan.</p>
       </div>
       <div class="wheel-box">
         <svg viewBox="0 0 360 360" id="wheel" role="group" aria-label="Cycle wheel with four phases"></svg>
@@ -861,15 +869,11 @@ h2{font-size:clamp(2rem,6.4vw,3.4rem)}
     </div>
     <div class="phase-card" id="phaseCard"></div>
   </div>
-</section>
 
-<!-- QUIZ / LEAD -->
-<section id="plan">
-  <div class="wrap">
-    <div class="head center">
-      <span class="eyebrow">Free starter plan</span>
-      <h2 class="rv">Find the plan that suits <em>you.</em></h2>
-      <p class="lede">Answer three questions and we’ll email you a personal 7-day starter plan. Completely free.</p>
+  <div class="wrap cycle-quiz" id="plan">
+    <div class="head">
+      <span class="eyebrow">Step 2 · Your free starter plan</span>
+      <h2 class="rv">Three quick questions for <em>your phase plan.</em></h2>
     </div>
     <div class="quiz-wrap rv" id="quiz">
       <div class="quiz-progress" aria-hidden="true"><i id="qbar"></i></div>
@@ -877,6 +881,8 @@ h2{font-size:clamp(2rem,6.4vw,3.4rem)}
     </div>
   </div>
 </section>
+
+
 
 <!-- WEEKLY PLANS -->
 <section style="padding-top:0">
@@ -1199,7 +1205,7 @@ h2{font-size:clamp(2rem,6.4vw,3.4rem)}
     $('#wcDays').textContent = `Day ${p.from}–${p.to}`; $('#wcName').textContent = p.name; $('#wcSeason').textContent = p.season;
     card.innerHTML = `<div class="swap pc-in"><div class="pc-head"><span class="days">Day ${p.from}–${p.to} · ${p.season}</span><h3>${p.name}</h3></div>
       <ul class="phase-list"><li>${ic('i-strength')}<div><b>Training</b>${p.train}</div></li><li>${ic('i-bowl')}<div><b>Food</b>${p.food}</div></li><li>${ic('i-candle')}<div><b>Ritual</b>${p.ritual}</div></li></ul>
-      <a class="btn btn-cta" href="#plan">Get the plan for your phase <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a></div>`;
+      <a class="btn btn-cta" href="#plan">Make my plan <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a></div>`;
   };
   let auto = null;
   const stopAuto = () => { if (auto) { clearInterval(auto); auto = null; } };
@@ -1300,7 +1306,7 @@ h2{font-size:clamp(2rem,6.4vw,3.4rem)}
       const dur = ans.time.split(' ')[0];
       body.innerHTML = `<div class="q-step swap">
         <span class="q-count">Your plan is ready</span>
-        <div class="result-plan"><span class="chip energy">${ans.level} · ${dur} min</span><h4>${p.name}</h4>
+        <div class="result-plan"><span class="chip energy">${phases[cur].name} · ${ans.level} · ${dur} min</span><h4>${p.name}</h4>
           <div class="week" aria-label="Weekly plan">${['M','T','W','T','F','S','S'].map((d,i)=>`<div><i class="${cls[p.week[i]]}">${lbl[p.week[i]]}</i>${d}</div>`).join('')}</div>
         </div>
         <form class="lead-form" id="leadForm" novalidate>
