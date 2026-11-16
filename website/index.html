@@ -690,6 +690,13 @@ blockquote.big{font-family:var(--f-display);font-style:italic;font-weight:300;le
 /* section heads: grotesk scale */
 h2{font-size:clamp(2rem,6.4vw,3.4rem)}
 .cycle h2{font-size:clamp(1.85rem,5.2vw,3rem)}
+/* No outline borders on cards: soft fill against the cream background instead */
+.steps li,.plan-card,.price:not(.best),.tst,.faq details,.phase-card,.quiz-wrap,.inc,.season,.opt{border:0!important;box-shadow:none!important}
+.opt{box-shadow:none!important;background:var(--surface)}
+.opt[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--action)!important}
+.opt:hover{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--ink) 18%,transparent)!important}
+.stat-row{background:transparent;border:0;gap:8px}
+.plan-meta{border-top:0}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
