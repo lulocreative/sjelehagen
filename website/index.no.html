@@ -65,6 +65,8 @@
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 html,body{margin:0;padding:0}
+[hidden]{display:none!important}
+.mnav:not(.open){pointer-events:none}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
 *,*::before,*::after{box-sizing:border-box}
@@ -538,6 +540,42 @@ footer a{text-decoration:none}
 .mnav-foot .login-m{justify-self:center;color:var(--ink-soft);font-weight:500;text-decoration:none;padding:8px}
 @media (min-width:900px){.menu-btn,.mnav{display:none!important}}
 @media (prefers-reduced-motion: reduce){.mnav,.mnav-links a{transition:none}}
+/* Cycle wheel v2: single control, labelled ring */
+.cycle-left{display:grid;gap:14px;justify-items:start}
+.cycle .head{margin-bottom:0}
+.seg{cursor:pointer;transition:transform .35s cubic-bezier(.2,.7,.2,1),opacity .3s;transform-origin:180px 180px;outline:none}
+.seg:hover{opacity:.92}
+.seg.on{transform:scale(1.05)}
+.seg-days{font:600 15px var(--f-body);pointer-events:none;font-variant-numeric:tabular-nums}
+.wheel-box{justify-self:center}
+.wheel-center strong{font:400 1.7rem/1.1 var(--f-display);display:block}
+.wheel-center small{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+.wheel-center span{font-size:.85rem;color:var(--ink-soft)}
+.wheel-hint{justify-self:center;display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--ink-soft)}
+.wheel-hint svg{color:var(--cta)}
+.pc-in{display:grid;gap:16px}
+@media (max-width:599px){
+  .cycle{padding-block:40px 44px}
+  .cycle-grid{gap:12px}
+  .cycle .head{gap:8px}
+  .cycle h2{font-size:1.85rem}
+  .cycle .lede{font-size:.95rem;line-height:1.5}
+  .cycle-left{gap:10px}
+  .wheel-box{max-width:min(210px, 56vw)}
+  .wheel-center strong{font-size:1.2rem}
+  .wheel-center small{font-size:.6rem}
+  .wheel-center span{font-size:.72rem}
+  .seg-days{font-size:17px}
+  .wheel-hint{display:none}
+  .phase-card{padding:16px;gap:10px}
+  .pc-in{gap:10px}
+  .pc-head h3{font-size:1.25rem}
+  .phase-list{gap:6px;font-size:.88rem;line-height:1.4}
+  .phase-list b{font-size:.68rem}
+  .phase-list .ic{width:28px;height:28px}
+  .phase-list .ic svg{width:16px;height:16px}
+  .phase-card .btn{--bh:44px;width:100%}
+}
 /* square photos: no rounded corners on any image */
 .ph,.pillar .ph,.founder .ph,.plan-card,.plan-card .ph{border-radius:0}
 </style>
@@ -662,25 +700,19 @@ footer a{text-decoration:none}
 <!-- CYCLE -->
 <section class="cycle" id="syklus">
   <div class="wrap cycle-grid">
-    <div>
-      <div class="head" style="margin-bottom:20px">
+    <div class="cycle-left">
+      <div class="head">
         <span class="eyebrow">Syklisk trening</span>
         <h2 class="rv">Tren med syklusen, <em>ikke mot den.</em></h2>
-        <p class="lede">Energien din endrer seg gjennom måneden. Dra i dagsvelgeren og se hvordan Sjelehagen tilpasser trening, mat og hvile.</p>
+        <p class="lede">Energien din endrer seg gjennom måneden. Trykk på en fase i hjulet og se hvordan trening, mat og hvile tilpasses.</p>
       </div>
       <div class="wheel-box">
-        <svg viewBox="0 0 360 360" id="wheel" aria-label="Syklushjul med fire faser"></svg>
-        <div class="wheel-center" aria-live="polite"><div><small>Dag</small><strong id="dayNum">9</strong><span id="dayPhase">Follikulær</span></div></div>
+        <svg viewBox="0 0 360 360" id="wheel" role="group" aria-label="Syklushjul med fire faser"></svg>
+        <div class="wheel-center" aria-live="polite"><div><small id="wcDays"></small><strong id="wcName"></strong><span id="wcSeason"></span></div></div>
       </div>
-      <div class="day-slider">
-        <label for="day">Dag i syklusen <span id="dayLabel">9 av 28</span></label>
-        <input type="range" id="day" min="1" max="28" value="9">
-      </div>
+      <p class="wheel-hint"><svg width="16" height="16" aria-hidden="true"><use href="#i-cycle"/></svg>Trykk på en fase</p>
     </div>
-    <div>
-      <div class="phase-tabs" role="tablist" aria-label="Faser" id="tabs"></div>
-      <div class="phase-card" id="phaseCard" role="tabpanel"></div>
-    </div>
+    <div class="phase-card" id="phaseCard"></div>
   </div>
 </section>
 
@@ -924,7 +956,7 @@ footer a{text-decoration:none}
   new IntersectionObserver(([e]) => { heroOut = !e.isIntersecting; syncSticky(); }).observe(hero);
   const ends = new Set();
   const endObs = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? ends.add(e.target) : ends.delete(e.target)); endIn = ends.size > 0; syncSticky(); }, {threshold:.15});
-  endObs.observe(priser); endObs.observe(finalBox); endObs.observe($('#plan'));
+  endObs.observe(priser); endObs.observe(finalBox); endObs.observe($('#plan')); endObs.observe($('#syklus'));
 
   /* Hero video: plays while on screen, pauses off-screen; hidden for reduced motion */
   const vid = $('#heroVideo');
@@ -975,7 +1007,7 @@ footer a{text-decoration:none}
     document.querySelectorAll('[data-count]').forEach(el => cObs.observe(el));
   }
 
-  /* Cycle wheel */
+  /* Cycle wheel: one control. Tap (or arrow keys) picks a phase; day ranges sit on the ring; gentle auto-play until touched */
   const phases = [
     {key:'men', name:'Menstruasjon', from:1, to:5, color:'#9a6470', season:'Indre vinter',
      train:'Yin, myk yoga og pusteøvelser. 10–20 min.', food:'Varme supper, rødbeter og jernrike linser.', ritual:'Varm olje på føttene og tidlig kveld.'},
@@ -986,44 +1018,50 @@ footer a{text-decoration:none}
     {key:'lut', name:'Luteal', from:17, to:28, color:'#b47e6c', season:'Indre høst',
      train:'Moderat styrke, deretter mer mobilitet mot slutten.', food:'Komplekse karbohydrater, magnesium og søtpotet.', ritual:'Journaling, rolig gange og varm te.'}
   ];
-  const wheel = $('#wheel'), NS = 'http://www.w3.org/2000/svg', C = 180, R1 = 168, R0 = 118;
+  const wheel = $('#wheel'), NS = 'http://www.w3.org/2000/svg', C = 180, R1 = 172, R0 = 110, RM = (R0 + R1) / 2;
   const pt = (r, a) => [C + r * Math.cos(a), C + r * Math.sin(a)];
   const ang = d => (d - 1) / 28 * Math.PI * 2 - Math.PI / 2;
-  phases.forEach((p, i) => {
-    const a0 = ang(p.from) + .02, a1 = ang(p.to + 1) - .02, large = (a1 - a0) > Math.PI ? 1 : 0;
+  const light = hex => { const n = parseInt(hex.slice(1), 16); return ((n >> 16) * .299 + ((n >> 8) & 255) * .587 + (n & 255) * .114) > 170; };
+  const segs = phases.map((p, i) => {
+    const a0 = ang(p.from) + .025, a1 = ang(p.to + 1) - .025, large = (a1 - a0) > Math.PI ? 1 : 0;
     const [x0,y0] = pt(R1,a0), [x1,y1] = pt(R1,a1), [x2,y2] = pt(R0,a1), [x3,y3] = pt(R0,a0);
+    const g = document.createElementNS(NS,'g'); g.setAttribute('class','seg'); g.setAttribute('tabindex','0'); g.setAttribute('role','button');
+    g.setAttribute('aria-label', `${p.name}, dag ${p.from}–${p.to}`);
     const path = document.createElementNS(NS,'path');
     path.setAttribute('d', `M${x0} ${y0}A${R1} ${R1} 0 ${large} 1 ${x1} ${y1}L${x2} ${y2}A${R0} ${R0} 0 ${large} 0 ${x3} ${y3}Z`);
-    path.setAttribute('fill', p.color); path.setAttribute('class','seg'); path.dataset.i = i;
-    path.setAttribute('tabindex','0'); path.setAttribute('role','button'); path.setAttribute('aria-label', `${p.name}, dag ${p.from}–${p.to}`);
-    path.addEventListener('click', () => setDay(p.from + Math.floor((p.to - p.from) / 2)));
-    path.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); path.dispatchEvent(new Event('click')); } });
-    wheel.appendChild(path);
+    path.setAttribute('fill', p.color);
+    const [tx,ty] = pt(RM, (ang(p.from) + ang(p.to + 1)) / 2);
+    const t = document.createElementNS(NS,'text'); t.setAttribute('x', tx); t.setAttribute('y', ty);
+    t.setAttribute('text-anchor','middle'); t.setAttribute('dominant-baseline','central'); t.setAttribute('class','seg-days');
+    t.setAttribute('fill', light(p.color) ? '#4a2f28' : '#ffffff'); t.textContent = `${p.from}–${p.to}`;
+    g.append(path, t);
+    g.addEventListener('click', () => { wheel.dataset.touched = 1; stopAuto(); setPhase(i); });
+    g.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); wheel.dataset.touched = 1; stopAuto(); setPhase(i); }
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); stopAuto(); setPhase((i + 1) % 4); segs[(i + 1) % 4].focus(); }
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); stopAuto(); setPhase((i + 3) % 4); segs[(i + 3) % 4].focus(); }
+    });
+    wheel.appendChild(g); return g;
   });
-  [1,7,14,21,28].forEach(d => { const [x,y] = pt(R1 + 0, ang(d)); });
-  const marker = document.createElementNS(NS,'circle'); marker.setAttribute('r','11'); marker.setAttribute('fill','var(--surface)'); marker.setAttribute('stroke','var(--ink)'); marker.setAttribute('stroke-width','3');
-  marker.style.transition = reduce ? 'none' : 'cx .4s cubic-bezier(.2,.7,.2,1), cy .4s cubic-bezier(.2,.7,.2,1)';
-  wheel.appendChild(marker);
-
-  const tabs = $('#tabs'), card = $('#phaseCard');
-  phases.forEach((p, i) => { const b = document.createElement('button'); b.role = 'tab'; b.id = 'tab-' + p.key; b.textContent = p.name; b.onclick = () => setDay(p.from + Math.floor((p.to - p.from) / 2)); tabs.appendChild(b); });
+  const card = $('#phaseCard');
   const ic = s => `<span class="ic"><svg width="18" height="18"><use href="#${s}"/></svg></span>`;
-  let curPhase = -1;
-  function setDay(d) {
-    d = +d; $('#day').value = d; $('#dayNum').textContent = d; $('#dayLabel').textContent = `${d} av 28`;
-    const i = phases.findIndex(p => d >= p.from && d <= p.to), p = phases[i];
-    $('#dayPhase').textContent = p.name;
-    const [x,y] = pt((R0 + R1) / 2, ang(d + .5)); marker.setAttribute('cx', x); marker.setAttribute('cy', y);
-    if (i === curPhase) return; curPhase = i;
-    wheel.querySelectorAll('.seg').forEach(s => s.classList.toggle('on', +s.dataset.i === i));
-    tabs.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-selected', j === i));
-    card.setAttribute('aria-labelledby', 'tab-' + p.key);
-    card.innerHTML = `<div class="swap" style="display:grid;gap:16px"><div><span class="days">Dag ${p.from}–${p.to} · ${p.season}</span><h3>${p.name}</h3></div>
+  let cur = -1;
+  function setPhase(i) {
+    if (i === cur) return; cur = i; const p = phases[i];
+    segs.forEach((g, j) => { g.classList.toggle('on', j === i); g.setAttribute('aria-pressed', j === i); });
+    $('#wcDays').textContent = `Dag ${p.from}–${p.to}`; $('#wcName').textContent = p.name; $('#wcSeason').textContent = p.season;
+    card.innerHTML = `<div class="swap pc-in"><div class="pc-head"><span class="days">Dag ${p.from}–${p.to} · ${p.season}</span><h3>${p.name}</h3></div>
       <ul class="phase-list"><li>${ic('i-strength')}<div><b>Trening</b>${p.train}</div></li><li>${ic('i-bowl')}<div><b>Mat</b>${p.food}</div></li><li>${ic('i-candle')}<div><b>Ritual</b>${p.ritual}</div></li></ul>
       <a class="btn btn-cta" href="#plan">Få planen for din fase <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a></div>`;
   }
-  $('#day').addEventListener('input', e => setDay(e.target.value));
-  setDay(9);
+  let auto = null;
+  const stopAuto = () => { if (auto) { clearInterval(auto); auto = null; } };
+  setPhase(1);
+  if (!reduce) new IntersectionObserver(([e]) => {
+    if (e.isIntersecting && auto === null && !wheel.dataset.touched) auto = setInterval(() => setPhase((cur + 1) % 4), 4200);
+    else if (!e.isIntersecting) stopAuto();
+  }, {threshold:.5}).observe(wheel);
+  wheel.addEventListener('pointerdown', () => { stopAuto(); wheel.dataset.touched = 1; }, {once:true});
 
   /* Quiz */
   const Q = [
