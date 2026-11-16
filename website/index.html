@@ -837,6 +837,17 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
   .promo-media img{object-position:50% 18%}
   .promo-card{max-height:88svh}
 }
+/* step 2 on desktop: two columns instead of one wide column */
+@media (min-width:900px){
+  .flow .q-step{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);column-gap:48px;align-items:start}
+  .flow .q-step > .q-count,.flow .q-step > h3,.flow .q-step > .q-back{grid-column:1}
+  .flow .q-step > .opts{grid-column:2;grid-row:1 / span 4;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .flow .q-step > .opts .opt{min-height:96px;align-items:flex-start;flex-direction:column;gap:10px}
+  .flow .q-step > .result-plan{grid-column:1;grid-row:2 / span 3}
+  .flow .q-step > .lead-form{grid-column:2;grid-row:1 / span 4}
+  .flow .q-step > .q-count{grid-row:1}
+  .flow .q-step h3{font-size:1.9rem}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
