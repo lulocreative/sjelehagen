@@ -576,6 +576,16 @@ footer a{text-decoration:none}
   .phase-list .ic svg{width:16px;height:16px}
   .phase-card .btn{--bh:44px;width:100%}
 }
+/* Mobile cycle bar */
+.cycle-bar,.cycle-scale{display:none}
+.cb-seg{position:relative;height:46px;border:0;border-radius:10px;background:var(--c);font:600 .8rem var(--f-body);font-variant-numeric:tabular-nums;white-space:nowrap;padding:0 4px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+.cb-seg.on{transform:translateY(-3px);box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--ink)}
+.cb-seg.on::after{content:"";position:absolute;left:50%;bottom:-13px;width:10px;height:10px;background:var(--ink);transform:translateX(-50%) rotate(45deg);border-radius:2px;opacity:0}
+@media (max-width:599px){
+  .wheel-box{display:none}
+  .cycle-bar{display:grid;gap:4px;width:100%;margin-top:6px}
+  .cycle-scale{display:flex;justify-content:space-between;width:100%;font-size:.68rem;color:var(--ink-soft);font-weight:600;letter-spacing:.04em;margin-top:-4px}
+}
 /* square photos: no rounded corners on any image */
 .ph,.pillar .ph,.founder .ph,.plan-card,.plan-card .ph{border-radius:0}
 </style>
@@ -704,12 +714,14 @@ footer a{text-decoration:none}
       <div class="head">
         <span class="eyebrow">Cycle-synced training</span>
         <h2 class="rv">Train with your cycle, <em>not against it.</em></h2>
-        <p class="lede">Your energy shifts through the month. Tap a phase on the wheel to see how training, food and rest adapt.</p>
+        <p class="lede">Your energy shifts through the month. Tap a phase to see how training, food and rest adapt.</p>
       </div>
       <div class="wheel-box">
         <svg viewBox="0 0 360 360" id="wheel" role="group" aria-label="Cycle wheel with four phases"></svg>
         <div class="wheel-center" aria-live="polite"><div><small id="wcDays"></small><strong id="wcName"></strong><span id="wcSeason"></span></div></div>
       </div>
+      <div class="cycle-bar" id="cycleBar" role="group" aria-label="Choose a phase"></div>
+      <div class="cycle-scale" aria-hidden="true"><span>Day 1</span><span>14</span><span>28</span></div>
       <p class="wheel-hint"><svg width="16" height="16" aria-hidden="true"><use href="#i-cycle"/></svg>Tap a phase</p>
     </div>
     <div class="phase-card" id="phaseCard"></div>
@@ -1046,14 +1058,14 @@ footer a{text-decoration:none}
   const card = $('#phaseCard');
   const ic = s => `<span class="ic"><svg width="18" height="18"><use href="#${s}"/></svg></span>`;
   let cur = -1;
-  function setPhase(i) {
+  let setPhase = function (i) {
     if (i === cur) return; cur = i; const p = phases[i];
     segs.forEach((g, j) => { g.classList.toggle('on', j === i); g.setAttribute('aria-pressed', j === i); });
     $('#wcDays').textContent = `Day ${p.from}–${p.to}`; $('#wcName').textContent = p.name; $('#wcSeason').textContent = p.season;
     card.innerHTML = `<div class="swap pc-in"><div class="pc-head"><span class="days">Day ${p.from}–${p.to} · ${p.season}</span><h3>${p.name}</h3></div>
       <ul class="phase-list"><li>${ic('i-strength')}<div><b>Training</b>${p.train}</div></li><li>${ic('i-bowl')}<div><b>Food</b>${p.food}</div></li><li>${ic('i-candle')}<div><b>Ritual</b>${p.ritual}</div></li></ul>
       <a class="btn btn-cta" href="#plan">Get the plan for your phase <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a></div>`;
-  }
+  };
   let auto = null;
   const stopAuto = () => { if (auto) { clearInterval(auto); auto = null; } };
   setPhase(1);
@@ -1062,6 +1074,22 @@ footer a{text-decoration:none}
     else if (!e.isIntersecting) stopAuto();
   }, {threshold:.5}).observe(wheel);
   wheel.addEventListener('pointerdown', () => { stopAuto(); wheel.dataset.touched = 1; }, {once:true});
+
+  /* Mobile: compact horizontal cycle bar (same phases, proportional to 28 days) */
+  const cbar = $('#cycleBar');
+  const barBtns = phases.map((p, i) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'cb-seg';
+    b.style.setProperty('--c', p.color); b.style.color = light(p.color) ? '#4a2f28' : '#fff';
+    b.setAttribute('aria-label', segs[i].getAttribute('aria-label'));
+    b.innerHTML = `<span>${p.from}–${p.to}</span>`;
+    b.addEventListener('click', () => { wheel.dataset.touched = 1; stopAuto(); setPhase(i); });
+    cbar.appendChild(b); return b;
+  });
+  cbar.style.gridTemplateColumns = phases.map(p => `minmax(${p.to - p.from < 4 ? 58 : 44}px, ${p.to - p.from + 1}fr)`).join(' ');
+  const syncBar = () => barBtns.forEach((b, j) => { b.classList.toggle('on', j === cur); b.setAttribute('aria-pressed', j === cur); });
+  const _setPhase = setPhase; setPhase = i => { _setPhase(i); syncBar(); };
+  syncBar();
+  cbar.addEventListener('pointerdown', () => { wheel.dataset.touched = 1; stopAuto(); }, {once:true});
 
   /* Quiz */
   const Q = [
