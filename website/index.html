@@ -713,6 +713,13 @@ h2{font-size:clamp(2rem,6.4vw,3.4rem)}
 /* hero tag: no outer box so it sits flush-left with the headline; smaller text */
 .hero .pill{background:none;border:0;padding:0;backdrop-filter:none;-webkit-backdrop-filter:none;gap:10px;font-size:.66rem;letter-spacing:.16em}
 .hero .pill b{font-size:.66rem;padding:4px 10px;letter-spacing:.12em}
+/* word stack: as large as fits one screen (7 lines + paragraph) */
+.word-stack{font-size:min(15vw, calc((100svh - 250px) / 7.5))!important;line-height:1.04!important}
+@media (min-width:900px){
+  .word-stack{font-size:min(7.2vw, calc((100svh - 250px) / 7.5))!important}
+  .intro-split{min-height:calc(100svh - 64px)}
+  .intro-words{padding-block:48px 40px}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
