@@ -772,6 +772,57 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
 /* hide any native play/controls overlay on the background video */
 .hero-video{pointer-events:none}
 .hero-video::-webkit-media-controls,.hero-video::-webkit-media-controls-panel,.hero-video::-webkit-media-controls-overlay-play-button,.hero-video::-webkit-media-controls-start-playback-button{display:none!important;-webkit-appearance:none;opacity:0}
+/* ===== Cycle component on a photo with glass cards (reference: frosted panels over imagery) ===== */
+.cycle{position:relative;isolation:isolate;color:#fff;background:#3a2c22}
+.cycle::before{content:"";position:absolute;inset:0;z-index:-2;background:url("img/hero-poster.webp") center/cover no-repeat}
+.cycle::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(40,27,18,.55),rgba(40,27,18,.35) 40%,rgba(40,27,18,.7))}
+.cycle .head h2{color:#fff}.cycle .head h2 em{color:#f1d6c1}
+.cycle .lede{color:rgba(255,255,255,.88)}
+.cycle .eyebrow{color:rgba(255,255,255,.8)}
+.flow{background:rgba(255,255,255,.12);backdrop-filter:blur(18px) saturate(1.1);-webkit-backdrop-filter:blur(18px) saturate(1.1);border:1px solid rgba(255,255,255,.22);border-radius:24px;color:#fff}
+.flow-steps{border-bottom-color:rgba(255,255,255,.2)}
+.flow-steps button{color:rgba(255,255,255,.7)}
+.flow-steps li.on button{color:#fff}
+.flow-steps b{background:rgba(255,255,255,.2);color:#fff}
+.flow-steps li.on b{background:#fff;color:#2f4d4a}
+.flow-steps li.on::after{background:#fff}
+.cycle .wheel-center small,.cycle .wheel-center span,.cycle .wheel-hint{color:rgba(255,255,255,.8)}
+.cycle .wheel-center strong{color:#fff}
+.cycle .wheel-hint svg{color:#f1d6c1}
+.flow .phase-card{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22)!important;border-radius:18px;color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.flow .phase-card .days,.flow .phase-list b{color:rgba(255,255,255,.75)}
+.flow .phase-card h3{color:#fff}
+.flow .phase-list .ic{background:rgba(255,255,255,.18);color:#fff;border-radius:10px}
+.pc-top{display:flex;gap:14px;align-items:center}
+.pc-thumb{width:64px;height:64px;object-fit:cover;border-radius:14px;flex:none;box-shadow:0 6px 18px -8px rgba(0,0,0,.5)}
+.flow .phase-card .btn-cta{background:#fff;color:#2f4d4a}
+.flow .phase-card .btn-cta:hover{background:#f3ece0}
+/* quiz inside the glass panel */
+.flow .q-count,.flow .q-back,.flow-back{color:rgba(255,255,255,.75)}
+.flow-back span{color:#f1d6c1}
+.flow .q-step h3{color:#fff}
+.flow .opt{background:rgba(255,255,255,.14)!important;color:#fff;border-radius:14px}
+.flow .opt small{color:rgba(255,255,255,.7)}
+.flow .opt .em{background:rgba(255,255,255,.2);color:#fff;border-radius:10px}
+.flow .opt[aria-pressed="true"]{box-shadow:inset 0 0 0 2px #fff!important}
+.flow .opt:hover{box-shadow:inset 0 0 0 1px rgba(255,255,255,.5)!important}
+.flow .quiz-progress{background:rgba(255,255,255,.2)}
+.flow .quiz-progress i{background:#fff}
+.flow .result-plan{background:rgba(255,255,255,.14);color:#fff;border-radius:16px}
+.flow .result-plan h4{color:#fff}
+.flow .field label,.flow .consent{color:rgba(255,255,255,.85)}
+.flow .field input{background:rgba(255,255,255,.92);color:#222;border-color:transparent;border-radius:12px}
+.flow .lead-form .btn-cta{background:#fff;color:#2f4d4a}
+.flow .success h3,.flow .success .lede{color:#fff}
+.flow .week div{color:rgba(255,255,255,.8)}
+/* mobile energy chart on the photo */
+.cycle .wv-line{stroke:#fff}
+.cycle .wv-tick{stroke:#fff;opacity:.35}
+.cycle .wv-base{stroke:rgba(255,255,255,.3)}
+.cycle .wv-x,.cycle .wv-label{fill:rgba(255,255,255,.75);color:rgba(255,255,255,.75)}
+.cycle .wv-dot{fill:#fff;stroke:#d9a07c}
+.cycle .wv-tip rect,.cycle .wv-tip path{fill:#fff}
+.cycle .wv-tip text{fill:#3b2a20}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1255,7 +1306,7 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
     if (i === cur) return; cur = i; const p = phases[i];
     segs.forEach((g, j) => { g.classList.toggle('on', j === i); g.setAttribute('aria-pressed', j === i); });
     $('#wcDays').textContent = `Dag ${p.from}–${p.to}`; $('#wcName').textContent = p.name; $('#wcSeason').textContent = p.season;
-    card.innerHTML = `<div class="swap pc-in"><div class="pc-head"><span class="days">Dag ${p.from}–${p.to} · ${p.season}</span><h3>${p.name}</h3></div>
+    card.innerHTML = `<div class="swap pc-in"><div class="pc-top"><img class="pc-thumb" src="img/${({men:'ritual',fol:'yoga',ovu:'pilates',lut:'mat'})[p.key]}-400.webp" alt="" width="400" height="500"><div class="pc-head"><span class="days">Dag ${p.from}–${p.to} · ${p.season}</span><h3>${p.name}</h3></div></div>
       <ul class="phase-list"><li>${ic('i-strength')}<div><b>Trening</b>${p.train}</div></li><li>${ic('i-bowl')}<div><b>Mat</b>${p.food}</div></li><li>${ic('i-candle')}<div><b>Ritual</b>${p.ritual}</div></li></ul>
       <a class="btn btn-cta" href="#plan">Lag planen min <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a></div>`;
   };
