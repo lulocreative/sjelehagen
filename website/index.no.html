@@ -823,6 +823,10 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
 .cycle .wv-dot{fill:#fff;stroke:#d9a07c}
 .cycle .wv-tip rect,.cycle .wv-tip path{fill:#fff}
 .cycle .wv-tip text{fill:#3b2a20}
+/* cycle background: beach photo (bright, so a warmer, stronger tint keeps white text readable) */
+.cycle::before{background:url("img/cycle-bg.webp") 50% 60%/cover no-repeat}
+.cycle::after{background:linear-gradient(180deg,rgba(52,36,24,.62),rgba(52,36,24,.42) 45%,rgba(44,30,20,.66))}
+@media (max-width:699px){ .cycle::before{background-image:url("img/cycle-bg-mobil.webp");background-position:50% 55%} }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
