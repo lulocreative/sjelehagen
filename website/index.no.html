@@ -728,6 +728,35 @@ h2{font-size:clamp(2rem,6.4vw,3.4rem)}
 /* larger section titles */
 h2{font-size:clamp(2.3rem,8vw,4.2rem)}
 .cycle h2{font-size:clamp(2.1rem,6.4vw,3.6rem)}
+/* One flow component: step 1 (phase) -> step 2 (quiz) in the same container */
+.flow{background:var(--surface);padding:22px;display:grid;gap:20px;margin-top:28px;overflow:hidden}
+.flow .cycle-grid{padding:0;margin:0;max-width:none}
+.flow-steps{list-style:none;margin:0;padding:0;display:flex;gap:6px;border-bottom:1px solid var(--line)}
+.flow-steps li{position:relative}
+.flow-steps button{display:inline-flex;align-items:center;gap:8px;padding:0 4px 12px;border:0;background:none;font:400 .76rem var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);cursor:pointer}
+.flow-steps button:disabled{cursor:default;opacity:.55}
+.flow-steps b{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font:600 .72rem var(--f-body);background:var(--line);color:var(--ink);letter-spacing:0}
+.flow-steps li + li{margin-left:18px}
+.flow-steps li.on button{color:var(--ink)}
+.flow-steps li.on b{background:var(--action);color:#fff}
+.flow-steps li.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--action)}
+.flow-panel{animation:none}
+.flow-panel.in-r{animation:flowInR .55s cubic-bezier(.2,.7,.2,1) both}
+.flow-panel.in-l{animation:flowInL .55s cubic-bezier(.2,.7,.2,1) both}
+.flow-panel.out-l{animation:flowOutL .3s ease both}
+.flow-panel.out-r{animation:flowOutR .3s ease both}
+@keyframes flowInR{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes flowInL{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+@keyframes flowOutL{to{opacity:0;transform:translateX(-40px)}}
+@keyframes flowOutR{to{opacity:0;transform:translateX(40px)}}
+.flow-back{justify-self:start;background:none;border:0;padding:0 0 12px;font:500 .9rem var(--f-body);color:var(--ink-soft);cursor:pointer}
+.flow-back:hover{color:var(--ink)}
+.flow-back span{color:var(--cta)}
+.flow .quiz-wrap{margin:0;max-width:none;padding:0;background:none;border:0}
+.flow .phase-card{background:var(--bg)}
+.cycle .head{margin-bottom:0}
+@media (max-width:599px){ .flow{padding:16px 14px;margin-top:18px;gap:14px;margin-inline:-6px} }
+@media (prefers-reduced-motion: reduce){ .flow-panel{animation:none!important} }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -852,13 +881,19 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
 
 <!-- CYCLE -->
 <section class="cycle" id="syklus">
-  <div class="wrap cycle-grid">
-    <div class="cycle-left">
-      <div class="head">
-        <span class="eyebrow">Steg 1 · Syklisk trening</span>
+  <div class="wrap">
+    <div class="head">
+        <span class="eyebrow">Syklisk trening · gratis startplan</span>
         <h2 class="rv">Tren med syklusen, <em>ikke mot den.</em></h2>
-        <p class="lede">Energien din endrer seg gjennom måneden. Trykk på en fase og se hvordan trening, mat og hvile tilpasses. Velg fasen din, svar på tre spørsmål og få en gratis 7-dagers plan.</p>
+        <p class="lede">Velg fasen din, svar på tre spørsmål og få en gratis 7-dagers plan tilpasset syklusen.</p>
       </div>
+    <div class="flow" id="flow" data-step="1">
+      <ol class="flow-steps" aria-label="Steg">
+        <li class="on"><button type="button" id="flowS1"><b>1</b>Velg fase</button></li>
+        <li><button type="button" id="flowS2" disabled><b>2</b>Din plan</button></li>
+      </ol>
+      <div class="flow-panel cycle-grid" id="panel1">
+        <div class="cycle-left">
       <div class="wheel-box">
         <svg viewBox="0 0 360 360" id="wheel" role="group" aria-label="Syklushjul med fire faser"></svg>
         <div class="wheel-center" aria-live="polite"><div><small id="wcDays"></small><strong id="wcName"></strong><span id="wcSeason"></span></div></div>
@@ -866,18 +901,16 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
       <div class="cycle-bar" id="cycleBar" role="group" aria-label="Velg fase"></div>
       <div class="cycle-scale" aria-hidden="true"><span>Dag 1</span><span>14</span><span>28</span></div>
       <p class="wheel-hint"><svg width="16" height="16" aria-hidden="true"><use href="#i-cycle"/></svg>Trykk på en fase</p>
-    </div>
-    <div class="phase-card" id="phaseCard"></div>
-  </div>
-
-  <div class="wrap cycle-quiz" id="plan">
-    <div class="head">
-      <span class="eyebrow">Steg 2 · Din gratis startplan</span>
-      <h2 class="rv">Tre korte spørsmål, så får du <em>planen for din fase.</em></h2>
-    </div>
-    <div class="quiz-wrap rv" id="quiz">
-      <div class="quiz-progress" aria-hidden="true"><i id="qbar"></i></div>
-      <div id="qbody"></div>
+        </div>
+        <div class="phase-card" id="phaseCard"></div>
+      </div>
+      <div class="flow-panel" id="plan" hidden>
+        <button class="flow-back" type="button" id="flowBack">← Endre fase <span id="flowPhase"></span></button>
+        <div class="quiz-wrap" id="quiz">
+          <div class="quiz-progress" aria-hidden="true"><i id="qbar"></i></div>
+          <div id="qbody"></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1270,6 +1303,26 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
   let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(drawWave, 150); });
   cbar.addEventListener('pointerdown', () => { wheel.dataset.touched = 1; stopAuto(); }, {once:true});
 
+
+  /* Flow: step 1 (phase) <-> step 2 (quiz) inside the same container */
+  const flow = $('#flow'), p1 = $('#panel1'), p2 = $('#plan'), s1 = $('#flowS1'), s2 = $('#flowS2');
+  const swapPanels = (from, to, dir) => {
+    if (reduce) { from.hidden = true; to.hidden = false; return; }
+    from.className = from.className.replace(/ ?(in|out)-[lr]/g, '') + (dir > 0 ? ' out-l' : ' out-r');
+    setTimeout(() => { from.hidden = true; from.className = from.className.replace(/ ?out-[lr]/g, '');
+      to.hidden = false; to.className = to.className.replace(/ ?(in|out)-[lr]/g, '') + (dir > 0 ? ' in-r' : ' in-l'); }, 280);
+  };
+  const goStep = n => {
+    if (+flow.dataset.step === n) return;
+    flow.dataset.step = n; stopAuto(); wheel.dataset.touched = 1;
+    s1.parentElement.classList.toggle('on', n === 1); s2.parentElement.classList.toggle('on', n === 2); s2.disabled = false;
+    $('#flowPhase').textContent = '(' + phases[cur].name + ')';
+    if (n === 2) { swapPanels(p1, p2, 1); } else { swapPanels(p2, p1, -1); }
+    const top = flow.getBoundingClientRect().top; if (top < 60 || top > innerHeight * .5) window.scrollTo({top: scrollY + top - 80, behavior: reduce ? 'auto' : 'smooth'});
+  };
+  $('#phaseCard').addEventListener('click', e => { const a = e.target.closest('a[href="#plan"]'); if (a) { e.preventDefault(); goStep(2); } });
+  s1.addEventListener('click', () => goStep(1)); s2.addEventListener('click', () => goStep(2));
+  $('#flowBack').addEventListener('click', () => goStep(1));
   /* Quiz */
   const Q = [
     {k:'goal', q:'Hva ønsker du mest akkurat nå?', o:[
