@@ -1270,6 +1270,7 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
 
   /* Klaviyo: website quiz -> list "Nettside – 7-dagers startplan (quiz)" -> flow sends the plan email */
   const KL = {company:'WXxMVT', list:'VBGurR', rev:'2024-10-15'};
+  const KL_THUMB = {P:'https://cdn.klaviyomail.com/company/WXxMVT/images/18f48974-0c09-4422-ba33-aed35a9e4b32.jpeg', Y:'https://cdn.klaviyomail.com/company/WXxMVT/images/693e3118-2dcc-4bab-81e7-36cc7aed08bb.jpeg', R:'https://cdn.klaviyomail.com/company/WXxMVT/images/ae37404c-bdfa-404b-b198-4bba509a90a7.jpeg'};
   const klSubscribe = async (email, first, props) => {
     const h = {'content-type':'application/vnd.api+json', accept:'application/vnd.api+json', revision:KL.rev}, base = 'https://a.klaviyo.com/client/';
     const attrs = {email, properties: props}; if (first) attrs.first_name = first;
@@ -1467,6 +1468,7 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
   };
   const goStep = n => {
     if (+flow.dataset.step === n) return;
+    if (n === 1) { step = 0; Object.keys(ans).forEach(k => { ans[k] = undefined; }); render(); } /* new phase = fresh quiz */
     flow.dataset.step = n; stopAuto(); wheel.dataset.touched = 1;
     s1.parentElement.classList.toggle('on', n === 1); s2.parentElement.classList.toggle('on', n === 2); s2.disabled = false;
     $('#flowPhase').textContent = '(' + phases[cur].name + ')';
@@ -1543,7 +1545,7 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
         const n = $('#lf-name').value.trim();
         const btn = $('#leadForm [type=submit]'); btn.disabled = true; err.textContent = '';
         const props = {sh_lang:'no', sh_plan_name:p.name, sh_minutes:String(mins), sh_level:ans.level, sh_goal:ans.goal, sh_phase:(phases[cur] || {}).name || ''};
-        p.week.forEach((t, i) => { const arr = CL[t], c = arr[i % arr.length], m = t === 'R' ? Math.max(10, Math.round(mins * .6)) : mins; props['sh_day' + (i + 1)] = c[0] + ' · ' + m + ' min'; });
+        p.week.forEach((t, i) => { const arr = CL[t], c = arr[i % arr.length], m = t === 'R' ? Math.max(10, Math.round(mins * .6)) : mins; props['sh_day' + (i + 1)] = c[0] + ' · ' + m + ' min'; props['sh_thumb' + (i + 1)] = KL_THUMB[t]; });
         klSubscribe(em, n, props).then(ok => {
           if (ok === false) { btn.disabled = false; err.textContent = 'Noe gikk galt. Prøv igjen om litt.'; return; }
           bar.style.width = '100%';
