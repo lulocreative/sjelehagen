@@ -893,19 +893,20 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
 .word-stack{font-family:var(--f-display)!important}
 h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005em}
 
-/* Scroll-scrubbed video section */
-.scrub{position:relative;height:92vh;height:92svh;min-height:520px;max-height:980px;padding:0!important;background:#1d2422;--p:0}
-.scrub-sticky{position:relative;height:100%;overflow:hidden}
-.scrub-v{position:absolute;left:0;right:0;top:-14%;width:100%;height:128%;object-fit:cover;will-change:transform;transform:translate3d(0,calc((var(--p) - .5) * 22%),0) scale(1.02);background:#1d2422 url(img/scroll-poster.webp) center/cover no-repeat}
-.scrub-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,20,18,.15) 0%,rgba(15,20,18,0) 35%,rgba(15,20,18,.55) 100%);pointer-events:none}
-.scrub-copy{position:absolute;left:0;right:0;bottom:clamp(40px,9vh,96px);padding-inline:max(20px,6vw);color:#fff;max-width:760px;
-  opacity:clamp(0,calc(var(--p)*3.2 - .6),1);transform:translateY(calc((1 - clamp(0,var(--p)*2.2,1))*28px))}
-.scrub-copy .eyebrow{color:#fff;opacity:.85}
-.scrub-copy h2{color:#fff;font-size:clamp(2.4rem,6.4vw,4.6rem);line-height:1.02;margin:.35em 0 .3em}
-.scrub-copy h2 em{color:#f3d9c8}
-.scrub-copy p{color:rgba(255,255,255,.88);font-size:1.05rem;max-width:34ch;margin:0}
-.scrub-bar{position:absolute;left:max(20px,6vw);right:max(20px,6vw);bottom:22px;height:2px;background:rgba(255,255,255,.22);border-radius:2px;overflow:hidden}
-.scrub-bar i{display:block;height:100%;width:calc(var(--p)*100%);background:#fff}
+/* Scroll-scrubbed video section (pinned while the video plays; captions follow the scroll) */
+.scrub{position:relative;height:340vh;padding:0!important;background:#1d2422;--p:0}
+.scrub-sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.scrub-v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#1d2422 url(img/scroll-poster.webp) center/cover no-repeat}
+.scrub-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,20,18,.12) 0%,rgba(15,20,18,0) 35%,rgba(15,20,18,.55) 100%);pointer-events:none}
+.scrub-cap{position:absolute;left:0;right:0;bottom:clamp(40px,10vh,104px);padding-inline:max(20px,6vw);color:#fff;max-width:780px;
+  --in:clamp(0,calc((var(--p) - var(--a)) * 14),1);--out:clamp(0,calc((var(--b) - var(--p)) * 14),1);
+  opacity:min(var(--in),var(--out));transform:translateY(calc((1 - var(--in)) * 36px + (1 - var(--out)) * -36px));
+  filter:blur(calc((1 - min(var(--in),var(--out))) * 6px));will-change:opacity,transform}
+.scrub-cap.last{--out:1}
+.scrub-cap .eyebrow{color:#fff;opacity:.85}
+.scrub-cap h2{color:#fff;font-size:clamp(2.4rem,6.4vw,4.6rem);line-height:1.02;margin:.35em 0 .3em}
+.scrub-cap h2 em{color:#f3d9c8}
+.scrub-cap p{color:rgba(255,255,255,.9);font-size:1.05rem;max-width:34ch;margin:0}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1033,7 +1034,9 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
   <div class="scrub-sticky">
     <video class="scrub-v" muted playsinline preload="auto" poster="img/scroll-poster.webp" aria-hidden="true"></video>
     <div class="scrub-shade"></div>
-    <div class="scrub-copy"><span class="eyebrow">Beveg deg med Cecilie</span><h2>Sterk og myk.<br><em>I ditt eget tempo.</em></h2><p>Pilates og yoga som møter deg der du er, ved havet, hjemme eller der du ruller ut matten.</p></div>
+    <div class="scrub-cap" style="--a:0.04;--b:0.32"><span class="eyebrow">Beveg deg med Cecilie</span><h2>Pust inn.<br><em>Land i kroppen.</em></h2><p>Finn roen, ett pust av gangen.</p></div>
+    <div class="scrub-cap" style="--a:0.38;--b:0.66"><span class="eyebrow">Bevegelse</span><h2>Kjenn rytmen<br><em>i kroppen din.</em></h2><p>Trening som følger energien og syklusen din.</p></div>
+    <div class="scrub-cap last" style="--a:0.72;--b:1.2"><span class="eyebrow">Sjelehagen</span><h2>Sterk og myk.<br><em>I ditt eget tempo.</em></h2><p>Pilates og yoga som møter deg der du er, ved havet, hjemme eller der du ruller ut matten.</p></div>
   </div>
 </section>
 <script>
@@ -1048,9 +1051,9 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
   const prime = () => { const pr = v.play(); if (pr) pr.then(() => v.pause()).catch(() => {}); removeEventListener('touchstart', prime); };
   addEventListener('touchstart', prime, {passive: true});
   const onScroll = () => {
-    /* progress 0 -> 1 while the section travels through the viewport (no pinning) */
-    const r = sec.getBoundingClientRect();
-    const p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height)));
+    /* progress 0 -> 1 while the section is pinned */
+    const r = sec.getBoundingClientRect(), span = r.height - innerHeight;
+    const p = Math.min(1, Math.max(0, -r.top / (span || 1)));
     sec.style.setProperty('--p', p.toFixed(4));
     target = p * Math.max(0, dur - 0.05);
     if (inView && !running) { running = true; requestAnimationFrame(tick); }
