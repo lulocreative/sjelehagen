@@ -1268,6 +1268,20 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r=document) => r.querySelector(s);
 
+  /* Klaviyo: website quiz -> list "Nettside – 7-dagers startplan (quiz)" -> flow sends the plan email */
+  const KL = {company:'WXxMVT', list:'VBGurR', rev:'2024-10-15'};
+  const klSubscribe = async (email, first, props) => {
+    const h = {'content-type':'application/vnd.api+json', accept:'application/vnd.api+json', revision:KL.rev}, base = 'https://a.klaviyo.com/client/';
+    const attrs = {email, properties: props}; if (first) attrs.first_name = first;
+    try {
+      await fetch(base + 'profiles/?company_id=' + KL.company, {method:'POST', headers:h, body: JSON.stringify({data:{type:'profile', attributes: attrs}})});
+      const r = await fetch(base + 'subscriptions/?company_id=' + KL.company, {method:'POST', headers:h, body: JSON.stringify({data:{type:'subscription',
+        attributes:{custom_source:'Website quiz (' + props.sh_lang + ')', profile:{data:{type:'profile', attributes:{email, subscriptions:{email:{marketing:{consent:'SUBSCRIBED'}}}}}}},
+        relationships:{list:{data:{type:'list', id:KL.list}}}}})});
+      return r.ok;
+    } catch (e) { return null; } /* network blocked (e.g. preview): show success anyway */
+  };
+
   /* Header + sticky CTA */
   const top = $('#top'), sticky = $('#sticky'), hero = $('.hero'), priser = $('#priser'), finalBox = $('.final');
   let heroOut = false, endIn = false;
@@ -1527,10 +1541,16 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { err.textContent = 'Enter a valid email address, for example name@email.com.'; $('#lf-email').focus(); return; }
         if (!$('#lf-ok').checked) { err.textContent = 'Tick the consent box so we can send you the plan.'; return; }
         const n = $('#lf-name').value.trim();
-        bar.style.width = '100%';
-        body.innerHTML = `<div class="success swap"><div class="check"><svg width="36" height="36" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-          <h3>Thank you${n ? ', ' + n.replace(/[<>&"]/g,'') : ''}!</h3><p class="lede">The “${p.name}” plan is on its way to ${em.replace(/[<>&"]/g,'')}. Want to start today?</p>
-          <a class="btn btn-cta" href="https://studio.sjelehagen.no/register">Start 7 days free <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a></div>`;
+        const btn = $('#leadForm [type=submit]'); btn.disabled = true; err.textContent = '';
+        const props = {sh_lang:'en', sh_plan_name:p.name, sh_minutes:String(mins), sh_level:ans.level, sh_goal:ans.goal, sh_phase:(phases[cur] || {}).name || ''};
+        p.week.forEach((t, i) => { const arr = CL[t], c = arr[i % arr.length], m = t === 'R' ? Math.max(10, Math.round(mins * .6)) : mins; props['sh_day' + (i + 1)] = c[0] + ' · ' + m + ' min'; });
+        klSubscribe(em, n, props).then(ok => {
+          if (ok === false) { btn.disabled = false; err.textContent = 'Something went wrong. Please try again in a moment.'; return; }
+          bar.style.width = '100%';
+          body.innerHTML = `<div class="success swap"><div class="check"><svg width="36" height="36" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+            <h3>Thank you${n ? ', ' + n.replace(/[<>&"]/g,'') : ''}!</h3><p class="lede">The “${p.name}” plan is on its way to ${em.replace(/[<>&"]/g,'')}. Want to start today?</p>
+            <a class="btn btn-cta" href="https://studio.sjelehagen.no/register">Start 7 days free <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a></div>`;
+          });
       });
     }
   }
