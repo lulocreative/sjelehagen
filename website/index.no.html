@@ -899,12 +899,11 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
 .scrub{position:relative;height:620vh;padding:0!important;background:#1d2422;--p:0}
 .scrub-sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 .scrub-v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#1d2422 url(img/scroll-poster.webp) center/cover no-repeat}
-.scrub-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,20,18,.12) 0%,rgba(15,20,18,0) 30%,rgba(15,20,18,.35) 55%,rgba(15,20,18,.78) 100%),linear-gradient(90deg,rgba(15,20,18,.45) 0%,rgba(15,20,18,0) 60%);pointer-events:none}
+.scrub-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,20,18,.12) 0%,rgba(15,20,18,0) 35%,rgba(15,20,18,.55) 100%);pointer-events:none}
 .scrub-cap{position:absolute;left:0;right:0;bottom:clamp(40px,10vh,104px);padding-inline:max(20px,6vw);color:#fff;max-width:780px;
-  --in:clamp(0,calc((var(--p) - var(--a)) * 9),1);--out:clamp(0,calc((var(--b) - var(--p)) * 9),1);
-  opacity:min(var(--in),var(--out));transform:translateY(calc((1 - var(--in)) * 28px + (1 - var(--out)) * -28px));
-  text-shadow:0 1px 18px rgba(0,0,0,.35),0 1px 3px rgba(0,0,0,.25);will-change:opacity,transform;
-  transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform 1s cubic-bezier(.22,.61,.36,1)}
+  --in:clamp(0,calc((var(--p) - var(--a)) * 14),1);--out:clamp(0,calc((var(--b) - var(--p)) * 14),1);
+  opacity:min(var(--in),var(--out));transform:translateY(calc((1 - var(--in)) * 36px + (1 - var(--out)) * -36px));
+  filter:blur(calc((1 - min(var(--in),var(--out))) * 6px));will-change:opacity,transform}
 .scrub-cap.last{--out:1}
 .scrub-cap .eyebrow{color:#fff;opacity:.85}
 .scrub-cap h2{color:#fff;font-size:clamp(2.4rem,6.4vw,4.6rem);line-height:1.02;margin:.35em 0 .3em}
@@ -1039,9 +1038,9 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
   <div class="scrub-sticky">
     <video class="scrub-v" muted playsinline preload="auto" poster="img/scroll-poster.webp" aria-hidden="true"></video>
     <div class="scrub-shade"></div>
-    <div class="scrub-cap" style="--a:0.02;--b:0.33"><span class="eyebrow">Beveg deg med Cecilie</span><h2>Pust inn.<br><em>Land i kroppen.</em></h2><p>Finn roen, ett pust av gangen.</p></div>
-    <div class="scrub-cap" style="--a:0.36;--b:0.68"><span class="eyebrow">Bevegelse</span><h2>Kjenn rytmen<br><em>i kroppen din.</em></h2><p>Trening som følger energien og syklusen din.</p></div>
-    <div class="scrub-cap last" style="--a:0.71;--b:1.5"><span class="eyebrow">Sjelehagen</span><h2>Sterk og myk.<br><em>I ditt eget tempo.</em></h2><p>Pilates og yoga som møter deg der du er, ved havet, hjemme eller der du ruller ut matten.</p></div>
+    <div class="scrub-cap" style="--a:0.04;--b:0.32"><span class="eyebrow">Beveg deg med Cecilie</span><h2>Pust inn.<br><em>Land i kroppen.</em></h2><p>Finn roen, ett pust av gangen.</p></div>
+    <div class="scrub-cap" style="--a:0.38;--b:0.66"><span class="eyebrow">Bevegelse</span><h2>Kjenn rytmen<br><em>i kroppen din.</em></h2><p>Trening som følger energien og syklusen din.</p></div>
+    <div class="scrub-cap last" style="--a:0.72;--b:1.2"><span class="eyebrow">Sjelehagen</span><h2>Sterk og myk.<br><em>I ditt eget tempo.</em></h2><p>Pilates og yoga som møter deg der du er, ved havet, hjemme eller der du ruller ut matten.</p></div>
     <div class="scrub-bar" aria-hidden="true"><i></i></div>
   </div>
 </section>
