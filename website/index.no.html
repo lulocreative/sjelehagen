@@ -877,6 +877,16 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
 .dd-info p{margin:0;font-size:.9rem;opacity:.85}
 .dd-meta{font:400 .72rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;opacity:.75}
 @media (max-width:599px){ .dd{grid-template-columns:92px 1fr;gap:12px} .dd-info h5{font-size:1.15rem} .dd-info p{font-size:.84rem} }
+/* closing CTA: contained card with a photo background */
+.final{background:none!important;padding-block:24px 88px}
+.final-box{position:relative;isolation:isolate;overflow:hidden;border-radius:24px;padding:88px 24px;color:#fff}
+.final-box::before{content:"";position:absolute;inset:0;z-index:-2;background:url("img/hero.webp") 50% 30%/cover no-repeat}
+.final-box::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(48,33,22,.45),rgba(48,33,22,.7))}
+.final-box h2{color:#fff!important}.final-box h2 em{color:#f6c8bd!important}
+.final-box p,.final-box small{color:rgba(255,255,255,.9)}
+.final-box .eyebrow{color:rgba(255,255,255,.8)}
+.final-box .btn{background:#fff!important;color:#2f4d4a!important}
+@media (max-width:699px){ .final-box{padding:64px 20px;border-radius:18px} .final-box::before{background-image:url("img/hero-mobil.webp")} }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1216,7 +1226,7 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
 <footer>
   <div class="wrap">
     <a class="logo" href="#" aria-label="Sjelehagen"><img class="logo-dark" src="img/logo.png" alt="Sjelehagen" width="411" height="64" style="height:28px" loading="lazy"><img class="logo-light" src="img/logo-white.png" alt="Sjelehagen" width="411" height="64" style="height:28px" loading="lazy"></a>
-    <nav aria-label="Bunnmeny"><a href="retreats.html">Retreater</a><a href="#">Vilkår</a><a href="#">Personvern</a><a href="#">Kontakt</a><a href="#">Instagram</a></nav>
+    <nav aria-label="Bunnmeny"><a href="retreats.html">Retreater</a><a href="legal.no.html#terms">Vilkår</a><a href="legal.no.html#privacy">Personvern</a><a href="legal.no.html">Juridisk</a><a href="legal.no.html#contact">Kontakt</a><a href="#">Instagram</a></nav>
     <p>© 2026 Sjelehagen</p>
   </div>
 </footer>
