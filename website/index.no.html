@@ -1537,9 +1537,9 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
           <button class="q-back" type="button" id="restart">← Ta testen på nytt</button>
         </form></div>`;
       $('#restart').onclick = () => { step = 0; render(); };
-      const CL = {P:[['Pilates core','Sterk midje og stabil rygg, med fokus på pust og kontroll.','pilates'],['Pilates power','Dynamisk helkroppsøkt som bygger styrke og utholdenhet.','plan-energi'],['Pilates sculpt','Rolige, presise bevegelser for armer, sete og lår.','pilates']],
- Y:[['Yoga flyt','Myk flyt som åpner hofter og skuldre og gir ny energi.','yoga'],['Yin yoga','Lange, rolige strekk som demper stress og løser opp spenninger.','plan-ro'],['Morgenyoga','Våkn opp kroppen med enkle, flytende bevegelser.','yoga']],
- R:[['Pust & hvile','Guidet pusteøvelse og avspenning for et roligere nervesystem.','ritual'],['Mobilitet & ro','Myke strekk og mobilitet for en kropp som trenger hvile.','plan-ro']]};
+      const CL = {P:[['Matte Pilates Fundament','Bygg et sterkt fundament: kjerne, holdning og kontroll, med fokus på pust.','pilates'],['Styrkebasert pilatesarmer','Styrkebasert pilates for sterke armer, skuldre og øvre rygg.','plan-energi'],['Dynamisk pilates-egen kropp','Dynamisk helkroppspilates med kun egen kroppsvekt.','pilates']],
+ Y:[['Juicy hofter – vinyasa flow','En saftig vinyasa-flyt som åpner hoftene og setter energien i gang.','yoga'],['Morgen mobilitets flow','Myk morgenmobilitet som vekker en stiv kropp.','yoga'],['Flow & release','Myk flyt som løser opp spenninger, laget for lutealfasen.','plan-ro']],
+ R:[['Yin yoga for psoas release','Lange, rolige strekk som løsner psoas og roer nervesystemet.','ritual'],['Yoga Nidra','Guidet dyp avspenning, hvile for kropp og sinn.','plan-ro']]};
       const DN = ['Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'], mins = ({'10':12,'20':25,'45':45})[dur.split('–')[0]] || 20;
       const showDay = i => {
         const t = p.week[i], arr = CL[t], c = arr[i % arr.length], m = t === 'R' ? Math.max(10, Math.round(mins * .6)) : mins;

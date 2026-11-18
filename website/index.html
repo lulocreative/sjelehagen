@@ -1537,9 +1537,9 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
           <button class="q-back" type="button" id="restart">← Retake the quiz</button>
         </form></div>`;
       $('#restart').onclick = () => { step = 0; render(); };
-      const CL = {P:[['Pilates core','A strong centre and stable back, with focus on breath and control.','pilates'],['Pilates power','A dynamic full-body class that builds strength and stamina.','plan-energi'],['Pilates sculpt','Slow, precise moves for arms, glutes and thighs.','pilates']],
- Y:[['Yoga flow','A soft flow that opens hips and shoulders and gives new energy.','yoga'],['Yin yoga','Long, calm holds that ease stress and release tension.','plan-ro'],['Morning yoga','Wake the body up with simple, flowing movement.','yoga']],
- R:[['Breath & rest','Guided breathwork and relaxation for a calmer nervous system.','ritual'],['Mobility & calm','Gentle stretches and mobility for a body that needs rest.','plan-ro']]};
+      const CL = {P:[['Matte Pilates Fundament','Build a strong foundation: core, posture and control, with focus on breath.','pilates'],['Styrkebasert pilatesarmer','Strength-based Pilates for toned arms, shoulders and upper back.','plan-energi'],['Dynamisk pilates-egen kropp','A dynamic full-body Pilates class using only your own body weight.','pilates']],
+ Y:[['Juicy hofter – vinyasa flow','A juicy vinyasa flow that opens the hips and gets energy moving.','yoga'],['Morgen mobilitets flow','Gentle morning mobility to wake up a stiff body.','yoga'],['Flow & release','A soft flow that releases tension, made for the luteal phase.','plan-ro']],
+ R:[['Yin yoga for psoas release','Long, calm holds that release the psoas and calm the nervous system.','ritual'],['Yoga Nidra','Guided deep relaxation, rest for body and mind.','plan-ro']]};
       const DN = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], mins = ({'10':12,'20':25,'45':45})[dur.split('–')[0]] || 20;
       const showDay = i => {
         const t = p.week[i], arr = CL[t], c = arr[i % arr.length], m = t === 'R' ? Math.max(10, Math.round(mins * .6)) : mins;
