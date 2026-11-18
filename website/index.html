@@ -1263,6 +1263,7 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
   <a class="btn btn-cta" href="https://studio.sjelehagen.no/register" tabindex="-1">Get started</a>
 </div>
 
+<script src="classes.js"></script>
 <script>
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1522,7 +1523,11 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
       });
       const back = body.querySelector('.q-back'); if (back) back.onclick = () => { step--; render(); };
     } else {
-      const p = plans[ans.goal];
+      const p0 = plans[ans.goal], gi = Q[0].o.findIndex(o => o[0] === ans.goal), ph = (phases[cur] || {}).key;
+      const LP = window.SH_PLANS && SH_PLANS[gi === 0 || (gi === 2 && (ph === 'fol' || ph === 'ovu')) ? 'energi' : 'ro'];
+      const LD = LP && LP.days && LP.days.length === 7 ? LP.days : null; /* real classes from the studio's weekly plan */
+      const typeOf = d => !d ? 'R' : /pilates|sculpt|burn|core|armer|booty|kjerne|matte/i.test(d.name) ? 'P' : 'Y';
+      const p = LD ? {name: p0.name, week: LD.map(typeOf)} : p0;
       const dur = ans.time.split(' ')[0];
       body.innerHTML = `<div class="q-step swap">
         <span class="q-count">Your plan is ready</span>
@@ -1542,6 +1547,12 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
  R:[['Yin yoga for psoas release','Long, calm holds that release the psoas and calm the nervous system.','ritual'],['Yoga Nidra','Guided deep relaxation, rest for body and mind.','plan-ro']]};
       const DN = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], mins = ({'10':12,'20':25,'45':45})[dur.split('–')[0]] || 20;
       const showDay = i => {
+        if (LD) { const e = x => String(x || '').replace(/[<>&"]/g, ''); const d = LD[i];
+          body.querySelectorAll('.wk').forEach((b, j) => b.setAttribute('aria-selected', j === i));
+          $('#dayDetail').innerHTML = d ? `<div class="dd swap"><a class="dd-thumb" href="${e(d.url)}" target="_blank" rel="noopener" aria-label="Open class: ${e(d.name)}"><img src="${e(d.thumb)}" alt="" width="400" height="225" style="object-fit:cover"><span class="dd-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="dd-time">${d.min} min</span></a>
+            <div class="dd-info"><span class="days">${DN[i]} · ${lbl[p.week[i]]}</span><h5>${e(d.name)}</h5><p>${e(d.desc)}</p><span class="dd-meta">${d.min} min · ${ans.level || ''}</span></div></div>`
+            : `<div class="dd swap"><div class="dd-thumb"><img src="img/ritual-400.webp" alt="" width="400" height="500"></div><div class="dd-info"><span class="days">${DN[i]}</span><h5>Rest day</h5><p>Take it easy today: a walk, a gentle stretch or simply rest.</p></div></div>`;
+          return; }
         const t = p.week[i], arr = CL[t], c = arr[i % arr.length], m = t === 'R' ? Math.max(10, Math.round(mins * .6)) : mins;
         body.querySelectorAll('.wk').forEach((b, j) => b.setAttribute('aria-selected', j === i));
         $('#dayDetail').innerHTML = `<div class="dd swap"><div class="dd-thumb"><img src="img/${c[2]}-400.webp" alt="" width="400" height="500"><span class="dd-play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="dd-time">${m} min</span></div>
@@ -1557,6 +1568,7 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
         const n = $('#lf-name').value.trim();
         const btn = $('#leadForm [type=submit]'); btn.disabled = true; err.textContent = '';
         const props = {sh_lang:'en', sh_plan_name:p.name, sh_minutes:String(mins), sh_level:ans.level, sh_goal:ans.goal, sh_phase:(phases[cur] || {}).name || ''};
+        if (LD) { props.sh_plan_url = LP.url; LD.forEach((d, i) => { props['sh_day' + (i + 1)] = d ? d.name + ' · ' + d.min + ' min' : 'Rest day'; props['sh_thumb' + (i + 1)] = d ? d.thumb : ''; props['sh_link' + (i + 1)] = d ? d.url : LP.url; }); } else
         p.week.forEach((t, i) => { const arr = CL[t], c = arr[i % arr.length], m = t === 'R' ? Math.max(10, Math.round(mins * .6)) : mins; props['sh_day' + (i + 1)] = c[0] + ' · ' + m + ' min'; props['sh_thumb' + (i + 1)] = KL_THUMB[t]; });
         klSubscribe(em, n, props).then(ok => {
           if (ok === false) { btn.disabled = false; err.textContent = 'Something went wrong. Please try again in a moment.'; return; }
