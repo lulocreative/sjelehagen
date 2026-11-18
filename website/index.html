@@ -894,7 +894,7 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
 h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005em}
 
 /* Scroll-scrubbed video section (pinned while the video plays; captions follow the scroll) */
-.scrub{position:relative;height:340vh;padding:0!important;background:#1d2422;--p:0}
+.scrub{position:relative;height:620vh;padding:0!important;background:#1d2422;--p:0}
 .scrub-sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 .scrub-v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#1d2422 url(img/scroll-poster.webp) center/cover no-repeat}
 .scrub-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,20,18,.12) 0%,rgba(15,20,18,0) 35%,rgba(15,20,18,.55) 100%);pointer-events:none}
@@ -1062,7 +1062,9 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
     if (inView && !running) { running = true; requestAnimationFrame(tick); }
   };
   const tick = () => {
-    cur += (target - cur) * 0.18;
+    /* ease towards the scroll position, but never faster than ~1.6x real time, so the movement stays natural */
+    const step = (target - cur) * 0.08, max = 0.027;
+    cur += Math.max(-max, Math.min(max, step));
     if (dur && Math.abs(v.currentTime - cur) > 0.02) { try { v.currentTime = cur; } catch (e) {} }
     if (inView && Math.abs(target - cur) > 0.005) requestAnimationFrame(tick); else running = false;
   };
