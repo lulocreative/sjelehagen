@@ -1463,8 +1463,14 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
   const swapPanels = (from, to, dir) => {
     if (reduce) { from.hidden = true; to.hidden = false; return; }
     from.className = from.className.replace(/ ?(in|out)-[lr]/g, '') + (dir > 0 ? ' out-l' : ' out-r');
+    const h0 = flow.offsetHeight; flow.style.transition = 'none'; flow.style.height = h0 + 'px'; flow.style.overflow = 'hidden';
     setTimeout(() => { from.hidden = true; from.className = from.className.replace(/ ?out-[lr]/g, '');
-      to.hidden = false; to.className = to.className.replace(/ ?(in|out)-[lr]/g, '') + (dir > 0 ? ' in-r' : ' in-l'); }, 280);
+      to.hidden = false; to.className = to.className.replace(/ ?(in|out)-[lr]/g, '') + (dir > 0 ? ' in-r' : ' in-l');
+      /* smooth height change between step 1 and step 2 */
+      flow.style.height = 'auto'; const h1 = flow.offsetHeight; flow.style.height = h0 + 'px'; void flow.offsetHeight;
+      flow.style.transition = 'height .5s cubic-bezier(.22,.7,.2,1)'; flow.style.height = h1 + 'px';
+      const done = () => { flow.style.height = ''; flow.style.overflow = ''; flow.style.transition = ''; };
+      clearTimeout(flow._ht); flow._ht = setTimeout(done, 560); }, 280);
   };
   const goStep = n => {
     if (+flow.dataset.step === n) return;
