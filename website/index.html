@@ -1269,7 +1269,7 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
   const $ = (s, r=document) => r.querySelector(s);
 
   /* Klaviyo: website quiz -> list "Nettside – 7-dagers startplan (quiz)" -> flow sends the plan email */
-  const KL = {company:'WXxMVT', list:'VBGurR', rev:'2024-10-15'};
+  const KL = {company:'WXxMVT', list:'VBGurR', rev:'2026-10-15'};
   const KL_THUMB = {P:'https://cdn.klaviyomail.com/company/WXxMVT/images/18f48974-0c09-4422-ba33-aed35a9e4b32.jpeg', Y:'https://cdn.klaviyomail.com/company/WXxMVT/images/693e3118-2dcc-4bab-81e7-36cc7aed08bb.jpeg', R:'https://cdn.klaviyomail.com/company/WXxMVT/images/ae37404c-bdfa-404b-b198-4bba509a90a7.jpeg'};
   const klSubscribe = async (email, first, props) => {
     const h = {'content-type':'application/vnd.api+json', accept:'application/vnd.api+json', revision:KL.rev}, base = 'https://a.klaviyo.com/client/';
@@ -1279,7 +1279,13 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
       const r = await fetch(base + 'subscriptions/?company_id=' + KL.company, {method:'POST', headers:h, body: JSON.stringify({data:{type:'subscription',
         attributes:{custom_source:'Website quiz (' + props.sh_lang + ')', profile:{data:{type:'profile', attributes:{email, subscriptions:{email:{marketing:{consent:'SUBSCRIBED'}}}}}}},
         relationships:{list:{data:{type:'list', id:KL.list}}}}})});
-      return r.ok;
+      if (r.ok) return true;
+      console.warn('Klaviyo subscribe failed', r.status, await r.text().catch(() => ''));
+      /* retry once with the minimal body Klaviyo always accepts */
+      const r2 = await fetch(base + 'subscriptions/?company_id=' + KL.company, {method:'POST', headers:h, body: JSON.stringify({data:{type:'subscription',
+        attributes:{profile:{data:{type:'profile', attributes:{email}}}}, relationships:{list:{data:{type:'list', id:KL.list}}}}})});
+      if (!r2.ok) console.warn('Klaviyo retry failed', r2.status, await r2.text().catch(() => ''));
+      return r2.ok;
     } catch (e) { return null; } /* network blocked (e.g. preview): show success anyway */
   };
 
