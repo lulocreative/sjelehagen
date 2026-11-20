@@ -23,6 +23,26 @@ PLANS = {
 MONTHS = {m: i + 1 for i, m in enumerate(
     "JANUAR FEBRUAR MARS APRIL MAI JUNI JULI AUGUST SEPTEMBER OKTOBER NOVEMBER DESEMBER".split())}
 OUT = Path(__file__).resolve().parent.parent / "website" / "classes.js"
+THUMBS = OUT.parent / "img" / "cls"   # local copies of the thumbnails, so pages can show them without loading another site
+
+
+def save_thumb(vid, url):
+    """Download a class thumbnail and store a small WebP copy; returns the site-relative path or None."""
+    dest = THUMBS / f"{vid}.webp"
+    if dest.exists():
+        return f"img/cls/{vid}.webp"
+    try:
+        from io import BytesIO
+        from PIL import Image
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (sjelehagen-sync)"})
+        im = Image.open(BytesIO(urllib.request.urlopen(req, timeout=30).read())).convert("RGB")
+        im.thumbnail((480, 270))
+        THUMBS.mkdir(parents=True, exist_ok=True)
+        im.save(dest, "WEBP", quality=72, method=6)
+        return f"img/cls/{vid}.webp"
+    except Exception as exc:  # keep the sync going; pages fall back to the remote thumbnail
+        print("thumbnail failed", vid, exc)
+        return None
 
 
 def fetch_state(path):
@@ -116,6 +136,7 @@ def build_plan(key, path, today):
                 "min": max(1, round((v.get("duration") or 0) / 60)),
                 "desc": first_sentence(v.get("description")),
                 "thumb": THUMB.format(id=v["_id"], v=ver),
+                "tlocal": save_thumb(v["_id"], THUMB.format(id=v["_id"], v=ver)),
                 "url": f"{STUDIO}/video/{v['_id']}/{slugify(v.get('name', ''))}?playlist={sched['_id']}&program={program}",
             }
     days.append(current)
