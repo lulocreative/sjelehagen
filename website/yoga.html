@@ -727,9 +727,12 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
 .pv-play i{width:clamp(64px,10vw,92px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:rgba(255,252,246,.16);border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:pulse 3.2s ease-in-out infinite}
 .pv-play i svg{width:30%;height:30%;margin-left:6%}
 .pv-play b{font:400 clamp(1.3rem,3.4vw,1.9rem)/1.2 var(--f-display)}
-.pv-play span{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;opacity:.9;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.16)}
-.pv-play p{max-width:44ch;font-size:.95rem;line-height:1.5;color:rgba(255,255,255,.9);margin:0}
-@media (max-width:599px){.pv-play{gap:8px}.pv-play p{font-size:.82rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.pv-play i{width:52px}}
+.pv-dur{position:absolute;right:14px;bottom:14px;font-family:var(--f-mono);font-size:.78rem;letter-spacing:.04em;padding:3px 9px;border-radius:6px;background:rgba(0,0,0,.6);color:#fff}
+.pv-info{max-width:960px;margin:18px auto 0;display:grid;gap:6px}
+.pv-info h3{font-family:var(--f-body)!important;font-weight:600!important;font-size:clamp(1.1rem,2.4vw,1.35rem)!important;letter-spacing:0!important;color:var(--on-dark);line-height:1.3}
+.pv-meta{font-size:.86rem;color:color-mix(in srgb,var(--on-dark) 65%,transparent)}
+.pv-desc{font-size:.95rem;line-height:1.55;color:color-mix(in srgb,var(--on-dark) 85%,transparent);max-width:70ch}
+@media (max-width:599px){.pv-play i{width:56px}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,252,246,.25)}50%{box-shadow:0 0 0 18px rgba(255,252,246,0)}}
 .feat-grid{display:grid;gap:12px}
 .feat{background:var(--surface);padding:22px;display:grid;gap:8px;align-content:start}
@@ -825,8 +828,9 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
     <!-- Preview video: drop a file in video/ and set data-src (e.g. data-src="video/preview-yoga.mp4") to play it here -->
     <div class="pv-frame" data-src="">
       <img src="img/yoga-beach.webp" alt="" loading="lazy">
-      <div class="pv-play"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></i><b>Feel good flow</b><span>26 min</span><p>A lovely flow that feels just as good first thing in the morning, as a work break or after work.</p></div>
+      <div class="pv-play"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></i><span class="pv-dur">26 min</span></div>
     </div>
+    <div class="pv-info"><h3>Feel good flow</h3><p class="pv-meta">26 min · Yoga · Cecilie</p><p class="pv-desc">A lovely flow that feels just as good first thing in the morning, as a work break or after work.</p></div>
   </div>
 </section>
 
