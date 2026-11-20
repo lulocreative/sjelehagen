@@ -864,12 +864,15 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
 .week .wk{display:grid;gap:6px;justify-items:center;background:none;border:0;padding:0;font:600 .78rem var(--f-body);color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .week .wk i{transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
 .week .wk:hover i{transform:translateY(-2px)}
-/* selected day: no border; the other days fade back */
-.week .wk i{transition:transform .25s cubic-bezier(.2,.7,.2,1),opacity .25s ease!important}
-.week .wk:not([aria-selected="true"]) i{opacity:.45}
-.week .wk:not([aria-selected="true"]):hover i{opacity:.8}
-.week .wk[aria-selected="true"] i{box-shadow:none;transform:translateY(-3px)}
-.week .wk:not([aria-selected="true"]){color:rgba(255,255,255,.55)}
+/* selected day: lifts with a soft shadow, and its day letter becomes a cream pill (no borders) */
+.week .wk{justify-items:center}
+.week .wk i{transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease!important}
+.week .wk[aria-selected="true"] i{transform:translateY(-6px) scale(1.06);box-shadow:0 18px 28px -14px rgba(20,16,10,.65)}
+.week .wk:not([aria-selected="true"]):hover i{transform:translateY(-2px)}
+.week .wk>i+*,.week .wk{line-height:1}
+.week .wk{position:relative}
+.week .wk::after{content:"";width:6px;height:6px;border-radius:50%;background:transparent;transition:background .3s}
+.week .wk[aria-selected="true"]::after{background:#f3d9c8}
 .day-detail{margin-top:14px}
 .dd{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;background:rgba(255,255,255,.14);border-radius:14px;padding:12px}
 .dd-thumb{position:relative;aspect-ratio:4/5;border-radius:10px;overflow:hidden;background:#3a2c22}
@@ -1034,7 +1037,7 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
     <div class="hero-copy">
       <span class="pill ld"><b>7 dager</b> gratis · ingen binding</span>
       <h1 class="ld d1"><span class="line">Bli sterkere.</span><span class="line">Finn en rytme <em>som varer.</em></span></h1>
-      <p class="lede ld d2">Pilates, yoga, mat og syklisk egenomsorg samlet i én portal. Korte økter som passer hverdagen, og som tilpasser seg kroppen din gjennom hele måneden.</p>
+      <p class="lede ld d2">Pilates, yoga, mat og syklisk egenomsorg samlet i en portal. Korte økter som passer hverdagen, og som tilpasser seg kroppen din gjennom hele måneden.</p>
       <div class="hero-ctas ld d3">
         <a class="btn btn-cta" href="https://studio.sjelehagen.no/register">Start 7 dager gratis <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a>
         <a class="btn btn-ghost" href="#syklus">Finn din plan på 1 min</a>
@@ -1079,20 +1082,20 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
       </article>
       <article class="pillar">
         <div class="ph has-img" style="--ph-c:#bdb5af;background-image:url(data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADwBACdASoUABkAPs1OokunpCMht/VYAPAZiWMAuDBHf9S6QgefCXESAzh4xkdH0wAA/vf7BRnABtFKkDFKWp/HAr3Lpa6uuRM8PNWdfIeZN0k2UBwZV/+xM+v77zl2wbjT4SRMoq/0Tuw57P7LGnpZSrSf5yi9AAA=)"><img src="img/yoga-beach.webp" srcset="img/yoga-beach-400.webp 400w, img/yoga-beach.webp 600w" sizes="(min-width:900px) 270px, (min-width:600px) 44vw, 78vw" alt="Cecilie i nedovervendt hund med ett bein løftet på stranden" width="600" height="750" decoding="async"></div>
-        <span class="tagline">Bevegelighet</span><h3>Yoga</h3>
+        <span class="tagline">Mobilitet</span><h3>Yoga</h3>
         <p>Fra dynamisk flyt og myke strekk til yin og guidet hvile.</p>
         <a class="pillar-link" href="yoga.no.html">Les mer <svg class="arr" width="16" height="16"><use href="#arrow"/></svg></a>
       </article>
       <article class="pillar">
         <div class="ph has-img" style="--ph-c:#b9b8bf;background-image:url(data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAAAwBQCdASoUABkAPr1SnkunJSKht/qoAOAXiUAXzR/gXVE8j+1VE9IfkcrkxDxEfaHLAAD+7VbBu4EdSuDdCXXn08rdUMa45la460HkMa/1TL+6qlWGzwq0izZHIG+w+IsH026HKQjHPUknDHClhKCWNtALend4Z7981hGg8siZqsZh1qlj0DTmgaXQX6pG0i23kn6UX3mJPKY81CZmpcZ7UAAAAA==)"><img src="img/food-kitchen.webp" srcset="img/food-kitchen-400.webp 400w, img/food-kitchen.webp 600w" sizes="(min-width:900px) 270px, (min-width:600px) 44vw, 78vw" alt="Cecilie på kjøkkenet med en fargerik bolle" width="600" height="750" decoding="async"></div>
         <span class="tagline">Næring</span><h3>Mat &amp; næring</h3>
-        <p>Oppskrifter og matglede med inspirasjon fra sesongene og Ayurveda.</p>
+        <p>Oppskrifter og matglede med fokus på sesong, syklus og Ayurveda.</p>
         <a class="pillar-link" href="nutrition.no.html">Les mer <svg class="arr" width="16" height="16"><use href="#arrow"/></svg></a>
       </article>
       <article class="pillar">
         <div class="ph has-img" style="--ph-c:#372e29;background-image:url(data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAAAwBQCdASoUABkAPtFaqE4oJKQiKAqpABoJZQDImBDl/vkkRz0MhtSXoTc+hduYKeGCAAD+6O5T39OTicRXvQn09AOtizTHKj2xI+41Qdij4tlHwR3Q8n5yfVimC8MiIEfRUGTbiLgCVmNrobE1d13WIxwr064SxOpd65p3AIedyqhQM0gIyCtGLV/Pe11sXj6IAAAA)"><img src="img/ritual.webp" srcset="img/ritual-400.webp 400w, img/ritual.webp 600w" sizes="(min-width:900px) 270px, (min-width:600px) 44vw, 78vw" alt="Cecilie ligger i meditasjon med hendene på bryst og mage" width="600" height="750" decoding="async"></div>
-        <span class="tagline">Hormoner</span><h3>Syklisk egenomsorg</h3>
-        <p>Små ritualer og ayurvedisk inspirasjon gjennom syklus og årstider.</p>
+        <span class="tagline">Ritualer</span><h3>Syklisk egenomsorg</h3>
+        <p>Små ritualer med fokus på syklus, sesong og Ayurveda.</p>
         <a class="pillar-link" href="self-care.no.html">Les mer <svg class="arr" width="16" height="16"><use href="#arrow"/></svg></a>
       </article>
     </div>
@@ -1206,8 +1209,8 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
     </div>
     <ol class="steps">
       <li class="rv"><div><h3>Start gratis prøveperiode</h3><p>Opprett konto på under ett minutt. Du betaler ingenting de første 7 dagene.</p></div></li>
-      <li class="rv"><div><h3>Velg spor og registrer syklus</h3><p>Energi &amp; kraft eller Ro &amp; flyt. Legg inn syklusen hvis du vil ha tilpassede forslag.</p></div></li>
-      <li class="rv"><div><h3>Tren 10–45 min, hvor som helst</h3><p>Følg dagens økt hjemme, på hytta eller på reise. Kun en matte trengs.</p></div></li>
+      <li class="rv"><div><h3>Velg spor og registrer syklus</h3><p>Energi &amp; kraft eller Ro &amp; flyt. Legg inn syklusfasen hvis du vil ha tilpassede forslag.</p></div></li>
+      <li class="rv"><div><h3>Tren 20–45 min, hvor som helst</h3><p>Følg dagens økt hjemme, på hytta eller på reise. Alt du trenger er en matte.</p></div></li>
     </ol>
   </div>
 </section>
@@ -1232,9 +1235,9 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
 <section class="stats" style="padding-block:56px 0" aria-label="Sjelehagen i tall">
   <div class="wrap">
     <div class="stat-row rv">
-      <div class="stat"><strong>300+</strong><span>klasser på forespørsel</span></div>
-      <div class="stat"><strong>10–45</strong><span>minutter per økt</span></div>
-      <div class="stat"><strong>150+</strong><span>oppskrifter etter sesong</span></div>
+      <div class="stat"><strong>150</strong><span>klasser, med nye jevnlig lagt til</span></div>
+      <div class="stat"><strong>20–45</strong><span>minutter per økt</span></div>
+      <div class="stat"><strong>100+</strong><span>oppskrifter basert på sesong</span></div>
       <div class="stat"><strong>4,9/5</strong><span>snittvurdering</span></div>
     </div>
   </div>
@@ -1248,9 +1251,9 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
       <h2 class="rv">Kvinner som har funnet <em>rytmen sin.</em></h2>
     </div>
     <div class="tst-track" id="tst">
-      <figure class="tst" style="margin:0"><span class="result">Sterkere kropp på 8 uker</span><q>Gjennom pilates har kroppen min blitt sterkere, samtidig som yoga og meditasjon gir meg ro. Jeg er så takknemlig for alt hun gir.</q><figcaption class="who"><i aria-hidden="true">H</i><span><b>Heidi</b>Medlem siden 2024</span></figcaption></figure>
-      <figure class="tst" style="margin:0"><span class="result">Trener 4x i uka</span><q>For første gang har jeg holdt på i mer enn en måned. Det at planen tilpasser seg syklusen gjør at jeg ikke føler at jeg feiler på dårlige dager.</q><figcaption class="who"><i aria-hidden="true">M</i><span><b>Marte</b>Medlem siden 2025</span></figcaption></figure>
-      <figure class="tst" style="margin:0"><span class="result">Mindre PMS-plager</span><q>Oppskriftene og ritualene har endret hvordan jeg har det i lutealfasen. Jeg forstår endelig kroppen min.</q><figcaption class="who"><i aria-hidden="true">I</i><span><b>Ingrid</b>Medlem siden 2024</span></figcaption></figure>
+      <figure class="tst" style="margin:0"><span class="result">Både sterkere og roligere</span><q>For meg er Sjelehagen mye mer enn en yogaplattform. Det minner meg på å leve mykere. Gjennom pilates har kroppen min blitt sterkere, samtidig som yoga, meditasjoner og den helhetlige tilnærmingen med oppskrifter og ayurvedisk livsstil gir meg mer ro, balanse og tilstedeværelse i hverdagen. Det som gjør Sjelehagen helt spesiell for meg, er den varme, jordnære og ekte måten Cecilie formidler på. Jeg er så takknemlig for alt hun deler – og for inspirasjonen hun gir.</q><figcaption class="who"><i aria-hidden="true">H</i><span><b>Heidi</b>Medlem siden 2025</span></figcaption></figure>
+      <figure class="tst" style="margin:0"><span class="result">Ser og kjenner forskjell</span><q>Jeg meldte meg inn i Sjelehagen for de online pilatestimene, og de er virkelig helt supre. Effektive økter som er enkle å få til, men som man kjenner dypt i musklene. Jeg får det til enten på morgenen eller i jobbpausen, og kan enkelt velge en økt utifra hvor mye tid jeg har til rådighet.<br><br>Samtidig har jeg fått mye mer ut av medlemskapet enn forventet. Jeg har innført små, gode rutiner i hverdagen og også begynt med meditasjon, noe jeg sårt trengte uten å vite det. Jeg føler meg mer balansert og finner lettere ro i en ellers stressende hverdag.<br><br>Opplegget er lavterskel og lett å følge, og Cecilies timer krever minimalt med utstyr. Anbefales til alle som ønsker å enkelt komme i gang med gode vaner for både kropp og sinn. Jeg ser og kjenner allerede en stor forskjell.</q><figcaption class="who"><i aria-hidden="true">L</i><span><b>Liesl</b>Medlem siden april 2026</span></figcaption></figure>
+      <figure class="tst" style="margin:0"><span class="result">Gir meg verktøy jeg trenger i livet</span><q>Endelig kom jeg over et medlemskap som tilbyr det jeg trenger i livet mitt nå. Sjelehagen har så mye mer enn bare yoga-klasser. Her får jeg mer kunnskap om ayurvediske ritualer, mat som støtter min kropp og bevegelse. Det er alt på ett sted, og ikke noe som er basert på fancy trender som kommer og går. Jeg har prøvd mange ulike medlemskap opp gjennom årene, og Sjelehagen skiller seg ut på en veldig positiv måte, da jeg vil si at den tar for seg mennesket som en helhet – et holistisk perspektiv. Cecilie er veldig flink til å forklare, og det å delta på en yoga-klasse føles uanstrengt og veldig naturlig. Anbefales på det sterkeste.</q><figcaption class="who"><i aria-hidden="true">M</i><span><b>Mona</b>Medlem siden 2024</span></figcaption></figure>
       <figure class="tst" style="margin:0"><span class="result">20 min om dagen</span><q>Som mamma til to har jeg ikke tid til gymmen. Korte økter hjemme har gitt meg både styrke og et pusterom.</q><figcaption class="who"><i aria-hidden="true">S</i><span><b>Silje</b>Medlem siden 2025</span></figcaption></figure>
     </div>
     <div class="dots" id="dots" aria-label="Velg anmeldelse"></div>
@@ -1284,8 +1287,7 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
         <p class="per">Tilsvarer 167 kr/mnd <b>Spar 989 kr</b></p>
         <ul>
           <li><svg><use href="#chk"/></svg>Alt i månedlig</li>
-          <li><svg><use href="#chk"/></svg>Sesongprogram 4 ganger i året</li>
-          <li><svg><use href="#chk"/></svg>Bonus: guidet syklus-dagbok</li>
+          <li><svg><use href="#chk"/></svg>Følg 4 sesonger</li>
           <li><svg><use href="#chk"/></svg>7 dager gratis</li>
         </ul>
         <a class="btn btn-cta btn-block" href="https://studio.sjelehagen.no/register">Start 7 dager gratis <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a>
@@ -1331,10 +1333,9 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
 <section class="final">
   <div class="wrap">
     <div class="final-box rv">
-      <h2>Klar for å trene og leve <em>på lag med kroppen?</em></h2>
+      <h2>Klar for å trene og leve <em>på lag med kroppen din?</em></h2>
       <p>Ukentlige programmer, klasser, oppskrifter og ritualer designet for den sykliske kroppen.</p>
       <a class="btn" href="https://studio.sjelehagen.no/register">Start 7 dager gratis <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a>
-      <small>Over 600 kvinner har allerede begynt.</small>
     </div>
   </div>
 </section>
