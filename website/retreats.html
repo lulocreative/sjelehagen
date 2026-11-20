@@ -703,6 +703,10 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
 /* Current page in the menu: a thin line under the link instead of a different text colour */
 .nav a[aria-current="page"]{position:relative;font-weight:600}
 .nav a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:#d9a07c}
+/* Day timeline icons */
+.day-list li{grid-template-columns:64px 44px 1fr!important;align-items:center}
+.dl-ic{width:44px;height:44px;display:grid;place-items:center}
+.dl-ic svg{width:28px;height:28px}
 </style>
 </head>
 <body>
@@ -791,14 +795,14 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
       <p class="lede">Every day follows the same calm structure, so you can let go of planning. Sessions adapt to the group’s energy and where you are in your cycle.</p>
     </div>
     <ol class="day-list">
-      <li><time>07:30</time><div><b>Morning breath &amp; mobility</b><span>Wake the body slowly by the water.</span></div></li>
-      <li><time>08:30</time><div><b>Ayurvedic breakfast</b><span>Warm, seasonal and nourishing.</span></div></li>
-      <li><time>10:00</time><div><b>Pilates session</b><span>Strength, core and control, 75 minutes.</span></div></li>
-      <li><time>13:00</time><div><b>Lunch together</b><span>Plant-based dishes from local produce.</span></div></li>
-      <li><time>14:30</time><div><b>Free time</b><span>Swim, walk, read or nap. Nothing required.</span></div></li>
-      <li><time>17:00</time><div><b>Yoga flow or yin</b><span>Matched to the group’s energy and cycle.</span></div></li>
-      <li><time>19:30</time><div><b>Dinner</b><span>Slow evenings around one table.</span></div></li>
-      <li><time>21:00</time><div><b>Evening ritual</b><span>Breathwork, journaling or a short meditation.</span></div></li>
+      <li><time>07:30</time><span class="fic c1 dl-ic"><svg aria-hidden="true"><use href="#i-breath"/></svg></span><div><b>Morning breath &amp; mobility</b><span>Wake the body slowly by the water.</span></div></li>
+      <li><time>08:30</time><span class="fic c2 dl-ic"><svg aria-hidden="true"><use href="#i-bowl"/></svg></span><div><b>Ayurvedic breakfast</b><span>Warm, seasonal and nourishing.</span></div></li>
+      <li><time>10:00</time><span class="fic c3 dl-ic"><svg aria-hidden="true"><use href="#i-strength"/></svg></span><div><b>Pilates session</b><span>Strength, core and control, 75 minutes.</span></div></li>
+      <li><time>13:00</time><span class="fic c1 dl-ic"><svg aria-hidden="true"><use href="#leaf"/></svg></span><div><b>Lunch together</b><span>Plant-based dishes from local produce.</span></div></li>
+      <li><time>14:30</time><span class="fic c2 dl-ic"><svg aria-hidden="true"><use href="#i-heart-person"/></svg></span><div><b>Free time</b><span>Swim, walk, read or nap. Nothing required.</span></div></li>
+      <li><time>17:00</time><span class="fic c3 dl-ic"><svg aria-hidden="true"><use href="#i-calm"/></svg></span><div><b>Yoga flow or yin</b><span>Matched to the group’s energy and cycle.</span></div></li>
+      <li><time>19:30</time><span class="fic c1 dl-ic"><svg aria-hidden="true"><use href="#i-bubble"/></svg></span><div><b>Dinner</b><span>Slow evenings around one table.</span></div></li>
+      <li><time>21:00</time><span class="fic c2 dl-ic"><svg aria-hidden="true"><use href="#i-candle"/></svg></span><div><b>Evening ritual</b><span>Breathwork, journaling or a short meditation.</span></div></li>
     </ol>
   </div>
 </section>
