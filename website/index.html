@@ -1658,7 +1658,7 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
       const showDay = i => {
         if (LD) { const e = x => String(x || '').replace(/[<>&"]/g, ''); const d = LD[i];
           body.querySelectorAll('.wk').forEach((b, j) => b.setAttribute('aria-selected', j === i));
-          $('#dayDetail').innerHTML = d ? `<div class="dd swap"><a class="dd-thumb" href="${e(d.url)}" target="_blank" rel="noopener" aria-label="Open class: ${e(d.name)}"><img src="${e(d.thumb)}" alt="" width="400" height="225" style="object-fit:cover"><span class="dd-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="dd-time">${d.min} min</span></a>
+          $('#dayDetail').innerHTML = d ? `<div class="dd swap"><a class="dd-thumb" href="${e(d.url)}" target="_blank" rel="noopener" aria-label="Open class: ${e(d.name)}"><img src="${e(d.tlocal || d.thumb)}" alt="" width="400" height="225" style="object-fit:cover"><span class="dd-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="dd-time">${d.min} min</span></a>
             <div class="dd-info"><span class="days">${DN[i]} · ${lbl[p.week[i]]}</span><h5>${e(d.name)}</h5><p>${e(d.desc)}</p><span class="dd-meta">${d.min} min · ${ans.level || ''}</span></div></div>`
             : `<div class="dd swap"><div class="dd-thumb"><img src="img/ritual-400.webp" alt="" width="400" height="500"></div><div class="dd-info"><span class="days">${DN[i]}</span><h5>Rest day</h5><p>Take it easy today: a walk, a gentle stretch or simply rest.</p></div></div>`;
           return; }

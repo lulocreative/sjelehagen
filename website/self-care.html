@@ -884,7 +884,7 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
   Object.values(P).forEach(v => (v && v.days || []).forEach(x => { if (!x || seen.has(x.id)) return; const n = x.name.toLowerCase(); if (keys.some(k => n.includes(k))) { seen.add(x.id); out.push(x); } }));
   if (!out.length) return;
   const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  ul.innerHTML = out.slice(0, 4).map(x => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener"><img src="${esc(x.thumb)}" alt="" width="128" height="72" loading="lazy"><div><b>${esc(x.name)}</b><small>${x.min} min</small></div><span class="lock">${esc(ul.dataset.members)}</span></a></li>`).join('');
+  ul.innerHTML = out.slice(0, 4).map(x => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener"><img src="${esc(x.tlocal || x.thumb)}" alt="" width="128" height="72" loading="lazy"><div><b>${esc(x.name)}</b><small>${x.min} min</small></div><span class="lock">${esc(ul.dataset.members)}</span></a></li>`).join('');
 })();
 /* Preview frame: plays the video once a file is set in data-src */
 document.querySelectorAll('.pv-frame').forEach(f => {
