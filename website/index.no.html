@@ -1697,11 +1697,24 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
   }
   render();
 
-  /* Testimonials dots */
+  /* Testimonials dots: one dot per scroll position (so 3 cards on screen = fewer dots), first dot active at the start */
   const track = $('#tst'), dots = $('#dots'), items = [...track.children];
-  items.forEach((it, i) => { const b = document.createElement('button'); b.type='button'; b.setAttribute('aria-label', `Anmeldelse ${i+1}`); b.onclick = () => track.scrollTo({left: it.offsetLeft - track.offsetLeft - (track.clientWidth - it.clientWidth)/2, behavior: reduce ? 'auto' : 'smooth'}); dots.appendChild(b); });
-  const setDot = () => { const mid = track.scrollLeft + track.clientWidth / 2; let best = 0, bd = 1e9; items.forEach((it,i) => { const c = it.offsetLeft - track.offsetLeft + it.clientWidth/2, d = Math.abs(c - mid); if (d < bd) { bd = d; best = i; } }); [...dots.children].forEach((d,i) => d.setAttribute('aria-current', i === best)); };
-  track.addEventListener('scroll', () => requestAnimationFrame(setDot), {passive:true}); setDot();
+  let positions = 1;
+  const maxScroll = () => Math.max(0, track.scrollWidth - track.clientWidth);
+  const build = () => {
+    const step = items.length > 1 ? items[1].offsetLeft - items[0].offsetLeft : track.clientWidth;
+    const visible = Math.max(1, Math.round(track.clientWidth / step));
+    const n = maxScroll() < 4 ? 1 : Math.max(1, items.length - visible + 1);
+    if (n === positions && dots.children.length) return setDot();
+    positions = n; dots.innerHTML = ''; dots.hidden = n < 2;
+    for (let i = 0; i < n; i++) { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', `Anmeldelse ${i+1}`);
+      b.onclick = () => track.scrollTo({left: n > 1 ? i / (n - 1) * maxScroll() : 0, behavior: reduce ? 'auto' : 'smooth'}); dots.appendChild(b); }
+    setDot();
+  };
+  const setDot = () => { const m = maxScroll(), cur = m ? Math.round(track.scrollLeft / m * (positions - 1)) : 0;
+    [...dots.children].forEach((d, i) => d.setAttribute('aria-current', i === cur)); };
+  track.addEventListener('scroll', () => requestAnimationFrame(setDot), {passive:true});
+  addEventListener('resize', build); build();
 })();
 </script>
 <script>
