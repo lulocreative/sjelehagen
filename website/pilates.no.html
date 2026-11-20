@@ -748,10 +748,14 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
 .ph-item h3{font-size:1.45rem}
 .ph-item p{color:var(--ink-soft);font-size:.93rem}
 .cls-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-.cls-list li{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
-.cls-list time{font:400 1.2rem/1 var(--f-display);color:var(--cta);font-variant-numeric:tabular-nums}
-.cls-list b{font-weight:600}
-.cls-list small{display:block;color:var(--ink-soft);font-size:.85rem}
+.cls-list li{border-bottom:1px solid var(--line)}
+.cls-list a{display:grid;grid-template-columns:128px 1fr auto;gap:16px;align-items:center;padding:14px 0;color:inherit;text-decoration:none}
+.cls-list img{width:128px;height:72px;object-fit:cover;display:block;background:var(--line);transition:transform .4s ease}
+.cls-list a:hover img{transform:scale(1.04)}
+.cls-list a:hover b{color:var(--cta)}
+.cls-list b{font-weight:600;display:block;line-height:1.35}
+.cls-list small{display:block;color:var(--ink-soft);font-size:.85rem;margin-top:2px}
+@media (max-width:599px){.cls-list a{grid-template-columns:96px 1fr;gap:12px}.cls-list img{width:96px;height:54px}.cls-list .lock{display:none}}
 .cls-list .lock{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
 .more-grid{display:grid;grid-template-columns:1fr;gap:14px}
 .more{position:relative;display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center;background:var(--surface);text-decoration:none;color:inherit}
@@ -851,7 +855,7 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
 <section style="padding-top:0">
   <div class="wrap split2">
     <div class="head"><h2 class="rv">Ekte klasser, <em>ekte instruktør.</em></h2></div>
-    <ul class="cls-list"><li><time>40<small>min</small></time><div><b>Spicy power pilates med vekter</b></div><span class="lock">Medlemmer</span></li><li><time>19<small>min</small></time><div><b>Booty &amp; innside lår express burn</b></div><span class="lock">Medlemmer</span></li><li><time>20<small>min</small></time><div><b>Express armer med mini band</b></div><span class="lock">Medlemmer</span></li><li><time>31<small>min</small></time><div><b>Full core med lette vekter</b></div><span class="lock">Medlemmer</span></li></ul>
+    <ul class="cls-list" id="clsList" data-keys="pilates,core,booty,armer,matte" data-members="Medlemmer"><li><a href="https://studio.sjelehagen.no/video/6a873d276fb6768aed11ff7e/spicy-power-pilates-med-vekter?playlist=6af9eaa872836b5f3dedde06&amp;program=6908f4a8088b74318d3796db" target="_blank" rel="noopener"><img src="https://dhxp8qydz3sp6.cloudfront.net/video/6a873d276fb6768aed11ff7e/640x360.png?v=1787386526" alt="" width="128" height="72" loading="lazy"><div><b>Spicy power pilates med vekter</b><small>40 min</small></div><span class="lock">Medlemmer</span></a></li><li><a href="https://studio.sjelehagen.no/video/6a86d4a7ac3ad43653f812c1/booty-innside-lar-express-burn?playlist=6af9eaa872836b5f3dedde06&amp;program=6908f4a8088b74318d3796db" target="_blank" rel="noopener"><img src="https://dhxp8qydz3sp6.cloudfront.net/video/6a86d4a7ac3ad43653f812c1/640x360.png?v=1787385128" alt="" width="128" height="72" loading="lazy"><div><b>Booty &amp; innside lår express burn</b><small>19 min</small></div><span class="lock">Medlemmer</span></a></li><li><a href="https://studio.sjelehagen.no/video/6a53c875d00deece7dbf3f0f/express-armer-med-mini-band?playlist=6af9eaa872836b5f3dedde06&amp;program=6908f4a8088b74318d3796db" target="_blank" rel="noopener"><img src="https://dhxp8qydz3sp6.cloudfront.net/video/6a53c875d00deece7dbf3f0f/640x360.png?v=1783953497" alt="" width="128" height="72" loading="lazy"><div><b>Express armer med mini band</b><small>20 min</small></div><span class="lock">Medlemmer</span></a></li><li><a href="https://studio.sjelehagen.no/video/6a0a2501ca92312a7a1b7b45/full-core-med-lette-vekter?playlist=6af9eaa872836b5f3dedde06&amp;program=6908f4a8088b74318d3796db" target="_blank" rel="noopener"><img src="https://dhxp8qydz3sp6.cloudfront.net/video/6a0a2501ca92312a7a1b7b45/640x360.png?v=1779052315" alt="" width="128" height="72" loading="lazy"><div><b>Full core med lette vekter</b><small>31 min</small></div><span class="lock">Medlemmer</span></a></li></ul>
   </div>
 </section>
 <section>
@@ -877,7 +881,17 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
     <p>© 2026 Sjelehagen</p>
   </div>
 </footer>
+<script src="classes.js"></script>
 <script>
+/* Class list: refreshed from the weekly studio sync (classes.js), so new classes show up automatically */
+(() => {
+  const ul = document.getElementById('clsList'), P = window.SH_PLANS; if (!ul || !P) return;
+  const keys = ul.dataset.keys.split(','), seen = new Set(), out = [];
+  Object.values(P).forEach(v => (v && v.days || []).forEach(x => { if (!x || seen.has(x.id)) return; const n = x.name.toLowerCase(); if (keys.some(k => n.includes(k))) { seen.add(x.id); out.push(x); } }));
+  if (!out.length) return;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  ul.innerHTML = out.slice(0, 4).map(x => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener"><img src="${esc(x.thumb)}" alt="" width="128" height="72" loading="lazy"><div><b>${esc(x.name)}</b><small>${x.min} min</small></div><span class="lock">${esc(ul.dataset.members)}</span></a></li>`).join('');
+})();
 /* Preview frame: plays the video once a file is set in data-src */
 document.querySelectorAll('.pv-frame').forEach(f => {
   const s = f.dataset.src; if (!s) return;
