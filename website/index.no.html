@@ -864,7 +864,12 @@ h2{font-size:clamp(2.3rem,8vw,4.2rem)}
 .week .wk{display:grid;gap:6px;justify-items:center;background:none;border:0;padding:0;font:600 .78rem var(--f-body);color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .week .wk i{transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
 .week .wk:hover i{transform:translateY(-2px)}
-.week .wk[aria-selected="true"] i{box-shadow:0 0 0 2px #fff,0 0 0 4px #2f4d4a;transform:translateY(-3px)}
+/* selected day: no border; the other days fade back */
+.week .wk i{transition:transform .25s cubic-bezier(.2,.7,.2,1),opacity .25s ease!important}
+.week .wk:not([aria-selected="true"]) i{opacity:.45}
+.week .wk:not([aria-selected="true"]):hover i{opacity:.8}
+.week .wk[aria-selected="true"] i{box-shadow:none;transform:translateY(-3px)}
+.week .wk:not([aria-selected="true"]){color:rgba(255,255,255,.55)}
 .day-detail{margin-top:14px}
 .dd{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;background:rgba(255,255,255,.14);border-radius:14px;padding:12px}
 .dd-thumb{position:relative;aspect-ratio:4/5;border-radius:10px;overflow:hidden;background:#3a2c22}
