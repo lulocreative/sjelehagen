@@ -1009,6 +1009,39 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
   .promo-media{max-height:none!important;aspect-ratio:16/11}
   .promo[open]{animation:sheetUp .5s cubic-bezier(.2,.7,.2,1) both!important}
 }
+
+/* ===== Pillar cards v2: full-photo cards, glass label, title on the photo, round "+" button; swipe carousel with progress bar on mobile ===== */
+.pillars{grid-auto-columns:84%!important;gap:14px!important;padding-bottom:4px!important}
+.pillar{position:relative;display:block!important;aspect-ratio:3/4;border-radius:24px;overflow:hidden;isolation:isolate;background:#2f3d26}
+.pillar .ph{position:absolute!important;inset:0;aspect-ratio:auto!important;border-radius:0!important;z-index:-1}
+.pillar::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(20,16,12,.18) 0%,rgba(20,16,12,0) 30%,rgba(20,16,12,0) 55%,rgba(20,16,12,.55) 100%)}
+.pillar .tagline{position:absolute;top:16px;left:16px;z-index:2;display:inline-flex;align-items:center;gap:10px;padding:9px 16px 9px 11px;border-radius:14px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#fff!important;font-family:var(--f-mono);font-weight:400!important;font-size:.76rem!important;letter-spacing:.1em!important}
+.pillar .tagline svg{width:22px;height:22px;color:#e6f2c8;flex:none}
+.pillar h3{position:absolute;left:20px;right:100px;bottom:24px;z-index:2;margin:0;color:#fff!important;font-family:"Jost","Figtree",system-ui,sans-serif!important;font-weight:300!important;font-size:clamp(1.45rem,5.6vw,1.75rem)!important;line-height:1.15!important;letter-spacing:-.01em!important;text-shadow:0 1px 14px rgba(0,0,0,.25)}
+.pillar p{display:none!important}
+.pillar-link{position:absolute!important;inset:0;z-index:3;display:block!important;font-size:0!important}
+.pillar-link::after{display:none!important}
+.pillar-link .pl-plus{position:absolute;right:16px;bottom:16px;width:66px;height:46px;border-radius:999px;background:#d8efc6;color:#1f2523;display:grid;place-items:center;transition:transform .25s ease,background .25s ease}
+.pillar-link .pl-plus svg{width:22px;height:22px}
+.pillar:hover .pl-plus{transform:scale(1.06);background:#e4f6d6}
+.pillar:hover h3{color:#fff!important}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.swipe-hint{display:none!important}
+.pl-nav{display:flex;align-items:center;gap:14px;margin-top:22px}
+.pl-bar{flex:1;height:3px;border-radius:3px;background:var(--line);overflow:hidden}
+.pl-bar i{display:block;height:100%;width:30%;background:var(--ink);border-radius:3px;transition:width .3s ease}
+.pl-btn{flex:none;width:46px;height:46px;border-radius:50%;border:0;background:#d8efc6;color:#1f2523;display:grid;place-items:center;cursor:pointer;transition:opacity .2s,transform .2s}
+.pl-btn svg{width:18px;height:18px}
+.pl-btn:disabled{opacity:.4;cursor:default}
+.pl-btn:not(:disabled):active{transform:scale(.94)}
+@media (min-width:600px){.pillars{grid-auto-columns:46%!important}}
+@media (min-width:900px){
+  .pillars{grid-template-columns:repeat(4,1fr)!important;grid-auto-flow:row!important;gap:18px!important}
+  .pillar{aspect-ratio:3/4.4}
+  .pillar h3{font-size:1.45rem!important;right:88px}
+  .pillar-link .pl-plus{width:56px;height:40px}
+  .pl-nav{display:none}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1110,30 +1143,30 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
     <div class="pillars" tabindex="0" aria-label="What the membership includes">
       <article class="pillar">
         <div class="ph has-img" style="--ph-c:#7f836d;background-image:url(data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAADwBACdASoUABkAPtFeqE+oJKOiKAgBABoJQBYdgi90JRukWhbpjGWCBF1ueNDVPUAA/uL0vfXQ9eiH54BwzrGLiRgXqGwhm6UXTnFd/DSNEhTuIE1ZP8g4fH0IveMJjPxgS4zQ5D8sRYvW035gzQbQSEVDJSHciz3zVeVNvd3+yxUXABJlIgVDjwpfmAnVk93CAnV0rUR4gv3/df0jCgapmaU/U1z+HBxGYAAA)"><img src="img/pilates.webp" srcset="img/pilates-400.webp 400w, img/pilates.webp 600w" sizes="(min-width:900px) 270px, (min-width:600px) 44vw, 78vw" alt="Cecilie doing a Pilates exercise on a mat in the palm garden" width="600" height="750" decoding="async"></div>
-        <span class="tagline">Strength</span><h3>Pilates</h3>
+        <span class="tagline"><svg aria-hidden="true"><use href="#i-strength"/></svg>Strength</span><h3>Pilates</h3>
         <p>Mat, power and sculpt, focused on strength, breath and control.</p>
-        <a class="pillar-link" href="pilates.html">Read more <svg class="arr" width="16" height="16"><use href="#arrow"/></svg></a>
+        <a class="pillar-link" href="pilates.html"><span class="vh">Read more</span><span class="pl-plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></a>
       </article>
       <article class="pillar">
         <div class="ph has-img" style="--ph-c:#bdb5af;background-image:url(data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADwBACdASoUABkAPs1OokunpCMht/VYAPAZiWMAuDBHf9S6QgefCXESAzh4xkdH0wAA/vf7BRnABtFKkDFKWp/HAr3Lpa6uuRM8PNWdfIeZN0k2UBwZV/+xM+v77zl2wbjT4SRMoq/0Tuw57P7LGnpZSrSf5yi9AAA=)"><img src="img/yoga-beach.webp" srcset="img/yoga-beach-400.webp 400w, img/yoga-beach.webp 600w" sizes="(min-width:900px) 270px, (min-width:600px) 44vw, 78vw" alt="Cecilie in downward dog with one leg lifted on the beach" width="600" height="750" decoding="async"></div>
-        <span class="tagline">Mobility</span><h3>Yoga</h3>
+        <span class="tagline"><svg aria-hidden="true"><use href="#i-calm"/></svg>Mobility</span><h3>Yoga</h3>
         <p>From dynamic flow and gentle stretches to yin and guided rest.</p>
-        <a class="pillar-link" href="yoga.html">Read more <svg class="arr" width="16" height="16"><use href="#arrow"/></svg></a>
+        <a class="pillar-link" href="yoga.html"><span class="vh">Read more</span><span class="pl-plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></a>
       </article>
       <article class="pillar">
         <div class="ph has-img" style="--ph-c:#b9b8bf;background-image:url(data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAAAwBQCdASoUABkAPr1SnkunJSKht/qoAOAXiUAXzR/gXVE8j+1VE9IfkcrkxDxEfaHLAAD+7VbBu4EdSuDdCXXn08rdUMa45la460HkMa/1TL+6qlWGzwq0izZHIG+w+IsH026HKQjHPUknDHClhKCWNtALend4Z7981hGg8siZqsZh1qlj0DTmgaXQX6pG0i23kn6UX3mJPKY81CZmpcZ7UAAAAA==)"><img src="img/food-kitchen.webp" srcset="img/food-kitchen-400.webp 400w, img/food-kitchen.webp 600w" sizes="(min-width:900px) 270px, (min-width:600px) 44vw, 78vw" alt="Cecilie in her kitchen holding a colourful bowl" width="600" height="750" decoding="async"></div>
-        <span class="tagline">Nutrition</span><h3>Food &amp; nutrition</h3>
+        <span class="tagline"><svg aria-hidden="true"><use href="#i-bowl"/></svg>Nutrition</span><h3>Food &amp; nutrition</h3>
         <p>Recipes and the joy of food, inspired by the seasons and Ayurveda.</p>
-        <a class="pillar-link" href="nutrition.html">Read more <svg class="arr" width="16" height="16"><use href="#arrow"/></svg></a>
+        <a class="pillar-link" href="nutrition.html"><span class="vh">Read more</span><span class="pl-plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></a>
       </article>
       <article class="pillar">
         <div class="ph has-img" style="--ph-c:#372e29;background-image:url(data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAAAwBQCdASoUABkAPtFaqE4oJKQiKAqpABoJZQDImBDl/vkkRz0MhtSXoTc+hduYKeGCAAD+6O5T39OTicRXvQn09AOtizTHKj2xI+41Qdij4tlHwR3Q8n5yfVimC8MiIEfRUGTbiLgCVmNrobE1d13WIxwr064SxOpd65p3AIedyqhQM0gIyCtGLV/Pe11sXj6IAAAA)"><img src="img/ritual.webp" srcset="img/ritual-400.webp 400w, img/ritual.webp 600w" sizes="(min-width:900px) 270px, (min-width:600px) 44vw, 78vw" alt="Cecilie lying in meditation with hands on chest and belly" width="600" height="750" decoding="async"></div>
-        <span class="tagline">Hormones</span><h3>Cyclical self-care</h3>
+        <span class="tagline"><svg aria-hidden="true"><use href="#i-candle"/></svg>Hormones</span><h3>Cyclical self-care</h3>
         <p>Small rituals and Ayurvedic inspiration through your cycle and the seasons.</p>
-        <a class="pillar-link" href="self-care.html">Read more <svg class="arr" width="16" height="16"><use href="#arrow"/></svg></a>
+        <a class="pillar-link" href="self-care.html"><span class="vh">Read more</span><span class="pl-plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></a>
       </article>
     </div>
-    <p class="swipe-hint" aria-hidden="true">Swipe for more <svg width="16" height="16"><use href="#arrow"/></svg></p>
+    <div class="pl-nav"><div class="pl-bar"><i id="plBar"></i></div><button class="pl-btn" type="button" id="plPrev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="pl-btn" type="button" id="plNext" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
   </div>
 </section>
 
@@ -1772,5 +1805,16 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
 (() => { const ul = document.getElementById('wordStack'); if (!ul || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const li = [...ul.children]; let i = li.findIndex(x => x.classList.contains('on'));
   setInterval(() => { li[i].classList.remove('on'); i = (i + 1) % li.length; li[i].classList.add('on'); }, 2200); })();
+</script>
+<script>
+/* Pillar carousel: progress bar and arrows (mobile/tablet) */
+(() => {
+  const t = document.querySelector('.pillars'), bar = document.getElementById('plBar'), pv = document.getElementById('plPrev'), nx = document.getElementById('plNext');
+  if (!t || !bar) return;
+  const step = () => { const c = t.querySelector('.pillar'); return c ? c.getBoundingClientRect().width + 14 : t.clientWidth * .8; };
+  const upd = () => { const max = t.scrollWidth - t.clientWidth; bar.style.width = (max > 0 ? (t.clientWidth + t.scrollLeft) / t.scrollWidth * 100 : 100) + '%'; pv.disabled = t.scrollLeft < 4; nx.disabled = t.scrollLeft > max - 4; };
+  pv.onclick = () => t.scrollBy({left: -step(), behavior: 'smooth'}); nx.onclick = () => t.scrollBy({left: step(), behavior: 'smooth'});
+  t.addEventListener('scroll', () => requestAnimationFrame(upd), {passive: true}); addEventListener('resize', upd); upd();
+})();
 </script>
 </body></html>
