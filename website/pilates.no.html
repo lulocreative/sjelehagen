@@ -741,12 +741,12 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
 .feat .n{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;color:var(--plus)}
 .feat h3{font-size:1.45rem}
 .feat p{color:var(--ink-soft);font-size:.95rem}
-.phase-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
-.ph-item{background:var(--bg);padding:20px;display:grid;gap:6px;align-content:start}
-.ph-item .dot{width:12px;height:12px;border-radius:50%;background:var(--c)}
-.ph-item b{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
-.ph-item h3{font-size:1.3rem}
-.ph-item p{color:var(--ink-soft);font-size:.93rem}
+.phase-grid{display:grid;gap:10px}
+.ph-item{position:relative;isolation:isolate;overflow:hidden;min-height:300px;padding:22px;display:grid;gap:6px;align-content:end;background-size:cover;background-position:center 30%;color:#fff}
+.ph-item::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(30,24,18,.05) 0%,rgba(30,24,18,.35) 40%,rgba(30,24,18,.86) 100%)}
+.ph-item b{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.ph-item h3{font-size:1.45rem;color:#fff}
+.ph-item p{color:rgba(255,255,255,.9);font-size:.93rem}
 .cls-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
 .cls-list li{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
 .cls-list time{font:400 1.2rem/1 var(--f-display);color:var(--cta);font-variant-numeric:tabular-nums}
@@ -844,7 +844,7 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
 <section class="cycle">
   <div class="wrap">
     <div class="head"><h2 class="rv">Pilates som følger <em>energien din.</em></h2></div>
-    <div class="phase-grid"><div class="ph-item" style="--c:#b47e6c"><b>Indre vinter</b><h3>Menstruasjon</h3><p>Rolig mattearbeid, pust og myk dyp kjerne. Hvile er en del av planen.</p></div><div class="ph-item" style="--c:#9fb98a"><b>Indre vår</b><h3>Follikulær</h3><p>Energien stiger: prøv nye sekvenser og bygg styrke steg for steg.</p></div><div class="ph-item" style="--c:#e0b56a"><b>Indre sommer</b><h3>Eggløsning</h3><p>Dine sterkeste dager: power pilates og sculpt med vekter.</p></div><div class="ph-item" style="--c:#c9a3a0"><b>Indre høst</b><h3>Luteal</h3><p>Fortsett å bevege deg, men jevnere: kontrollert styrke og kortere express-klasser.</p></div></div>
+    <div class="phase-grid"><div class="ph-item" style="--c:#b47e6c;background-image:url(img/ritual-400.webp)"><b>Indre vinter</b><h3>Menstruasjon</h3><p>Rolig mattearbeid, pust og myk dyp kjerne. Hvile er en del av planen.</p></div><div class="ph-item" style="--c:#9fb98a;background-image:url(img/yoga-400.webp)"><b>Indre vår</b><h3>Follikulær</h3><p>Energien stiger: prøv nye sekvenser og bygg styrke steg for steg.</p></div><div class="ph-item" style="--c:#e0b56a;background-image:url(img/pilates-400.webp)"><b>Indre sommer</b><h3>Eggløsning</h3><p>Dine sterkeste dager: power pilates og sculpt med vekter.</p></div><div class="ph-item" style="--c:#c9a3a0;background-image:url(img/mat-400.webp)"><b>Indre høst</b><h3>Luteal</h3><p>Fortsett å bevege deg, men jevnere: kontrollert styrke og kortere express-klasser.</p></div></div>
   </div>
 </section>
 
