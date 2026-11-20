@@ -116,3 +116,117 @@ window.SH_PLANS = {
   ]
  }
 };
+window.SH_LIBRARY = {
+ "recipes": [
+  {
+   "id": "6ade5ac0eec79e6c3e7c04dd",
+   "name": "Tahini cookies",
+   "min": 1,
+   "desc": "Myke tahini cookies med banan, havre og mørk sjokolade.",
+   "thumb": "https://s3.us-west-2.amazonaws.com/instill-video-thumbnails/1920x1080-10010e73-2556-44f6-b328-7f4e8be1494a.jpg",
+   "tlocal": "img/cls/6ade5ac0eec79e6c3e7c04dd.webp",
+   "url": "https://studio.sjelehagen.no/video/6ade5ac0eec79e6c3e7c04dd/tahini-cookies?playlist=68ff6beadaf7fece197e7e60"
+  },
+  {
+   "id": "6ac26d50b348754d3b99fdd3",
+   "name": "Lun eplekake",
+   "min": 1,
+   "desc": "En velduftene, lun og deilig høstekake med gode ingredienser.",
+   "thumb": "https://s3.us-west-2.amazonaws.com/instill-video-thumbnails/1920x1080-3120a0bf-89c5-44ef-8115-220d95551f78.jpg",
+   "tlocal": "img/cls/6ac26d50b348754d3b99fdd3.webp",
+   "url": "https://studio.sjelehagen.no/video/6ac26d50b348754d3b99fdd3/lun-eplekake?playlist=68ff6beadaf7fece197e7e60"
+  },
+  {
+   "id": "6aa1573aca39f3e24a6c2805",
+   "name": "Frokost eplekake",
+   "min": 1,
+   "desc": "Lun, akkurat passe søt, tilfredstillende og veldig god.",
+   "thumb": "https://s3.us-west-2.amazonaws.com/instill-video-thumbnails/1920x1080-34994c51-43b5-4778-841a-6b0da8931f56.jpg",
+   "tlocal": "img/cls/6aa1573aca39f3e24a6c2805.webp",
+   "url": "https://studio.sjelehagen.no/video/6aa1573aca39f3e24a6c2805/frokost-eplekake?playlist=68ff6beadaf7fece197e7e60"
+  },
+  {
+   "id": "6a888361075688ca337b04a4",
+   "name": "Sjokolade chiapudding",
+   "min": 1,
+   "desc": "En smaksrik, nærende og mettende rett som er perfekt i lutealfasen når cravingene melder seg.",
+   "thumb": "https://s3.us-west-2.amazonaws.com/instill-video-thumbnails/1920x1080-988bacfc-db96-46d4-9511-a6fdc485d300.jpg",
+   "tlocal": "img/cls/6a888361075688ca337b04a4.webp",
+   "url": "https://studio.sjelehagen.no/video/6a888361075688ca337b04a4/sjokolade-chiapudding?playlist=68ff6beadaf7fece197e7e60"
+  },
+  {
+   "id": "6a379925ee6ae69316f7040e",
+   "name": "Avkjølende sommersmoothie",
+   "min": 1,
+   "desc": "Kjølende sommersmoothie med blåbær, agurk og mynte.",
+   "thumb": "https://s3.us-west-2.amazonaws.com/instill-video-thumbnails/1920x1080-a321739a-358b-4e73-adc2-fbbc0aa62df1.jpg",
+   "tlocal": "img/cls/6a379925ee6ae69316f7040e.webp",
+   "url": "https://studio.sjelehagen.no/video/6a379925ee6ae69316f7040e/avkjolende-sommersmoothie?playlist=68ff6beadaf7fece197e7e60"
+  },
+  {
+   "id": "6a2d7693ef2fed676c29bc76",
+   "name": "Frosen bananbar med sjokolade",
+   "min": 1,
+   "desc": "Frossen bananbar er sommerens enkleste dessert.",
+   "thumb": "https://s3.us-west-2.amazonaws.com/instill-video-thumbnails/1920x1080-639adc81-36c2-4432-b124-3b43a68b5856.jpg",
+   "tlocal": "img/cls/6a2d7693ef2fed676c29bc76.webp",
+   "url": "https://studio.sjelehagen.no/video/6a2d7693ef2fed676c29bc76/frosen-bananbar-med-sjokolade?playlist=68ff6beadaf7fece197e7e60"
+  }
+ ],
+ "rituals": [
+  {
+   "id": "6a7469bd529904c90415d9ca",
+   "name": "Lymferitualet for puffy morninger",
+   "min": 14,
+   "desc": "Dette ritualet er perfekt de dagene du våkner å føler deg ekstra tung i kroppen og puffy, eller etter reise.",
+   "thumb": "https://dhxp8qydz3sp6.cloudfront.net/video/6a7469bd529904c90415d9ca/640x360.png?v=1786293217",
+   "tlocal": "img/cls/6a7469bd529904c90415d9ca.webp",
+   "url": "https://studio.sjelehagen.no/video/6a7469bd529904c90415d9ca/lymferitualet-for-puffy-morninger?playlist=68fb89347310583c6573a719"
+  },
+  {
+   "id": "6a2c6a89176e818d3dbff8f1",
+   "name": "Daglig lymfehopp",
+   "min": 3,
+   "desc": "Et kort, men effektivt ritual du enkelt kan legge til i din morgenrutine.",
+   "thumb": "https://s3.us-west-2.amazonaws.com/instill-video-thumbnails/1920x1080-6e501fb3-cb65-4df1-ba44-2c33246985c4.jpg",
+   "tlocal": "img/cls/6a2c6a89176e818d3dbff8f1.webp",
+   "url": "https://studio.sjelehagen.no/video/6a2c6a89176e818d3dbff8f1/daglig-lymfehopp?playlist=68fb89347310583c6573a719"
+  },
+  {
+   "id": "69dbdfde7391bd10318b8815",
+   "name": "DAGLIG ANSIKTSMASSASJE & LYMFEDRENERING",
+   "min": 15,
+   "desc": "Denne rutinen kan gjøres morgen, eller kveld og er super for naturlig ansiktsløft i drenering.",
+   "thumb": "https://dhxp8qydz3sp6.cloudfront.net/video/69dbdfde7391bd10318b8815/640x360.png?v=1776018109",
+   "tlocal": "img/cls/69dbdfde7391bd10318b8815.webp",
+   "url": "https://studio.sjelehagen.no/video/69dbdfde7391bd10318b8815/daglig-ansiktsmassasje-lymfedrenering?playlist=68fb89347310583c6573a719"
+  },
+  {
+   "id": "69d3fbf3e05fc146a2f397ea",
+   "name": "Daglig rens",
+   "min": 6,
+   "desc": "En enkel daglig hudpleierutine med naturlige ingredienser fra kjøkkenet.",
+   "thumb": "https://dhxp8qydz3sp6.cloudfront.net/video/69d3fbf3e05fc146a2f397ea/640x360.png?v=1792527301",
+   "tlocal": "img/cls/69d3fbf3e05fc146a2f397ea.webp",
+   "url": "https://studio.sjelehagen.no/video/69d3fbf3e05fc146a2f397ea/daglig-rens?playlist=68fb89347310583c6573a719"
+  },
+  {
+   "id": "69b7fd4ed170010ae57cf8a5",
+   "name": "Jala Neti (neseskylling)",
+   "min": 5,
+   "desc": "I denne videoen viser jeg hvordan du utfører Jala Neti for å rengjøre bihulene.",
+   "thumb": "https://dhxp8qydz3sp6.cloudfront.net/video/69b7fd4ed170010ae57cf8a5/640x360.png?v=1773680249",
+   "tlocal": "img/cls/69b7fd4ed170010ae57cf8a5.webp",
+   "url": "https://studio.sjelehagen.no/video/69b7fd4ed170010ae57cf8a5/jala-neti-neseskylling?playlist=68fb89347310583c6573a719"
+  },
+  {
+   "id": "697725fa50dce0c673d4d022",
+   "name": "Morgenmeditasjon: tenn din indre glød",
+   "min": 6,
+   "desc": "Start dagen med ro og positiv energi for å legge tilrette for en dag full av magi.",
+   "thumb": "https://s3.us-west-2.amazonaws.com/instill-video-thumbnails/1920x1080-0d4ab6cc-d97e-439d-8393-7cbe3ee17830.jpg",
+   "tlocal": "img/cls/697725fa50dce0c673d4d022.webp",
+   "url": "https://studio.sjelehagen.no/video/697725fa50dce0c673d4d022/morgenmeditasjon-tenn-din-indre-glod?playlist=68fb89347310583c6573a719"
+  }
+ ]
+};

@@ -852,6 +852,12 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
   </div>
 </section>
 
+<section style="padding-top:0">
+  <div class="wrap split2">
+    <div class="head"><h2 class="rv">Real recipes, <em>real food.</em></h2></div>
+    <ul class="cls-list" id="clsList" data-keys="" data-lib="recipes" data-unit="Recipe" data-members="Members"><li><a href="https://studio.sjelehagen.no/video/6ade5ac0eec79e6c3e7c04dd/tahini-cookies?playlist=68ff6beadaf7fece197e7e60" target="_blank" rel="noopener"><img src="img/cls/6ade5ac0eec79e6c3e7c04dd.webp" alt="" width="128" height="72" loading="lazy"><div><b>Tahini cookies</b><small>Recipe</small></div><span class="lock">Members</span></a></li><li><a href="https://studio.sjelehagen.no/video/6ac26d50b348754d3b99fdd3/lun-eplekake?playlist=68ff6beadaf7fece197e7e60" target="_blank" rel="noopener"><img src="img/cls/6ac26d50b348754d3b99fdd3.webp" alt="" width="128" height="72" loading="lazy"><div><b>Lun eplekake</b><small>Recipe</small></div><span class="lock">Members</span></a></li><li><a href="https://studio.sjelehagen.no/video/6aa1573aca39f3e24a6c2805/frokost-eplekake?playlist=68ff6beadaf7fece197e7e60" target="_blank" rel="noopener"><img src="img/cls/6aa1573aca39f3e24a6c2805.webp" alt="" width="128" height="72" loading="lazy"><div><b>Frokost eplekake</b><small>Recipe</small></div><span class="lock">Members</span></a></li><li><a href="https://studio.sjelehagen.no/video/6a888361075688ca337b04a4/sjokolade-chiapudding?playlist=68ff6beadaf7fece197e7e60" target="_blank" rel="noopener"><img src="img/cls/6a888361075688ca337b04a4.webp" alt="" width="128" height="72" loading="lazy"><div><b>Sjokolade chiapudding</b><small>Recipe</small></div><span class="lock">Members</span></a></li></ul>
+  </div>
+</section>
 <section>
   <div class="wrap">
     <div class="head"><h2 class="rv">Explore the other pillars</h2></div>
@@ -879,12 +885,13 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
 <script>
 /* Class list: refreshed from the weekly studio sync (classes.js), so new classes show up automatically */
 (() => {
-  const ul = document.getElementById('clsList'), P = window.SH_PLANS; if (!ul || !P) return;
-  const keys = ul.dataset.keys.split(','), seen = new Set(), out = [];
-  Object.values(P).forEach(v => (v && v.days || []).forEach(x => { if (!x || seen.has(x.id)) return; const n = x.name.toLowerCase(); if (keys.some(k => n.includes(k))) { seen.add(x.id); out.push(x); } }));
+  const ul = document.getElementById('clsList'), P = window.SH_PLANS, LB = window.SH_LIBRARY || {}; if (!ul || !P) return;
+  const keys = ul.dataset.keys.split(','), seen = new Set(); let out = [];
+  if (ul.dataset.lib) out = (LB[ul.dataset.lib] || []).filter(x => x.tlocal);
+  else Object.values(P).forEach(v => (v && v.days || []).forEach(x => { if (!x || seen.has(x.id)) return; const n = x.name.toLowerCase(); if (keys.some(k => n.includes(k))) { seen.add(x.id); out.push(x); } }));
   if (!out.length) return;
   const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  ul.innerHTML = out.slice(0, 4).map(x => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener"><img src="${esc(x.tlocal || x.thumb)}" alt="" width="128" height="72" loading="lazy"><div><b>${esc(x.name)}</b><small>${x.min} min</small></div><span class="lock">${esc(ul.dataset.members)}</span></a></li>`).join('');
+  ul.innerHTML = out.slice(0, 4).map(x => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener"><img src="${esc(x.tlocal || x.thumb)}" alt="" width="128" height="72" loading="lazy"><div><b>${esc(x.name)}</b><small>${ul.dataset.unit || (x.min + ' min')}</small></div><span class="lock">${esc(ul.dataset.members)}</span></a></li>`).join('');
 })();
 /* Preview frame: plays the video once a file is set in data-src */
 document.querySelectorAll('.pv-frame').forEach(f => {

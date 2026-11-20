@@ -832,9 +832,9 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
     <!-- Preview video: drop a file in video/ and set data-src (e.g. data-src="video/preview-self-care.mp4") to play it here -->
     <div class="pv-frame" data-src="">
       <img src="img/ritual.webp" alt="" loading="lazy">
-      <div class="pv-play"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></i><span class="pv-dur">10 min</span></div>
+      <div class="pv-play"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></i><span class="pv-dur">5 min</span></div>
     </div>
-    <div class="pv-info"><h3>Vekselspust</h3><p class="pv-meta"><svg class="pv-clock" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>10 min · Cyclical self-care · Cecilie</p><p class="pv-desc">A calm breathing technique that balances the nervous system and gives you a small pocket of calm.</p></div>
+    <div class="pv-info"><h3>Nadhi Shodhana (vekselspust)</h3><p class="pv-meta"><svg class="pv-clock" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>5 min · Cyclical self-care · Cecilie</p><p class="pv-desc">A calm breathing technique that balances the nervous system and gives you a small pocket of calm.</p></div>
   </div>
 </section>
 
@@ -852,6 +852,12 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
   </div>
 </section>
 
+<section style="padding-top:0">
+  <div class="wrap split2">
+    <div class="head"><h2 class="rv">Real rituals, <em>real calm.</em></h2></div>
+    <ul class="cls-list" id="clsList" data-keys="" data-lib="rituals" data-unit="" data-members="Members"><li><a href="https://studio.sjelehagen.no/video/6a7469bd529904c90415d9ca/lymferitualet-for-puffy-morninger?playlist=68fb89347310583c6573a719" target="_blank" rel="noopener"><img src="img/cls/6a7469bd529904c90415d9ca.webp" alt="" width="128" height="72" loading="lazy"><div><b>Lymferitualet for puffy morninger</b><small>14 min</small></div><span class="lock">Members</span></a></li><li><a href="https://studio.sjelehagen.no/video/6a2c6a89176e818d3dbff8f1/daglig-lymfehopp?playlist=68fb89347310583c6573a719" target="_blank" rel="noopener"><img src="img/cls/6a2c6a89176e818d3dbff8f1.webp" alt="" width="128" height="72" loading="lazy"><div><b>Daglig lymfehopp</b><small>3 min</small></div><span class="lock">Members</span></a></li><li><a href="https://studio.sjelehagen.no/video/69dbdfde7391bd10318b8815/daglig-ansiktsmassasje-lymfedrenering?playlist=68fb89347310583c6573a719" target="_blank" rel="noopener"><img src="img/cls/69dbdfde7391bd10318b8815.webp" alt="" width="128" height="72" loading="lazy"><div><b>DAGLIG ANSIKTSMASSASJE &amp; LYMFEDRENERING</b><small>15 min</small></div><span class="lock">Members</span></a></li><li><a href="https://studio.sjelehagen.no/video/69d3fbf3e05fc146a2f397ea/daglig-rens?playlist=68fb89347310583c6573a719" target="_blank" rel="noopener"><img src="img/cls/69d3fbf3e05fc146a2f397ea.webp" alt="" width="128" height="72" loading="lazy"><div><b>Daglig rens</b><small>6 min</small></div><span class="lock">Members</span></a></li></ul>
+  </div>
+</section>
 <section>
   <div class="wrap">
     <div class="head"><h2 class="rv">Explore the other pillars</h2></div>
@@ -879,12 +885,13 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
 <script>
 /* Class list: refreshed from the weekly studio sync (classes.js), so new classes show up automatically */
 (() => {
-  const ul = document.getElementById('clsList'), P = window.SH_PLANS; if (!ul || !P) return;
-  const keys = ul.dataset.keys.split(','), seen = new Set(), out = [];
-  Object.values(P).forEach(v => (v && v.days || []).forEach(x => { if (!x || seen.has(x.id)) return; const n = x.name.toLowerCase(); if (keys.some(k => n.includes(k))) { seen.add(x.id); out.push(x); } }));
+  const ul = document.getElementById('clsList'), P = window.SH_PLANS, LB = window.SH_LIBRARY || {}; if (!ul || !P) return;
+  const keys = ul.dataset.keys.split(','), seen = new Set(); let out = [];
+  if (ul.dataset.lib) out = (LB[ul.dataset.lib] || []).filter(x => x.tlocal);
+  else Object.values(P).forEach(v => (v && v.days || []).forEach(x => { if (!x || seen.has(x.id)) return; const n = x.name.toLowerCase(); if (keys.some(k => n.includes(k))) { seen.add(x.id); out.push(x); } }));
   if (!out.length) return;
   const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  ul.innerHTML = out.slice(0, 4).map(x => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener"><img src="${esc(x.tlocal || x.thumb)}" alt="" width="128" height="72" loading="lazy"><div><b>${esc(x.name)}</b><small>${x.min} min</small></div><span class="lock">${esc(ul.dataset.members)}</span></a></li>`).join('');
+  ul.innerHTML = out.slice(0, 4).map(x => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener"><img src="${esc(x.tlocal || x.thumb)}" alt="" width="128" height="72" loading="lazy"><div><b>${esc(x.name)}</b><small>${ul.dataset.unit || (x.min + ' min')}</small></div><span class="lock">${esc(ul.dataset.members)}</span></a></li>`).join('');
 })();
 /* Preview frame: plays the video once a file is set in data-src */
 document.querySelectorAll('.pv-frame').forEach(f => {
