@@ -449,7 +449,7 @@ footer a{text-decoration:none}
 .plan-link::after{content:"";position:absolute;inset:0}
 .plan-link .arr{transition:transform .25s ease}
 .plan-card:hover .plan-link .arr{transform:translateX(4px)}
-.plan-card:focus-within{outline:3px solid var(--teal);outline-offset:3px}
+.plan-card:has(.plan-link:focus-visible){outline:2px solid var(--teal);outline-offset:3px}
 .plan-link:focus-visible{outline:none}
 /* cycle wheel: compact on phones so wheel, slider and phase card fit about one screen */
 @media (max-width:599px){
@@ -944,8 +944,8 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
 .pillar-link .arr{transition:transform .25s ease}
 .pillar:hover .pillar-link .arr{transform:translateX(4px)}
 .pillar:hover h3{color:var(--cta)}
-.pillar:focus-within{outline:3px solid var(--teal);outline-offset:3px}
-.pillar-link:focus-visible{outline:none}
+.pillar:has(.pillar-link:focus-visible){outline:2px solid var(--teal);outline-offset:3px}
+.pillar-link:focus,.pillar-link:focus-visible{outline:none}
 
 /* Icon badges: round, single-line icons in the brand greens (dark / cream / sage) */
 .phase-list .ic,.opt .em,.inc .ic,.fic{border-radius:50%!important;background:#6b7a66!important;color:#f6ecc8!important;box-shadow:none}
