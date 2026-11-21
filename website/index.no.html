@@ -1296,6 +1296,11 @@ body::before{content:""!important;display:block!important;position:absolute!impo
 
 /* Recipe card in the studio section: 50px higher */
 #studio .ui.ui-class{margin-top:-50px}
+
+/* Cycle section: one stable blur layer (no nested blur), so it doesn't flicker while scrolling on iPhone */
+.flow{transform:translateZ(0);-webkit-backface-visibility:hidden;backface-visibility:hidden;isolation:isolate}
+.flow .phase-card,.flow .opt,.flow .result-plan{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.flow .phase-card{background:rgba(255,255,255,.14)!important}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1881,7 +1886,7 @@ body::before{content:""!important;display:block!important;position:absolute!impo
   let auto = null;
   const stopAuto = () => { if (auto) { clearInterval(auto); auto = null; } };
   setPhase(1);
-  if (!reduce) new IntersectionObserver(([e]) => {
+  if (false) new IntersectionObserver(([e]) => {  /* auto-rotation off: it read as a blink */
     if (e.isIntersecting && auto === null && !wheel.dataset.touched) auto = setInterval(() => setPhase((cur + 1) % 4), 4200);
     else if (!e.isIntersecting) stopAuto();
   }, {threshold:.5}).observe(wheel);
