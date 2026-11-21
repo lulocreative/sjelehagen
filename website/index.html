@@ -1125,6 +1125,26 @@ footer .foot-base p{margin:0}
   .ui-class{width:188px;grid-template-columns:60px 1fr;top:46%;right:0}.ui-class img{width:60px;height:42px}
   .ui-chat{width:200px;bottom:2%}
 }
+
+/* Readability: no serif at small sizes. Numbers, card titles and quotes in the sans; the serif stays for large accents only */
+.stat strong{font-family:"Jost","Figtree",system-ui,sans-serif!important;font-weight:300!important;font-size:2.2rem!important;letter-spacing:-.02em!important}
+.tst q{font-family:"Figtree",system-ui,sans-serif!important;font-size:1rem!important;line-height:1.6!important;letter-spacing:0!important;font-weight:400!important;color:var(--ink)}
+main h3{font-family:"Jost","Figtree",system-ui,sans-serif;font-weight:500;letter-spacing:-.005em}
+
+/* Final call: full-width airy beach photo, dark text on the sky, no overlay box */
+.final{padding:0!important;background:#f3f1ec!important}
+.final .wrap{max-width:none!important;padding:0!important;margin:0!important;width:100%!important}
+.final-box{border-radius:0!important;min-height:min(86svh,820px);padding:clamp(72px,10vw,128px) max(var(--gut-l,24px),calc((100% - 1128px)/2)) 48px!important;display:grid!important;align-content:start;justify-items:start!important;text-align:left!important;color:var(--ink)!important}
+.final-box::before{background:url("img/final-beach.webp") 50% 72%/cover no-repeat!important}
+.final-box::after{background:linear-gradient(180deg,rgba(243,241,236,.55) 0%,rgba(243,241,236,0) 45%)!important}
+.final-box h2{color:var(--ink)!important;max-width:14ch}
+.final-box h2 em{color:#a26a50!important}
+.final-box p{color:var(--ink-soft)!important;max-width:40ch}
+.final-box .btn{background:var(--action)!important;color:#fff!important}
+@media (max-width:699px){
+  .final-box{min-height:92svh;padding:64px 20px 32px!important}
+  .final-box::before{background-image:url("img/final-beach-m.webp")!important;background-position:50% 100%!important}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
