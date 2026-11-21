@@ -12,6 +12,11 @@
 
 /* One icon colour everywhere: dark sage badge, cream icon */
 html body .fic.fic,html body .phase-list li:nth-child(n) .ic,html body .opt:nth-child(n) .em,html body .inc:nth-child(n) .ic,html body .flow .phase-list li:nth-child(n) .ic,html body .flow .opt:nth-child(n) .em{background:#6b7a66!important;color:#f6ecc8!important}
+
+/* Pull-down (overscroll) area above the page: cream with the bright logo leaves instead of plain white */
+html{background:#f3efe6}
+body{position:relative}
+body::before{content:"";position:absolute;left:0;right:0;top:-240px;height:240px;pointer-events:none;background:url("img/logo-leaves.png") center 62% / 64px auto no-repeat,#f3efe6}
 </style>
 <style>
 /* Layout: mobile-first single column that opens into a two-column editorial grid at 900px.
