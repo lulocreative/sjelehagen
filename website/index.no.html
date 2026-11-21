@@ -1107,6 +1107,17 @@ main h3{font-family:"Jost","Figtree",system-ui,sans-serif;font-weight:500;letter
 .cycle .wv-tip rect,.cycle .wv-tip path{fill:var(--action)!important}
 .cycle .wv-tip text{fill:#fff!important}
 
+/* Cycle panel: warm cream, tinted by the selected phase colour, glow behind the wheel, larger phase photo */
+.flow{--pc:#e2bfb2;background:linear-gradient(135deg,color-mix(in srgb,var(--pc) 16%,#fbf8f2),#fbf8f2 60%)!important;transition:background .6s ease}
+.wheel-box{position:relative;isolation:isolate}
+.wheel-box::before{content:"";position:absolute;inset:-6%;z-index:-1;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--pc) 45%,transparent) 0%,transparent 68%);transition:background .6s ease}
+.flow .phase-card{background:color-mix(in srgb,var(--pc) 24%,#fffdf9)!important;transition:background .6s ease}
+.flow .pc-top{flex-direction:column;align-items:stretch;gap:12px}
+.flow .pc-thumb{width:100%!important;height:150px!important;object-position:50% 28%;border-radius:var(--r-m)!important;box-shadow:none!important}
+.flow .phase-list .ic{background:rgba(255,255,255,.75)!important}
+.flow-steps b{background:#fff!important}
+@media (max-width:699px){.flow .pc-thumb{height:120px!important}}
+
 /* ===== The studio in your pocket: phone with real studio UI + platform features ===== */
 .app{background:var(--bg);overflow:hidden}
 .app-grid{display:grid;gap:48px;align-items:center}
@@ -1165,7 +1176,7 @@ main h3{font-family:"Jost","Figtree",system-ui,sans-serif;font-weight:500;letter
 .ui-class img{width:76px;height:52px;object-fit:cover;border-radius:6px}
 .ui-class b{display:block;font-weight:600;font-size:12px;line-height:1.25}
 .ui-class small{display:block;margin-top:3px;color:#6b7770;font-size:10.5px}
-.ui-big{top:2%;left:0;width:270px;overflow:hidden}
+.ui-big{top:44%;left:-2%;width:270px;overflow:hidden}
 .ui-big-img{position:relative;aspect-ratio:16/9}
 .ui-big-img img{width:100%;height:100%;object-fit:cover;display:block}
 .ui-big-img span{position:absolute;right:8px;bottom:8px;font-size:10px;font-weight:600;color:#fff;background:rgba(0,0,0,.6);border-radius:4px;padding:2px 6px}
@@ -1173,7 +1184,7 @@ main h3{font-family:"Jost","Figtree",system-ui,sans-serif;font-weight:500;letter
 .ui-big-txt{padding:10px 12px 12px}
 .ui-big-txt b{display:block;font-size:13px;font-weight:600}
 .ui-big-txt small{display:block;margin-top:3px;color:#6b7770;font-size:10.5px;line-height:1.4}
-.ui-first{top:auto;bottom:15%;left:-1%;width:160px;padding:16px 14px;background:#e3efd9;text-align:center;font:italic 400 15px/1.35 var(--f-display);color:#2d3a30}
+.ui-first{top:8%;bottom:auto;left:2%;width:160px;padding:16px 14px;background:#e3efd9;text-align:center;font:italic 400 15px/1.35 var(--f-display);color:#2d3a30}
 .ui-chat{bottom:-1%;right:-3%;width:232px;padding:12px 14px;display:grid;gap:5px}
 .ui-chat header{display:flex;align-items:center;gap:6px;font-weight:600;font-size:12px}
 .ui-chat header svg{width:13px;height:13px;color:#4fb3a9}
@@ -1193,28 +1204,17 @@ main h3{font-family:"Jost","Figtree",system-ui,sans-serif;font-weight:500;letter
 .app-copy .btn{justify-self:start;margin-top:6px}
 @media (min-width:960px){.app-grid{grid-template-columns:1.05fr 1fr;gap:72px}.app-visual{min-height:700px}.phone{width:300px}}
 @media (max-width:599px){
-  .ui-big{width:200px;top:3%;left:0}
-  .app-visual{min-height:540px;margin-inline:-8px}
+  .ui-big{width:190px;top:50%;left:0}
+  .app-visual{min-height:620px;margin-inline:-8px}
   .phone{width:236px}
   .ui-tabs,.ui-first{display:none}
   .ui-plan{width:168px;top:4%;left:0}.ui-plan img{height:62px}
   .ui-class{width:188px;grid-template-columns:60px 1fr;top:46%;right:0}.ui-class img{width:60px;height:42px}
-  .ui-chat{width:214px!important;bottom:1%;right:0}
-  .ui-chat p{font-size:11px}
+  .ui-chat{width:214px!important;bottom:9%;right:0}
+  .ui-chat p{font-size:11px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .ui-reply{display:none}
 }
 /* end studio */
-
-/* Cycle panel: warm cream, tinted by the selected phase colour, glow behind the wheel, larger phase photo */
-.flow{--pc:#e2bfb2;background:linear-gradient(135deg,color-mix(in srgb,var(--pc) 16%,#fbf8f2),#fbf8f2 60%)!important;transition:background .6s ease}
-.wheel-box{position:relative;isolation:isolate}
-.wheel-box::before{content:"";position:absolute;inset:-6%;z-index:-1;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--pc) 45%,transparent) 0%,transparent 68%);transition:background .6s ease}
-.flow .phase-card{background:color-mix(in srgb,var(--pc) 24%,#fffdf9)!important;transition:background .6s ease}
-.flow .pc-top{flex-direction:column;align-items:stretch;gap:12px}
-.flow .pc-thumb{width:100%!important;height:150px!important;object-position:50% 28%;border-radius:var(--r-m)!important;box-shadow:none!important}
-.flow .phase-list .ic{background:rgba(255,255,255,.75)!important}
-.flow-steps b{background:#fff!important}
-@media (max-width:699px){.flow .pc-thumb{height:120px!important}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
