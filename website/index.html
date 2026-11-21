@@ -1193,6 +1193,14 @@ footer .foot-mail:hover{opacity:1!important;background:color-mix(in srgb,current
 
 /* Footer logo 5% larger (20px to 21px) */
 footer .logo img{height:21px!important}
+
+/* Timeline on desktop: each icon centred over its text, so the three sit centred on the page */
+@media (min-width:900px){
+  .steps li{text-align:center!important}
+  .steps .st-ic{left:50%!important;transform:translateX(-50%)}
+  .steps li::after{left:calc(50% + 40px)!important;right:calc(-50% - 40px + 40px)!important}
+  .steps p{max-width:32ch;margin-inline:auto}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
