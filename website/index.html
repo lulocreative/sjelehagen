@@ -1294,20 +1294,6 @@ html:has(dialog.promo[open]),html:has(dialog.promo[open]) body{overflow:hidden!i
 /* Pull-down above the page: a teal block that moves with the page, plus teal page canvas */
 body::before{content:""!important;display:block!important;position:absolute!important;left:0;right:0;top:-100vh;height:100vh;background:#4ec1b5!important;pointer-events:none}
 
-/* Final call: text and button bottom-left, photo framed so Cecilie stands clear on the right */
-.final-box{align-content:end!important;padding-bottom:clamp(48px,7vw,88px)!important}
-.final-box::before{background-size:155% auto!important;background-position:0% 62%!important}
-.final-box::after{background:linear-gradient(0deg,rgba(243,241,236,.55) 0%,rgba(243,241,236,0) 40%)!important}
-@media (max-width:699px){
-  .final-box{min-height:100svh!important;padding:0 20px 36px!important}
-  .final-box::before{background-image:url("img/final-beach-m.webp")!important;background-size:cover!important;background-position:50% 0%!important}
-}
-
-@media (max-width:699px){
-  .final-box::before{background-size:100% auto!important;background-position:50% 0%!important;background-color:#ece3d3!important}
-  .final-box::after{background:linear-gradient(0deg,rgba(243,239,230,.96) 0%,rgba(243,239,230,.82) 34%,rgba(243,239,230,0) 56%)!important}
-}
-
 /* Recipe card in the studio section: 50px higher */
 #studio .ui.ui-class{margin-top:-50px}
 </style>
