@@ -1009,6 +1009,12 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
   .promo-media{max-height:none!important;aspect-ratio:16/11}
   .promo[open]{animation:sheetUp .5s cubic-bezier(.2,.7,.2,1) both!important}
 }
+
+/* hero: one main button, the quiz as a quiet text link */
+.hero .hero-link{color:#fff;font-weight:500;align-self:center;justify-self:start;padding:10px 2px;text-decoration:underline;text-decoration-color:rgba(255,255,255,.45);text-underline-offset:5px;text-decoration-thickness:1px;transition:text-decoration-color .2s}
+.hero .hero-link:hover{text-decoration-color:#fff}
+.hero-ctas{align-items:center}
+@media (min-width:1024px){.hero-copy{max-width:900px}.hero-copy .lede{max-width:660px}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1071,11 +1077,11 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="pill ld"><b>7 dager</b> gratis · ingen binding</span>
-      <h1 class="ld d1"><span class="line">Bli sterkere.</span><span class="line">Finn en rytme <em>som varer.</em></span></h1>
-      <p class="lede ld d2">Pilates, yoga, mat og syklisk egenomsorg samlet i en portal. Korte økter som passer hverdagen, og som tilpasser seg kroppen din gjennom hele måneden.</p>
+      <h1 class="ld d1"><span class="line">Pilates og yoga på nett</span><span class="line"><em>i takt med syklusen din.</em></span></h1>
+      <p class="lede ld d2">For kvinner som vil ha en sterkere kropp og jevnere energi hele måneden. Økter fra 10 minutter, med oppskrifter og ritualer for egenomsorg, ledet av Cecilie.</p>
       <div class="hero-ctas ld d3">
         <a class="btn btn-cta" href="https://studio.sjelehagen.no/register">Start 7 dager gratis <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a>
-        <a class="btn btn-ghost" href="#syklus">Finn din plan på 1 min</a>
+        <a class="hero-link" href="#syklus">Finn din plan på 1 min</a>
       </div>
       <div class="micro ld d4">
         <span><svg><use href="#chk"/></svg>Avslutt når du vil</span>
@@ -1104,8 +1110,8 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
 <section id="innhold">
   <div class="wrap">
     <div class="head">
-      <h2 class="rv">Fire søyler. <em>Ett medlemskap.</em></h2>
-      <p class="lede">Alt du trenger for en sterk og rolig kropp, samlet på ett sted.</p>
+      <h2 class="rv">Ett medlemskap for <em>bevegelse, mat og egenomsorg.</em></h2>
+      <p class="lede">Pilates, yoga, oppskrifter og syklusritualer, samlet på ett sted.</p>
     </div>
     <div class="pillars" tabindex="0" aria-label="Innhold i medlemskapet">
       <article class="pillar">
@@ -1141,9 +1147,9 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
 <section class="scrub" id="bevegelse" aria-label="Bevegelse">
   <div class="scrub-sticky">
     <div class="scrub-bg" aria-hidden="true"><div class="scrub-orb"><i class="scrub-ring r3"></i><i class="scrub-ring r2"></i><i class="scrub-ring r1"></i><i class="scrub-sun"></i></div></div>
-    <div class="scrub-cap" style="--a:0.04;--b:0.32"><span class="eyebrow">Beveg deg med Cecilie</span><h2>Pust inn.<br><em>Land i kroppen.</em></h2><p>Finn roen, ett pust av gangen.</p></div>
+    <div class="scrub-cap" style="--a:0.04;--b:0.32"><span class="eyebrow">Beveg deg med Cecilie</span><h2>Land i kroppen<br><em>med hvert pust.</em></h2><p>Hver klasse starter med noen minutter rolig pust.</p></div>
     <div class="scrub-cap" style="--a:0.38;--b:0.66"><span class="eyebrow">Bevegelse</span><h2>Kjenn rytmen<br><em>i kroppen din.</em></h2><p>Trening som følger energien og syklusen din.</p></div>
-    <div class="scrub-cap last" style="--a:0.72;--b:1.2"><span class="eyebrow">Sjelehagen</span><h2>Sterk og myk.<br><em>I ditt eget tempo.</em></h2><p>Pilates og yoga som møter deg der du er, ved havet, hjemme eller der du ruller ut matten.</p></div>
+    <div class="scrub-cap last" style="--a:0.72;--b:1.2"><span class="eyebrow">Sjelehagen</span><h2>Pilates og yoga<br><em>i ditt eget tempo.</em></h2><p>Klasser som møter deg der du er, ved havet, hjemme eller der du ruller ut matten.</p></div>
     <div class="scrub-bar" aria-hidden="true"><i></i></div>
   </div>
 </section>
@@ -1253,7 +1259,7 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
     <div class="founder-copy">
       <h2 class="rv">Møt Cecilie bak <em>Sjelehagen</em></h2>
       <blockquote class="big rv">«For meg begynte veien hit med et ønske om å få det bedre i egen kropp.»</blockquote>
-      <p>I tenårene og 20-årene hadde jeg et anstrengt forhold til kropp og mat, og opplevde hormonelle ubalanser og indre uro. Ønsket om å forstå kroppen bedre førte meg til Ayurveda, yoga og holistisk helse.</p>
+      <p>I tenårene og 20-årene hadde jeg et anstrengt forhold til kropp og mat, og opplevde hormonelle ubalanser og indre uro. Ønsket om å forstå kroppen bedre førte meg til Ayurveda, yoga og en helhetlig tilnærming til helse.</p>
       <p>Jeg startet Sjelehagen fordi jeg savnet et sted som viste meg hvordan jeg kunne trene og leve på lag med kroppen, og få resultater uten å slite meg ut.</p>
       <div class="creds"><span>Sertifisert yogainstruktør</span><span>Pilatesinstruktør</span><span>Ayurvedisk behandler</span><span>Hormonhelse for kvinner</span></div>
       <p class="sign">Cecilie</p>
@@ -1293,7 +1299,7 @@ h1 em,h2 em,h3 em{font-size:1.1em;font-weight:500!important;letter-spacing:-.005
 <section class="pricing" id="priser">
   <div class="wrap">
     <div class="head center">
-      <h2 class="rv">Start gratis. <em>Bli fordi du vil.</em></h2>
+      <h2 class="rv">Prøv alle klassene <em>gratis i 7 dager.</em></h2>
       <p class="lede">Alle medlemskap har 7 dagers gratis prøveperiode og full tilgang til alt innhold.</p>
     </div>
     <div class="price-grid">
