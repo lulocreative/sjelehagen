@@ -1042,6 +1042,71 @@ footer .foot-base p{margin:0}
 #innhold{background:#fff}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #innhold{background:transparent}}
 
+/* Readability: no serif at small sizes. Numbers, card titles and quotes in the sans; the serif stays for large accents only */
+.stat strong{font-family:"Jost","Figtree",system-ui,sans-serif!important;font-weight:300!important;font-size:2.2rem!important;letter-spacing:-.02em!important}
+.tst q{font-family:"Figtree",system-ui,sans-serif!important;font-size:1rem!important;line-height:1.6!important;letter-spacing:0!important;font-weight:400!important;color:var(--ink)}
+main h3{font-family:"Jost","Figtree",system-ui,sans-serif;font-weight:500;letter-spacing:-.005em}
+
+/* Final call: full-width airy beach photo, dark text on the sky, no overlay box */
+.final{padding:0!important;background:#f3f1ec!important}
+.final .wrap{max-width:none!important;padding:0!important;margin:0!important;width:100%!important}
+.final-box{border-radius:0!important;min-height:min(86svh,820px);padding:clamp(72px,10vw,128px) max(var(--gut-l,24px),calc((100% - 1128px)/2)) 48px!important;display:grid!important;align-content:start;justify-items:start!important;text-align:left!important;color:var(--ink)!important}
+.final-box::before{background:url("img/final-beach.webp") 50% 72%/cover no-repeat!important}
+.final-box::after{background:linear-gradient(180deg,rgba(243,241,236,.55) 0%,rgba(243,241,236,0) 45%)!important}
+.final-box h2{color:var(--ink)!important;max-width:14ch}
+.final-box h2 em{color:#a26a50!important}
+.final-box p{color:var(--ink-soft)!important;max-width:40ch}
+.final-box .btn{background:var(--action)!important;color:#fff!important}
+@media (max-width:699px){
+  .final-box{min-height:92svh;padding:64px 20px 32px!important}
+  .final-box::before{background-image:url("img/final-beach-m.webp")!important;background-position:50% 100%!important}
+}
+
+/* ===== Cycle section: solid and calm instead of frosted glass on a photo ===== */
+.cycle{color:var(--ink)!important;background:#eaf1e1!important}
+.cycle::before,.cycle::after{display:none!important}
+.cycle .head h2{color:var(--ink)!important}.cycle .head h2 em{color:#a26a50!important}
+.cycle .lede,.cycle .eyebrow{color:var(--ink-soft)!important}
+.flow{background:#fff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:0!important;border-radius:var(--r-l)!important;color:var(--ink)!important;box-shadow:0 30px 60px -40px rgba(40,50,30,.35)!important}
+.flow-steps{border-bottom-color:var(--line)!important}
+.flow-steps button{color:var(--ink-soft)!important}
+.flow-steps li.on button{color:var(--ink)!important}
+.flow-steps b{background:#eef0ea!important;color:var(--ink)!important}
+.flow-steps li.on b{background:var(--action)!important;color:#fff!important}
+.flow-steps li.on::after{background:var(--action)!important}
+.cycle .wheel-center small,.cycle .wheel-center span,.cycle .wheel-hint{color:var(--ink-soft)!important}
+.cycle .wheel-center strong{color:var(--ink)!important}
+.cycle .wheel-hint svg{color:#a26a50!important}
+.flow .phase-card{background:#f6f3ec!important;border:0!important;color:var(--ink)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.flow .phase-card .days,.flow .phase-list b{color:var(--ink-soft)!important}
+.flow .phase-card h3{color:var(--ink)!important}
+.flow .phase-list .ic{background:#fff!important;color:var(--ink)!important}
+.flow .phase-card .btn-cta,.flow .lead-form .btn-cta{background:var(--action)!important;color:#fff!important}
+.flow .phase-card .btn-cta:hover,.flow .lead-form .btn-cta:hover{background:var(--action-hover)!important}
+.flow .q-count,.flow .q-back,.flow-back{color:var(--ink-soft)!important}
+.flow-back span{color:#a26a50!important}
+.flow .q-step h3{color:var(--ink)!important}
+.flow .opt{background:#f6f3ec!important;color:var(--ink)!important}
+.flow .opt small{color:var(--ink-soft)!important}
+.flow .opt .em{background:#fff!important;color:var(--ink)!important}
+.flow .opt[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--action)!important}
+.flow .opt:hover{box-shadow:inset 0 0 0 1px var(--action)!important}
+.flow .quiz-progress{background:#eef0ea!important}
+.flow .quiz-progress i{background:var(--action)!important}
+.flow .result-plan{background:#f6f3ec!important;color:var(--ink)!important}
+.flow .result-plan h4{color:var(--ink)!important}
+.flow .field label,.flow .consent{color:var(--ink-soft)!important}
+.flow .field input{background:#fff!important;color:var(--ink)!important;border:1px solid var(--line)!important}
+.flow .success h3,.flow .success .lede{color:var(--ink)!important}
+.flow .week div{color:var(--ink-soft)!important}
+.cycle .wv-line{stroke:var(--action)!important}
+.cycle .wv-tick{stroke:var(--ink)!important;opacity:.25}
+.cycle .wv-base{stroke:var(--line)!important}
+.cycle .wv-x,.cycle .wv-label{fill:var(--ink-soft)!important;color:var(--ink-soft)!important}
+.cycle .wv-dot{fill:#fff!important;stroke:#a26a50!important}
+.cycle .wv-tip rect,.cycle .wv-tip path{fill:var(--action)!important}
+.cycle .wv-tip text{fill:#fff!important}
+
 /* ===== The studio in your pocket: phone with real studio UI + platform features ===== */
 .app{background:var(--bg);overflow:hidden}
 .app-grid{display:grid;gap:48px;align-items:center}
@@ -1055,6 +1120,7 @@ footer .foot-base p{margin:0}
 .ps-bat{width:20px;height:10px;border:1.4px solid #fff;border-radius:3px;position:relative}.ps-bat::after{content:"";position:absolute;inset:1.5px 5px 1.5px 1.5px;background:#fff;border-radius:1px}
 .ps-top img{height:14px;width:auto;filter:brightness(0) invert(1)}
 .ps-home{position:absolute;inset:0;padding:40px 0 56px;overflow:hidden;background:#fff}
+.ps-scroll{transform:translateY(var(--ps,0px));will-change:transform}
 .ps-head{display:flex;justify-content:space-between;align-items:center;padding:8px 14px}
 .ps-head img{height:15px;width:auto}
 .ps-head span{font-size:10px;color:#fff;background:#6f9a85;border-radius:6px;padding:5px 8px;font-weight:600}
@@ -1099,13 +1165,23 @@ footer .foot-base p{margin:0}
 .ui-class img{width:76px;height:52px;object-fit:cover;border-radius:6px}
 .ui-class b{display:block;font-weight:600;font-size:12px;line-height:1.25}
 .ui-class small{display:block;margin-top:3px;color:#6b7770;font-size:10.5px}
-.ui-recipe{top:3%!important;left:0!important;right:auto!important}
+.ui-big{top:2%;left:0;width:270px;overflow:hidden}
+.ui-big-img{position:relative;aspect-ratio:16/9}
+.ui-big-img img{width:100%;height:100%;object-fit:cover;display:block}
+.ui-big-img span{position:absolute;right:8px;bottom:8px;font-size:10px;font-weight:600;color:#fff;background:rgba(0,0,0,.6);border-radius:4px;padding:2px 6px}
+.ui-big-img::after{content:"";position:absolute;left:50%;top:50%;width:40px;height:40px;transform:translate(-50%,-50%);border-radius:50%;background:rgba(255,255,255,.3) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7v10l8-5z' fill='white'/%3E%3C/svg%3E") center/22px no-repeat;backdrop-filter:blur(3px)}
+.ui-big-txt{padding:10px 12px 12px}
+.ui-big-txt b{display:block;font-size:13px;font-weight:600}
+.ui-big-txt small{display:block;margin-top:3px;color:#6b7770;font-size:10.5px;line-height:1.4}
 .ui-first{top:auto;bottom:15%;left:-1%;width:160px;padding:16px 14px;background:#e3efd9;text-align:center;font:italic 400 15px/1.35 var(--f-display);color:#2d3a30}
 .ui-chat{bottom:-1%;right:-3%;width:232px;padding:12px 14px;display:grid;gap:5px}
 .ui-chat header{display:flex;align-items:center;gap:6px;font-weight:600;font-size:12px}
 .ui-chat header svg{width:13px;height:13px;color:#4fb3a9}
 .ui-chat header small{margin-left:auto;font-weight:400;color:#8a948e;font-size:10px}
 .ui-chat p{margin:0;line-height:1.45;color:#2f3a34}
+.ui-reply{margin-top:4px;padding-left:10px;border-left:2px solid #e3efd9;display:grid;gap:3px}
+.ui-reply header{font-size:11px}.ui-reply p{font-size:11px;color:#55615a}
+.ui-chat{width:252px!important}
 .app-copy{display:grid;gap:22px;align-content:center}
 .app-copy .lede{margin:0}
 .app-feats{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:18px}
@@ -1117,34 +1193,17 @@ footer .foot-base p{margin:0}
 .app-copy .btn{justify-self:start;margin-top:6px}
 @media (min-width:960px){.app-grid{grid-template-columns:1.05fr 1fr;gap:72px}.app-visual{min-height:700px}.phone{width:300px}}
 @media (max-width:599px){
-  .ui-recipe{top:6%!important;left:0!important}
+  .ui-big{width:200px;top:3%;left:0}
   .app-visual{min-height:540px;margin-inline:-8px}
   .phone{width:236px}
   .ui-tabs,.ui-first{display:none}
   .ui-plan{width:168px;top:4%;left:0}.ui-plan img{height:62px}
   .ui-class{width:188px;grid-template-columns:60px 1fr;top:46%;right:0}.ui-class img{width:60px;height:42px}
-  .ui-chat{width:200px;bottom:2%}
+  .ui-chat{width:214px!important;bottom:1%;right:0}
+  .ui-chat p{font-size:11px}
+  .ui-reply{display:none}
 }
-
-/* Readability: no serif at small sizes. Numbers, card titles and quotes in the sans; the serif stays for large accents only */
-.stat strong{font-family:"Jost","Figtree",system-ui,sans-serif!important;font-weight:300!important;font-size:2.2rem!important;letter-spacing:-.02em!important}
-.tst q{font-family:"Figtree",system-ui,sans-serif!important;font-size:1rem!important;line-height:1.6!important;letter-spacing:0!important;font-weight:400!important;color:var(--ink)}
-main h3{font-family:"Jost","Figtree",system-ui,sans-serif;font-weight:500;letter-spacing:-.005em}
-
-/* Final call: full-width airy beach photo, dark text on the sky, no overlay box */
-.final{padding:0!important;background:#f3f1ec!important}
-.final .wrap{max-width:none!important;padding:0!important;margin:0!important;width:100%!important}
-.final-box{border-radius:0!important;min-height:min(86svh,820px);padding:clamp(72px,10vw,128px) max(var(--gut-l,24px),calc((100% - 1128px)/2)) 48px!important;display:grid!important;align-content:start;justify-items:start!important;text-align:left!important;color:var(--ink)!important}
-.final-box::before{background:url("img/final-beach.webp") 50% 72%/cover no-repeat!important}
-.final-box::after{background:linear-gradient(180deg,rgba(243,241,236,.55) 0%,rgba(243,241,236,0) 45%)!important}
-.final-box h2{color:var(--ink)!important;max-width:14ch}
-.final-box h2 em{color:#a26a50!important}
-.final-box p{color:var(--ink-soft)!important;max-width:40ch}
-.final-box .btn{background:var(--action)!important;color:#fff!important}
-@media (max-width:699px){
-  .final-box{min-height:92svh;padding:64px 20px 32px!important}
-  .final-box::before{background-image:url("img/final-beach-m.webp")!important;background-position:50% 100%!important}
-}
+/* end studio */
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1277,20 +1336,23 @@ main h3{font-family:"Jost","Figtree",system-ui,sans-serif;font-weight:500;letter
   <div class="wrap app-grid">
     <div class="app-visual" aria-hidden="true">
       <div class="phone" data-depth="-0.05"><div class="phone-screen">
-        <div class="ps-home">
+        <div class="ps-home"><div class="ps-scroll">
           <div class="ps-head"><img src="img/logo.png" alt=""><span>Sign up</span></div>
           <div class="ps-welcome"><h5>Welcome to Sjelehagen</h5><div class="ps-vid"><img src="img/plan-ro-calm-520.webp" alt=""></div><h5>Welcome to Sjelehagen</h5><small>◷ 3 min</small></div>
           <div class="ps-tabs"><span class=on>Movement</span><span>Rituals</span><span>Recipes</span></div>
           <div class="ps-sec">This week’s rhythm</div>
           <div class="ps-row"><div class="ps-pc"><img src="img/plan-energi-400.webp" alt=""><b>Weekly plan: Energy &amp; strength</b><small>Weeks 3 · Classes 17</small></div><div class="ps-pc"><img src="img/plan-ro-400.webp" alt=""><b>Weekly plan: Calm &amp; flow</b><small>Weeks 3</small></div></div>
+          <div class="ps-sec">New classes</div>
+          <div class="ps-row"><div class="ps-pc"><img src="img/cls/6a0a2501ca92312a7a1b7b45.webp" alt=""><b>Full core med lette vekter</b><small>31 min · Pilates, full body</small></div><div class="ps-pc"><img src="img/cls/6959909726244524a5830c84.webp" alt=""><b>Feel good flow</b><small>26 min</small></div></div>
+        </div>
         </div>
         <div class="phone-notch"></div>
         <div class="ps-nav"><span class=on><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg></i>Home</span><span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg></i>Podcast</span><span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></svg></i>My garden</span><span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg></i>Search</span></div>
       </div></div>
-      <div class="ui ui-class ui-recipe" data-depth="-0.22"><img src="img/cls/6a888361075688ca337b04a4.webp" alt=""><div><b>Sjokolade chiapudding</b><small>Recipe · luteal phase</small></div></div>
-      <div class="ui ui-class" data-depth="0.16"><img src="img/cls/6a0a2501ca92312a7a1b7b45.webp" alt=""><div><b>Full core med lette vekter</b><small>◷ 31 min · Pilates, full body</small></div></div>
+      <div class="ui ui-big" data-depth="-0.22"><div class="ui-big-img"><img src="img/pv-pilates.webp" alt=""><span>24:40</span></div><div class="ui-big-txt"><b>Spicy full kjerne med ball</b><small>◷ 25 min · Pilates · core, high energy</small></div></div>
+      <div class="ui ui-class" data-depth="0.16"><img src="img/cls/6a888361075688ca337b04a4.webp" alt=""><div><b>Sjokolade chiapudding</b><small>Recipe · luteal phase</small></div></div>
       <div class="ui ui-first" data-depth="-0.12">Start with this<br>7-day plan</div>
-      <div class="ui ui-chat" data-depth="0.26"><header>Cecilie Vehre <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 2.1 3.1-.4.9 3 2.8 1.5-1 3 1 3-2.8 1.5-.9 3-3.1-.4L12 22l-2.4-2.1-3.1.4-.9-3-2.8-1.5 1-3-1-3 2.8-1.5.9-3 3.1.4z"/><path d="M8.5 12.2l2.4 2.3 4.6-4.8" stroke="#fff" stroke-width="1.8" fill="none"/></svg><small>Just now</small></header><p>So glad you like the series 😍 Can’t wait to hear how week 2 goes!</p></div>
+      <div class="ui ui-chat" data-depth="0.26"><header>Anette W.<small>May 16</small></header><p>“It’s been a really good week! I’ve done lots of yoga, but this one is even more about the core. I really like it, you’re so knowledgeable.”</p><div class="ui-reply"><header>Cecilie Vehre <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 2.1 3.1-.4.9 3 2.8 1.5-1 3 1 3-2.8 1.5-.9 3-3.1-.4L12 22l-2.4-2.1-3.1.4-.9-3-2.8-1.5 1-3-1-3 2.8-1.5.9-3 3.1.4z"/><path d="M8.5 12.2l2.4 2.3 4.6-4.8" stroke="#fff" stroke-width="1.8" fill="none"/></svg></header><p>So glad you like the series 😍 Can’t wait to hear how week 2 goes!</p></div></div>
     </div>
     <div class="app-copy">
       <h2 class="rv">The whole studio, <em>in your pocket.</em></h2>
@@ -1311,6 +1373,7 @@ main h3{font-family:"Jost","Figtree",system-ui,sans-serif;font-weight:500;letter
       if (r.bottom < -200 || r.top > innerHeight + 200) return;
       const k = innerWidth < 600 ? 0.5 : 1;
       els.forEach(el => el.style.setProperty('--py', (mid * el.dataset.depth * k).toFixed(1) + 'px'));
+      const sc = sec.querySelector('.ps-scroll'); if (sc) { const pr = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height))); sc.style.setProperty('--ps', (-pr * 190).toFixed(1) + 'px'); }
     };
     addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(tick); }, {passive: true});
     addEventListener('resize', tick); tick();
