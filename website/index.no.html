@@ -1204,6 +1204,17 @@ main h3{font-family:"Jost","Figtree",system-ui,sans-serif;font-weight:500;letter
   .ui-reply{display:none}
 }
 /* end studio */
+
+/* Cycle panel: warm cream, tinted by the selected phase colour, glow behind the wheel, larger phase photo */
+.flow{--pc:#e2bfb2;background:linear-gradient(135deg,color-mix(in srgb,var(--pc) 16%,#fbf8f2),#fbf8f2 60%)!important;transition:background .6s ease}
+.wheel-box{position:relative;isolation:isolate}
+.wheel-box::before{content:"";position:absolute;inset:-6%;z-index:-1;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--pc) 45%,transparent) 0%,transparent 68%);transition:background .6s ease}
+.flow .phase-card{background:color-mix(in srgb,var(--pc) 24%,#fffdf9)!important;transition:background .6s ease}
+.flow .pc-top{flex-direction:column;align-items:stretch;gap:12px}
+.flow .pc-thumb{width:100%!important;height:150px!important;object-position:50% 28%;border-radius:var(--r-m)!important;box-shadow:none!important}
+.flow .phase-list .ic{background:rgba(255,255,255,.75)!important}
+.flow-steps b{background:#fff!important}
+@media (max-width:699px){.flow .pc-thumb{height:120px!important}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1780,7 +1791,7 @@ main h3{font-family:"Jost","Figtree",system-ui,sans-serif;font-weight:500;letter
   const ic = s => `<span class="ic"><svg width="18" height="18"><use href="#${s}"/></svg></span>`;
   let cur = -1;
   let setPhase = function (i) {
-    if (i === cur) return; cur = i; const p = phases[i];
+    if (i === cur) return; cur = i; const p = phases[i]; const fl = document.getElementById('flow'); if (fl) fl.style.setProperty('--pc', p.color);
     segs.forEach((g, j) => { g.classList.toggle('on', j === i); g.setAttribute('aria-pressed', j === i); });
     $('#wcDays').textContent = `Dag ${p.from}–${p.to}`; $('#wcName').textContent = p.name; $('#wcSeason').textContent = p.season;
     card.innerHTML = `<div class="swap pc-in"><div class="pc-top"><img class="pc-thumb" src="img/${({men:'ritual',fol:'yoga',ovu:'pilates',lut:'mat'})[p.key]}-400.webp" alt="" width="400" height="500"><div class="pc-head"><span class="days">Dag ${p.from}–${p.to} · ${p.season}</span><h3>${p.name}</h3></div></div>
