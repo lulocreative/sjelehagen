@@ -1215,6 +1215,15 @@ footer .logo img{height:21px!important}
 .top.scrolled .lg-word{clip-path:inset(0 0 0 0);opacity:1;transform:none}
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media (prefers-reduced-motion:reduce){.top .lg *{transition:none!important}}
+
+/* No sideways page scroll on phones: keep the gliding word inside its column, and clip any stray overflow */
+.word-stack{overflow:hidden;padding-right:.2em}
+html,body{overflow-x:clip}
+
+/* Header logo: white leaves 20% larger over the hero, easing to normal size when the wordmark slides in */
+.top .lg-leaf{transform:scale(1.2);transform-origin:left center;transition:transform .8s cubic-bezier(.22,.7,.2,1)}
+.top .lg-word{margin-left:0;transition:clip-path .8s cubic-bezier(.22,.7,.2,1) .05s,opacity .5s ease .05s,transform .8s cubic-bezier(.22,.7,.2,1) .05s}
+.top.scrolled .lg-leaf{transform:none}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
