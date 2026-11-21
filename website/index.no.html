@@ -1174,6 +1174,22 @@ html body .fic.fic,html body .phase-list li:nth-child(n) .ic,html body .opt:nth-
 footer .foot-mail{text-decoration:none!important;display:inline-flex!important;align-items:center;gap:8px;min-height:44px;padding:0 18px;border:1px solid color-mix(in srgb,currentColor 35%,transparent);border-radius:999px;transition:background .2s,border-color .2s}
 footer .foot-mail::before{content:"";width:16px;height:16px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpath d='M3.5 6.5l8.5 6.5 8.5-6.5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpath d='M3.5 6.5l8.5 6.5 8.5-6.5'/%3E%3C/svg%3E") center/contain no-repeat}
 footer .foot-mail:hover{opacity:1!important;background:color-mix(in srgb,currentColor 8%,transparent);border-color:currentColor}
+
+/* Three steps as a timeline: a line linking icon badges, a time marker on each step */
+.steps{counter-reset:none;position:relative;gap:0!important}
+.steps li{background:none!important;border:0!important;border-radius:0!important;padding:0 0 32px 76px!important;position:relative;display:block!important}
+.steps li::before{content:none!important}
+.steps .st-ic{position:absolute;left:0;top:0;width:56px;height:56px;display:grid;place-items:center;z-index:1;box-shadow:0 0 0 8px var(--bg)!important}
+.steps .st-ic svg{width:28px;height:28px}
+.steps li::after{content:"";position:absolute;left:27px;top:56px;bottom:0;width:2px;background:repeating-linear-gradient(to bottom,#c9d3c0 0 6px,transparent 6px 12px)}
+.steps li:last-child::after{display:none}
+.steps .st-when{display:block;font-size:.8rem;font-weight:600;letter-spacing:.04em;color:#6b7a66;margin:4px 0 6px}
+.steps h3{font-size:1.25rem!important;margin:0 0 6px!important}
+@media (min-width:900px){
+  .steps{grid-template-columns:repeat(3,1fr)!important;column-gap:40px!important}
+  .steps li{padding:84px 0 0!important;text-align:left}
+  .steps li::after{left:64px;right:-40px;top:27px;bottom:auto;width:auto;height:2px;background:repeating-linear-gradient(to right,#c9d3c0 0 6px,transparent 6px 12px)}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1453,9 +1469,9 @@ footer .foot-mail:hover{opacity:1!important;background:color-mix(in srgb,current
       <h2 class="rv">Tre steg til din <em>første økt.</em></h2>
     </div>
     <ol class="steps">
-      <li class="rv"><div><h3>Start gratis prøveperiode</h3><p>Opprett konto på under ett minutt. Du betaler ingenting de første 7 dagene.</p></div></li>
-      <li class="rv"><div><h3>Velg spor og registrer syklus</h3><p>Energi &amp; kraft eller Ro &amp; flyt. Legg inn syklusfasen hvis du vil ha tilpassede forslag.</p></div></li>
-      <li class="rv"><div><h3>Tren 20–45 min, hvor som helst</h3><p>Følg dagens økt hjemme, på hytta eller på reise. Alt du trenger er en matte.</p></div></li>
+      <li class="rv"><span class="st-ic fic" aria-hidden="true"><svg><use href="#i-sprout"/></svg></span><div><span class="st-when">I dag · 1 minutt</span><h3>Start gratis prøveperiode</h3><p>Opprett konto på under ett minutt. Du betaler ingenting de første 7 dagene.</p></div></li>
+      <li class="rv"><span class="st-ic fic" aria-hidden="true"><svg><use href="#i-cycle"/></svg></span><div><span class="st-when">Dag 1</span><h3>Velg spor og registrer syklus</h3><p>Energi &amp; kraft eller Ro &amp; flyt. Legg inn syklusfasen hvis du vil ha tilpassede forslag.</p></div></li>
+      <li class="rv"><span class="st-ic fic" aria-hidden="true"><svg><use href="#i-strength"/></svg></span><div><span class="st-when">Hver dag</span><h3>Tren 20–45 min, hvor som helst</h3><p>Følg dagens økt hjemme, på hytta eller på reise. Alt du trenger er en matte.</p></div></li>
     </ol>
   </div>
 </section>
