@@ -1274,6 +1274,12 @@ section:has(.plan-cards){padding-top:32px!important}
 html{background:#4ec1b5!important}
 body{background:var(--bg)!important}
 body::before{display:none!important}
+
+/* Phones: the hero video fills the whole first screen, text sits at the bottom */
+@media (max-width:699px){
+  section.hero{min-height:100vh!important;min-height:100svh!important;height:auto}
+  .hero .hero-grid{padding-block:96px calc(28px + env(safe-area-inset-bottom,0px))!important}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
