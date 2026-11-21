@@ -1280,6 +1280,19 @@ body::before{display:none!important}
   section.hero{min-height:100vh!important;min-height:100svh!important;height:auto}
   .hero .hero-grid{padding-block:96px calc(28px + env(safe-area-inset-bottom,0px))!important}
 }
+
+/* Pop-up on phones: photo and text stack without overlapping; the sheet scrolls itself if the screen is short */
+@media (max-width:699px){
+  .promo-card{display:flex!important;flex-direction:column!important;overflow-y:auto!important;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  .promo-media{flex:none!important;height:min(34svh,280px)!important;aspect-ratio:auto!important;min-height:0!important;max-height:none!important}
+  .promo-media img{width:100%;height:100%;object-fit:cover}
+  .promo-body{flex:none!important}
+}
+/* While the pop-up is open the page behind it does not scroll */
+html.promo-lock,html.promo-lock body{overflow:hidden!important}
+html:has(dialog.promo[open]),html:has(dialog.promo[open]) body{overflow:hidden!important}
+/* Pull-down above the page: a teal block that moves with the page, plus teal page canvas */
+body::before{content:""!important;display:block!important;position:absolute!important;left:0;right:0;top:-100vh;height:100vh;background:#4ec1b5!important;pointer-events:none}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2119,5 +2132,11 @@ body::before{display:none!important}
   const set = () => { raf = 0; const y = Math.max(0, scrollY), k = Math.min(1, Math.max(0, (y - 40) / 120));
     top.style.setProperty('--hb', top.classList.contains('menu-open') ? 1 : k.toFixed(3)); };
   addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(set); }, {passive: true}); set(); })();
+</script>
+<script>
+/* Lock page scroll while the pop-up dialog is open (Safari fallback) */
+(() => { const d = document.getElementById('promo'); if (!d) return;
+  const sync = () => document.documentElement.classList.toggle('promo-lock', d.open);
+  new MutationObserver(sync).observe(d, {attributes: true, attributeFilter: ['open']}); d.addEventListener('close', sync); sync(); })();
 </script>
 </body></html>
