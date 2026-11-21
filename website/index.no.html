@@ -1269,6 +1269,11 @@ section:has(.plan-cards){padding-top:32px!important}
 
 /* Header logo, scrolling back up: the wordmark just fades out quickly (no wipe), then resets out of sight */
 .top:not(.scrolled) .lg .lg-word{transition:opacity .18s ease,clip-path 0s linear .2s,transform 0s linear .2s!important}
+
+/* Pull-down area (iOS rubber-band): bright logo teal. The page itself keeps its own background */
+html{background:#4ec1b5!important}
+body{background:var(--bg)!important}
+body::before{display:none!important}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
