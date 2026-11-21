@@ -1,0 +1,204 @@
+<!doctype html><html lang="no"><head><meta charset="utf-8"><title>Sykluskompasset – Sjelehagen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Figtree:wght@400;500;600&family=Jost:wght@300;400;500&display=swap">
+<style>
+@page{size:384pt 600pt;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--cream:#f7f2e7;--paper:#fcfaf5;--ink:#25302a;--soft:#5d6b63;--sage:#6b7a66;--sage-bg:#e6f2da;--green:#2f4d4a;--peach:#d4906f;--brown:#a26a50;--teal:#4ec1b5;--line:#e5ddcd}
+body{font-family:Figtree,system-ui,sans-serif;color:var(--ink);background:#888;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:512px;height:800px;background:var(--paper);position:relative;overflow:hidden;page-break-after:always;break-after:page;padding:44px 40px 40px;margin:0 auto}
+h1,h2,h3{font-family:Jost,sans-serif;font-weight:300;letter-spacing:-.02em;line-height:1.05}
+em{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:500;color:var(--peach);letter-spacing:0}
+.eyebrow{font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--sage)}
+.leaves{width:34px;height:24px;display:block}
+svg{width:100%;height:100%}
+/* cover */
+.cover{background:var(--cream);display:flex;flex-direction:column;align-items:center;text-align:center;padding:40px 40px 36px}
+.cover .leaves{width:46px;height:32px}
+.cover .art{width:300px;height:300px;border-radius:50%;margin:30px 0 26px;background:url(img/moons.jpg) 50% 34%/128% auto;box-shadow:0 0 0 10px rgba(255,255,255,.55)}
+.cover h1{font-size:50px;margin:12px 0 14px}
+.cover h1 em{font-size:1.12em;display:block;margin-top:-2px}
+.cover p.sub{font-size:13px;line-height:1.6;color:var(--soft);max-width:30ch}
+.cover .by{margin-top:auto;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+.cover .by small{display:block;margin-top:4px;letter-spacing:.02em;text-transform:none;font-size:10.5px;color:var(--soft)}
+/* intro */
+.intro h2{font-size:36px;margin:14px 0 6px}
+.intro .kick{font-size:12px;color:var(--soft);margin-bottom:22px}
+.intro p{font-size:11px;line-height:1.7;color:#34403a;margin-bottom:11px}
+.legend{display:grid;grid-template-columns:118px 1fr;gap:18px;align-items:center;background:var(--cream);border-radius:3px;padding:18px;margin:18px 0 0}
+.legend ul{list-style:none;display:grid;gap:7px;font-size:10.5px}
+.legend li{display:flex;align-items:center;gap:8px}
+.legend li i{width:10px;height:10px;border-radius:50%;flex:none}
+.legend li b{font-weight:600;min-width:84px}
+.legend li span{color:var(--soft)}
+.wheel{display:block}
+/* phase */
+.ph-head{display:grid;grid-template-columns:auto 1fr 64px;gap:14px;align-items:center}
+.ph-num{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:64px;line-height:.8;color:var(--peach)}
+.ph-head h2{font-size:30px;margin:5px 0 7px}
+.ph-head .eyebrow::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-right:6px;vertical-align:0}
+.ph-meta{display:flex;gap:6px}
+.pill{font-size:9.5px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--sage-bg);color:#25371a}
+.pill-line{background:none;box-shadow:inset 0 0 0 1px #c9d3c0;color:var(--sage)}
+.ph-img{height:150px;border-radius:3px;background-size:cover;margin:18px 0 16px}
+.lead{font-size:11.5px;line-height:1.6;margin-bottom:7px}
+.lead b,.row h4,.tip h4{font-weight:600}
+.body{font-size:10.5px;line-height:1.65;color:var(--soft);margin-bottom:14px}
+.rows{display:grid;gap:11px;border-top:1px solid var(--line);padding-top:14px}
+.row,.tip{display:grid;grid-template-columns:30px 1fr;gap:11px;align-items:start}
+.ic{width:30px;height:30px;border-radius:50%;background:var(--sage);color:#f6ecc8;display:grid;place-items:center}
+.ic svg{width:18px;height:18px}
+.row h4,.tip h4{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);margin:1px 0 3px}
+.row p,.tip p{font-size:10.5px;line-height:1.6;color:#34403a}
+.tip{margin-top:14px;background:var(--sage-bg);border-radius:3px;padding:12px 14px}
+.tip .ic-light{background:#fff;color:var(--sage)}
+.tip h4{color:#3d5a33}
+.pf{position:absolute;left:40px;right:40px;bottom:22px;display:flex;justify-content:space-between;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:#a3aca5}
+/* living */
+.living h2{font-size:34px;margin:14px 0 18px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:11px;line-height:1.7;color:#34403a}
+.living h3{font-size:20px;margin:30px 0 20px;font-weight:400}
+.steps{list-style:none;position:relative}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:14px;padding-bottom:20px;position:relative}
+.steps li::after{content:"";position:absolute;left:21px;top:44px;bottom:2px;width:2px;background:repeating-linear-gradient(#c9d3c0 0 5px,transparent 5px 10px)}
+.steps li:last-child::after{display:none}
+.steps .n{width:44px;height:44px;border-radius:50%;background:var(--sage);color:#f6ecc8;display:grid;place-items:center}
+.steps .n svg{width:24px;height:24px}
+.steps small{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sage)}
+.steps h4{font-size:13.5px;font-weight:500;margin:3px 0 4px;font-family:Jost,sans-serif}
+.steps p{font-size:10.5px;line-height:1.6;color:var(--soft)}
+.living-img{position:absolute;left:40px;right:40px;bottom:46px;height:150px;border-radius:3px;background:url(img/moons.jpg) 50% 62%/120% auto}
+.quote-band{position:absolute;left:0;right:0;bottom:0;height:120px;background:url(img/bloom.jpg) 50% 72%/cover}
+/* final */
+.final{background:var(--cream);display:flex;flex-direction:column}
+.final h2{font-size:38px;margin:16px 0 14px}
+.final h2 em{display:block}
+.final p.t{font-size:11px;line-height:1.7;color:#34403a;margin-bottom:10px}
+.cta{margin-top:16px;background:var(--green);color:#fff;border-radius:3px;padding:24px 22px;position:relative;overflow:hidden}
+.cta .eyebrow{color:#bfe3dc}
+.cta h3{font-size:26px;margin:10px 0 8px;color:#fff}
+.cta h3 em{color:#f3c9b3}
+.cta p{font-size:11px;line-height:1.6;color:rgba(255,255,255,.85);max-width:30ch}
+.cta a{display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:#fff;color:var(--green);text-decoration:none;font-size:12px;font-weight:600;padding:10px 18px;border-radius:999px}
+.cta .big-leaf{position:absolute;right:-18px;bottom:-26px;width:150px;height:104px;opacity:.16}
+blockquote{margin-top:auto;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:16px;line-height:1.45;color:var(--brown);border-left:2px solid var(--peach);padding-left:14px}
+blockquote cite{display:block;margin-top:8px;font-family:Figtree,sans-serif;font-style:normal;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--sage)}
+.contact{margin-top:18px;display:flex;justify-content:space-between;align-items:center}
+.mail{font-size:10.5px;padding:7px 14px;border-radius:999px;box-shadow:inset 0 0 0 1px #c9c2b2;color:var(--ink);text-decoration:none}
+@media screen{.page{margin:20px auto;box-shadow:0 10px 30px rgba(0,0,0,.25)}}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="cam" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="chk" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="logoleaves" viewBox="0 0 64 44">
+    <path d="M14 42C4 36 2 24 8 14c8 7 11 18 6 28z" fill="#a6e0d8"/>
+    <path d="M24 42C16 30 18 14 30 4c8 12 6 28-6 38z" fill="#7dd2c7"/>
+    <path d="M28 42c4-16 16-26 34-26-2 16-16 26-34 26z" fill="#4ec1b5"/>
+  </symbol>
+  <symbol id="i-strength" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.2v3.6M5.8 7.8v8.4M5.8 12h3.4M14.8 12h3.4M18.2 7.8v8.4M21 10.2v3.6"/><path d="M12.00 13.55c-1.42-1.4 -2.40-2.6 -2.40-4.1 0-1.4 0.75-2.3 1.58-2.3 0.38 0 0.68.3 0.83.9c.2-.6.6-.9 0.83-.9 0.83 0 1.58.9 1.58 2.3 0 1.5-0.98 2.7-2.40 4.1z"/></g></symbol>
+  <symbol id="i-calm" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.1"/><path d="M12 7.8c-1.8 0-2.6 1.4-2.6 3.4v2.6M12 7.8c1.8 0 2.6 1.4 2.6 3.4v2.6M9.4 11.6c-1.7 1.6-3.6 2-5.6 1.6M14.6 11.6c1.7 1.6 3.6 2 5.6 1.6"/><path d="M12 17.6c-1.8-2-5.4-2.2-5.4-.2s3.6 1.8 5.4-.2c1.8 2 5.4 2.2 5.4.2s-3.6-1.8-5.4.2z"/></g></symbol>
+  <symbol id="i-cycle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M19.4 13.6A7.6 7.6 0 1 1 17 6.5M17.3 3.6l-.2 3.1-3.1-.2"/><path d="M12.00 13.88c-1.52-1.4 -2.56-2.6 -2.56-4.1 0-1.4 0.80-2.3 1.68-2.3 0.40 0 0.72.3 0.88.9c.2-.6.6-.9 0.88-.9 0.88 0 1.68.9 1.68 2.3 0 1.5-1.04 2.7-2.56 4.1z"/></g></symbol>
+  <symbol id="i-sprout" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5v-7.2M12 13.3c0-3.6 2.5-6 6.8-6 0 3.8-2.7 6-6.8 6zM12 15.4c-.2-2.8-2.3-4.8-5.8-4.8 0 2.7 2.2 4.8 5.8 4.8zM6.5 20.5c2-1 3.6-1 5.5 0s3.5 1 5.5 0"/></g></symbol>
+  <symbol id="i-t1" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12V5" /><path d="M12 5a7 7 0 0 1 4.95 2.05L12 12z" fill="currentColor" fill-opacity=".28" stroke="none"/><path d="M5.6 17.4A7.6 7.6 0 1 1 8 19.2l-3.4.8 1-2.6z"/><path d="M12 8.2V12l2.6 1.6"/></g></symbol>
+  <symbol id="i-t2" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a7 7 0 0 1 0 14V12z" fill="currentColor" fill-opacity=".28" stroke="none"/><path d="M5.6 17.4A7.6 7.6 0 1 1 8 19.2l-3.4.8 1-2.6z"/><path d="M12 8.2V12l2.6 1.6"/></g></symbol>
+  <symbol id="i-t3" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a7 7 0 1 1-7 7h7z" fill="currentColor" fill-opacity=".28" stroke="none"/><path d="M5.6 17.4A7.6 7.6 0 1 1 8 19.2l-3.4.8 1-2.6z"/><path d="M12 8.2V12l2.6 1.6"/></g></symbol>
+  <symbol id="i-seed" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-4.5M12 15.5c-2.6 0-4.3-1.7-4.3-4.3 2.6 0 4.3 1.7 4.3 4.3zM12 14.4c0-2.3 1.5-3.9 3.9-3.9 0 2.3-1.5 3.9-3.9 3.9zM6.5 20c1.9-.9 3.6-.9 5.5 0s3.6.9 5.5 0"/></g></symbol>
+  <symbol id="leaf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 19.5C4.5 10 10 4.5 19.5 4.5 19.5 14 14 19.5 4.5 19.5z"/><path d="M4.5 19.5c3.2-3 5.6-5.6 7.4-8 .9-1.2 2.3-1.2 2.4 0 .1 1-1.1 1.6-1.9.9"/></g></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c3.8 0 6.4-2.6 6.4-6.1 0-4.2-3.7-6.4-4.2-10.9-3.1 2-4.7 5.1-4.4 7.6-1.2-.8-2-2-2.2-3.3-1.6 2-2 4.1-2 6.6C5.6 18.4 8.2 21 12 21z"/><path d="M12 18.4c-1.3 0-2.2-.9-2.2-2.1 0-1.6 1.4-2.3 2.2-3.8.8 1.5 2.2 2.2 2.2 3.8 0 1.2-.9 2.1-2.2 2.1z"/></g></symbol>
+  <symbol id="i-bowl" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12.5h17a8.5 7.2 0 0 1-17 0zM9 21h6"/><path d="M12.00 8.41c-1.61-1.4 -2.72-2.6 -2.72-4.1 0-1.4 0.85-2.3 1.78-2.3 0.42 0 0.77.3 0.94.9c.2-.6.6-.9 0.94-.9 0.94 0 1.78.9 1.78 2.3 0 1.5-1.10 2.7-2.72 4.1z"/></g></symbol>
+  <symbol id="i-candle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 21h7M10 21v-8.6h4V21M12 12.4v-1.6"/><path d="M12 3.2c1.4 1.6 2.1 2.7 2.1 3.8a2.1 2.1 0 0 1-4.2 0c0-1.1.7-2.2 2.1-3.8z"/></g></symbol>
+  <symbol id="i-heart-person" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.8" r="2.1"/><path d="M6 21v-6.3C6 10.8 8.6 8.6 12 8.6s6 2.2 6 6.1V21"/><path d="M12.00 16.48c-1.52-1.4 -2.56-2.6 -2.56-4.1 0-1.4 0.80-2.3 1.68-2.3 0.40 0 0.72.3 0.88.9c.2-.6.6-.9 0.88-.9 0.88 0 1.68.9 1.68 2.3 0 1.5-1.04 2.7-2.56 4.1z"/></g></symbol>
+  <symbol id="i-bubble" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M7.6 18.6A8 8 0 1 1 11 19.8l-6.4.6 3-1.8z"/><path d="M12.00 14.07c-1.80-1.4 -3.04-2.6 -3.04-4.1 0-1.4 0.95-2.3 1.99-2.3 0.47 0 0.85.3 1.04.9c.2-.6.6-.9 1.04-.9 1.04 0 1.99.9 1.99 2.3 0 1.5-1.23 2.7-3.04 4.1z"/></g></symbol>
+  <symbol id="i-breath" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 9h10.2a2.6 2.6 0 1 0-2.6-2.6M3.5 13h14.3a2.7 2.7 0 1 1-2.7 2.7M3.5 17h6.5"/></g></symbol>
+</svg>
+<section class="page cover">
+  <svg class="leaves" viewBox="0 0 64 44"><use href="#logoleaves"/></svg>
+  <div class="art"></div>
+  <p class="eyebrow">Sykluskompasset</p>
+  <h1>I takt med <em>din rytme</em></h1>
+  <p class="sub">Oppdag de fire fasene som påvirker energien, humøret og kroppen din gjennom hele måneden.</p>
+  <p class="by">Av Cecilie Vehre<small>Skaper av Sjelehagen</small></p>
+</section>
+<section class="page intro">
+  <svg class="leaves" viewBox="0 0 64 44"><use href="#logoleaves"/></svg>
+  <h2>Før du <em>starter</em></h2>
+  <p class="kick">Sykluskompasset · dine fire faser, forklart</p>
+  <p>Kroppen din endrer seg gjennom hele måneden, ikke bare rundt mensen og eggløsning. Energi, humør, toleranse og cravings påvirkes av endringer i hormonnivåer gjennom syklus, sesonger og livsfaser.</p>
+  <p>De fleste av oss har aldri lært å se dette mønsteret. Vi forventer det samme av kroppen dag etter dag, og er ofte ikke bevisst på hva den faktisk ber om. Denne guiden deler syklusen inn i fire faser, og viser deg hva som skjer i hver av dem og hva kroppen din trenger der. Fasene kan også brukes til å forstå skifter gjennom året og livet. Dette er ment som en guide, for hver kvinne er unik.</p>
+  <p>Hver fase er også knyttet til en av de tre doshaene i Ayurveda, de grunnleggende energiene som finnes i alt, også i oss mennesker. Vata styrer bevegelse, Pitta styrer ild og transformasjon, og Kapha styrer oppbygging og stabilitet.</p>
+  <div class="legend"><svg class="wheel" viewBox="0 0 118 118" width="118" height="118"><path d="M60.6 13.5 A45.6 45.6 0 0 1 99.3 37.8" fill="none" stroke="#9a6470" stroke-width="18.9" stroke-linecap="butt" opacity="1"/><path d="M100.7 40.7 A45.6 45.6 0 0 1 60.6 104.5" fill="none" stroke="#e2bfb2" stroke-width="18.9" stroke-linecap="butt" opacity="1"/><path d="M57.4 104.5 A45.6 45.6 0 0 1 31.9 95.6" fill="none" stroke="#d9a07c" stroke-width="18.9" stroke-linecap="butt" opacity="1"/><path d="M29.4 93.6 A45.6 45.6 0 0 1 57.4 13.5" fill="none" stroke="#b47e6c" stroke-width="18.9" stroke-linecap="butt" opacity="1"/></svg><ul>
+    <li><i style="background:#9a6470"></i><b>Menstruasjon</b><span>Dag 1–5 · Vata</span></li>
+    <li><i style="background:#e2bfb2"></i><b>Follikulær</b><span>Dag 6–14 · Kapha–Pitta</span></li>
+    <li><i style="background:#d9a07c"></i><b>Eggløsning</b><span>Dag 15–17 · Pitta</span></li>
+    <li><i style="background:#b47e6c"></i><b>Luteal</b><span>Dag 18–28 · Pitta–Vata</span></li></ul></div>
+  <p style="margin-top:16px">Usikker på hvor i syklusen du er? Tell første dag med blødning som dag 1. Jobber du med å få tilbake syklusen, kan du bruke månen: nymåne = dag 1, fullmåne = eggløsning. Har du ikke en syklus, kan du bruke dette som en guide til kroppens skiftende energier. Målet er at du skal begynne å lytte mer til <b>din</b> kropp.</p>
+  <footer class="pf"><span>Sykluskompasset</span><span>2</span></footer>
+</section>
+<section class="page phase">
+  <header class="ph-head"><span class="ph-num">01</span><div><p class="eyebrow" style="--c:#9a6470">Fase 1 · Indre vinter</p><h2>Menstruasjon</h2><p class="ph-meta"><span class="pill">Dag 1–5</span><span class="pill pill-line">Vata</span></p></div><svg class="wheel" viewBox="0 0 64 64" width="64" height="64"><path d="M32.8 9.1 A22.9 22.9 0 0 1 52.3 21.4" fill="none" stroke="#9a6470" stroke-width="10.2" stroke-linecap="butt" opacity="1"/><path d="M52.9 22.8 A22.9 22.9 0 0 1 32.8 54.9" fill="none" stroke="#e2bfb2" stroke-width="10.2" stroke-linecap="butt" opacity=".28"/><path d="M31.2 54.9 A22.9 22.9 0 0 1 18.4 50.4" fill="none" stroke="#d9a07c" stroke-width="10.2" stroke-linecap="butt" opacity=".28"/><path d="M17.1 49.4 A22.9 22.9 0 0 1 31.2 9.1" fill="none" stroke="#b47e6c" stroke-width="10.2" stroke-linecap="butt" opacity=".28"/></svg></header>
+  <figure class="ph-img" style="background-image:url(img/petals.jpg);background-position:50% 40%"></figure>
+  <p class="lead"><b>Hva skjer:</b> Østrogen og progesteron er på sitt laveste. Deler av livmorslimhinnen skilles ut. Energien trekker seg innover.</p>
+  <p class="body">Selve blødningen er en nedadgående bevegelse i kroppen (Apana Vayu), og det er akkurat denne bevegelsen Vata styrer. Det er derfor kroppen trenger varme og ro, ikke mer letthet og kulde.</p>
+  <div class="rows">
+    <div class="row"><span class="ic"><svg aria-hidden="true"><use href="#i-strength"/></svg></span><div><h4>Trening</h4><p>Restorativ yoga, lett gange og pusteøvelser. Hold deg til kortere økter, 20 minutter er nok. Unngå HIIT, tung styrketrening og inversjoner, spesielt de første 3 dagene. Enkle matte pilatesklasser er et godt alternativ om du craver litt mer.</p></div></div>
+    <div class="row"><span class="ic"><svg aria-hidden="true"><use href="#i-bowl"/></svg></span><div><h4>Mat</h4><p>Varm mat, jernrikt og lett fordøyelig. Supper, grøt og kokte grønnsaker. Ingefær og gurkemeie støtter fordøyelsen.</p></div></div>
+  </div>
+  <aside class="tip"><span class="ic ic-light"><svg aria-hidden="true"><use href="#i-candle"/></svg></span><div><h4>Tips fra Sjelehagen</h4><p>Dette er en fase for dyp hvile og regenerasjon. Masser kastorolje på magen for å minimere oppblåsthet, og gi kroppen varme, ro og tid til å komme seg tilbake.</p></div></aside>
+  <footer class="pf"><span>Sykluskompasset</span><span>3</span></footer>
+</section><section class="page phase">
+  <header class="ph-head"><span class="ph-num">02</span><div><p class="eyebrow" style="--c:#e2bfb2">Fase 2 · Indre vår</p><h2>Follikulær</h2><p class="ph-meta"><span class="pill">Dag 6–14</span><span class="pill pill-line">Kapha–Pitta</span></p></div><svg class="wheel" viewBox="0 0 64 64" width="64" height="64"><path d="M32.8 9.1 A22.9 22.9 0 0 1 52.3 21.4" fill="none" stroke="#9a6470" stroke-width="10.2" stroke-linecap="butt" opacity=".28"/><path d="M52.9 22.8 A22.9 22.9 0 0 1 32.8 54.9" fill="none" stroke="#e2bfb2" stroke-width="10.2" stroke-linecap="butt" opacity="1"/><path d="M31.2 54.9 A22.9 22.9 0 0 1 18.4 50.4" fill="none" stroke="#d9a07c" stroke-width="10.2" stroke-linecap="butt" opacity=".28"/><path d="M17.1 49.4 A22.9 22.9 0 0 1 31.2 9.1" fill="none" stroke="#b47e6c" stroke-width="10.2" stroke-linecap="butt" opacity=".28"/></svg></header>
+  <figure class="ph-img" style="background-image:url(img/bloom.jpg);background-position:50% 30%"></figure>
+  <p class="lead"><b>Hva skjer:</b> Østrogen stiger gradvis. Livmorslimhinnen bygges opp igjen. Energien vender tilbake.</p>
+  <p class="body">Tidlig i denne fasen bygger kroppen opp livmorslimhinnen igjen, en oppbyggende prosess som ayurvedisk tradisjon knytter til Kapha. Mot slutten av fasen modnes egget frem mot eggløsning, styrt av Pitta, ilden som gradvis tar over.</p>
+  <div class="rows">
+    <div class="row"><span class="ic"><svg aria-hidden="true"><use href="#i-strength"/></svg></span><div><h4>Trening</h4><p>Power pilates, aktive vinyasa flows, raske gåturer og styrke. Kroppen tåler gjerne litt mer. Legg inn rolige økter ved behov.</p></div></div>
+    <div class="row"><span class="ic"><svg aria-hidden="true"><use href="#i-bowl"/></svg></span><div><h4>Mat</h4><p>Ferske og bitre grønnsaker som støtter leveren, ruccola, bladgrønnsaker og antioksidanter. Mat som støtter gjenoppbygging av vev: langsomme karbohydrater, belgfrukter, rotgrønnsaker, magre proteinkilder og omega 3.</p></div></div>
+  </div>
+  <aside class="tip"><span class="ic ic-light"><svg aria-hidden="true"><use href="#i-candle"/></svg></span><div><h4>Tips fra Sjelehagen</h4><p>Bruk denne fasen til å planlegge og sette i gang nye prosjekter, klarheten er på din side. Prøv quinoagrøt-oppskriften fra studioet, en av de mest populære akkurat i denne fasen.</p></div></aside>
+  <footer class="pf"><span>Sykluskompasset</span><span>4</span></footer>
+</section><section class="page phase">
+  <header class="ph-head"><span class="ph-num">03</span><div><p class="eyebrow" style="--c:#d9a07c">Fase 3 · Indre sommer</p><h2>Eggløsning</h2><p class="ph-meta"><span class="pill">Dag 15–17</span><span class="pill pill-line">Pitta</span></p></div><svg class="wheel" viewBox="0 0 64 64" width="64" height="64"><path d="M32.8 9.1 A22.9 22.9 0 0 1 52.3 21.4" fill="none" stroke="#9a6470" stroke-width="10.2" stroke-linecap="butt" opacity=".28"/><path d="M52.9 22.8 A22.9 22.9 0 0 1 32.8 54.9" fill="none" stroke="#e2bfb2" stroke-width="10.2" stroke-linecap="butt" opacity=".28"/><path d="M31.2 54.9 A22.9 22.9 0 0 1 18.4 50.4" fill="none" stroke="#d9a07c" stroke-width="10.2" stroke-linecap="butt" opacity="1"/><path d="M17.1 49.4 A22.9 22.9 0 0 1 31.2 9.1" fill="none" stroke="#b47e6c" stroke-width="10.2" stroke-linecap="butt" opacity=".28"/></svg></header>
+  <figure class="ph-img" style="background-image:url(img/sun.jpg);background-position:50% 28%"></figure>
+  <p class="lead"><b>Hva skjer:</b> En bølge av LH-hormon utløser eggløsning. Alle hormoner er på sitt høyeste. Energien topper seg.</p>
+  <p class="body">Selve modningen av egget frem mot eggløsning er Pittas domene, ilden og transformasjonen. Det er samme ild som gir deg skjerpet fokus og handlekraft disse dagene.</p>
+  <div class="rows">
+    <div class="row"><span class="ic"><svg aria-hidden="true"><use href="#i-strength"/></svg></span><div><h4>Trening</h4><p>Dette er kroppens energitopp. Så lenge du ikke er plaget med smerter, kan du fint pushe kroppen litt ekstra: tyngre vekter, cardio, power pilates og raskere vinyasa flow. God oppvarming er ekstra viktig, ettersom leddene er mykere disse dagene.</p></div></div>
+    <div class="row"><span class="ic"><svg aria-hidden="true"><use href="#i-bowl"/></svg></span><div><h4>Mat</h4><p>Næringsrik, blodsukkerstabiliserende og avkjølende. Quinoa, brun ris, agurk, vannmelon og grønnsaker med høyt vanninnhold. Sunt fett og gode proteiner støtter hormonproduksjonen.</p></div></div>
+  </div>
+  <aside class="tip"><span class="ic ic-light"><svg aria-hidden="true"><use href="#i-candle"/></svg></span><div><h4>Tips fra Sjelehagen</h4><p>Bruk energien din med visdom, ikke bare tempo. Sjekk ut Nadhi Shodhana-pust og den mykgjørende ansiktsmasken på medlemssiden.</p></div></aside>
+  <footer class="pf"><span>Sykluskompasset</span><span>5</span></footer>
+</section><section class="page phase">
+  <header class="ph-head"><span class="ph-num">04</span><div><p class="eyebrow" style="--c:#b47e6c">Fase 4 · Indre høst</p><h2>Luteal</h2><p class="ph-meta"><span class="pill">Dag 18–28</span><span class="pill pill-line">Pitta–Vata</span></p></div><svg class="wheel" viewBox="0 0 64 64" width="64" height="64"><path d="M32.8 9.1 A22.9 22.9 0 0 1 52.3 21.4" fill="none" stroke="#9a6470" stroke-width="10.2" stroke-linecap="butt" opacity=".28"/><path d="M52.9 22.8 A22.9 22.9 0 0 1 32.8 54.9" fill="none" stroke="#e2bfb2" stroke-width="10.2" stroke-linecap="butt" opacity=".28"/><path d="M31.2 54.9 A22.9 22.9 0 0 1 18.4 50.4" fill="none" stroke="#d9a07c" stroke-width="10.2" stroke-linecap="butt" opacity=".28"/><path d="M17.1 49.4 A22.9 22.9 0 0 1 31.2 9.1" fill="none" stroke="#b47e6c" stroke-width="10.2" stroke-linecap="butt" opacity="1"/></svg></header>
+  <figure class="ph-img" style="background-image:url(img/ritual.jpg);background-position:50% 45%"></figure>
+  <p class="lead"><b>Hva skjer:</b> Progesteron stiger, og faller deretter sammen med østrogen mot slutten av fasen. Kroppen søker ro og refleksjon.</p>
+  <p class="body">Her strekker vi den klassiske ayurvediske modellen litt videre: Pittas ild fra eggløsningen avtar gradvis, og Vata begynner å ta over mot slutten av fasen. Derfor føles de siste dagene før mensen ofte kaldere og mer innadvendte.</p>
+  <div class="rows">
+    <div class="row"><span class="ic"><svg aria-hidden="true"><use href="#i-strength"/></svg></span><div><h4>Trening</h4><p>Roligere tempo, med mer intensjon og bevissthet i hver bevegelse. Tenk pilates sculpt, styrke med litt lettere vekter, mobilitet og roligere yoga. Unngå HIIT, som trigger kortisol og forstyrrer progesteronnivåene ytterligere.</p></div></div>
+    <div class="row"><span class="ic"><svg aria-hidden="true"><use href="#i-bowl"/></svg></span><div><h4>Mat</h4><p>Blodsukkerstabiliserende og antiinflammatorisk. Mørk sjokolade, bær, mørke bladgrønnsaker og fet fisk.</p></div></div>
+  </div>
+  <aside class="tip"><span class="ic ic-light"><svg aria-hidden="true"><use href="#i-candle"/></svg></span><div><h4>Tips fra Sjelehagen</h4><p>Prioriter søvn og støtte til nervesystemet. Favorittritualer: Pada abhyanga og Viparita Karani. Masser kastorolje på magen for å minimere oppblåsthet og PMS.</p></div></aside>
+  <footer class="pf"><span>Sykluskompasset</span><span>6</span></footer>
+</section>
+<section class="page living">
+  <svg class="leaves" viewBox="0 0 64 44"><use href="#logoleaves"/></svg>
+  <h2>Å leve i takt med <em>din syklus</em></h2>
+  <div class="cols"><p>En av de mest kraftfulle tingene du kan gjøre, er å slutte å behandle hver dag likt. Hver fase bringer sin egen energi, sitt eget humør og sine egne behov.</p><p>Når du kjenner fasene dine, kan du tilpasse hverdagen etter energien din. Len deg inn i sosiale planer og kreative prosjekter når overskuddet er der, og senk tempoet når kroppen ber om hvile.</p></div>
+  <h3>3 enkle steg for å leve mer i takt med <em>din rytme</em></h3>
+  <ol class="steps">
+    <li><span class="n"><svg aria-hidden="true"><use href="#i-sprout"/></svg></span><div><small>Steg 1</small><h4>Legg merke til rytmen din</h4><p>Skriv ned energi, humør, søvn og cravings. Det avdekker din egen unike rytme gjennom måneden.</p></div></li>
+    <li><span class="n"><svg aria-hidden="true"><use href="#i-cycle"/></svg></span><div><small>Steg 2</small><h4>Møt energien der du er</h4><p>Du styrer kanskje ikke hele timeplanen, men du kan velge hvilken type trening og hvile som passer.</p></div></li>
+    <li><span class="n"><svg aria-hidden="true"><use href="#i-heart-person"/></svg></span><div><small>Steg 3</small><h4>Øv på selvomsorg i hver fase</h4><p>Kroppen din sender signaler, ikke straff. Når du lytter og møter deg selv med omsorg, vil noe skje.</p></div></li>
+  </ol>
+  <figure class="living-img"></figure>
+  <footer class="pf"><span>Sykluskompasset</span><span>7</span></footer>
+</section>
+<section class="page final">
+  <svg class="leaves" viewBox="0 0 64 44"><use href="#logoleaves"/></svg>
+  <h2>Omfavn hele deg <em>i hver fase</em></h2>
+  <p class="t">Syklusen din er ikke en byrde, den er et kompass. Hver fase har sin egen energi, og behovene dine endrer seg fra dag til dag. Det er helt normalt at sykluslengden varierer fra måned til måned.</p>
+  <p class="t">I Sjelehagen ser vi på kroppen gjennom et ayurvedisk perspektiv, med syklisk yoga, pilates og ritualer som følger fasen du er i akkurat nå, ikke et program som forventer det samme av deg hver dag.</p>
+  <div class="cta"><p class="eyebrow">Fortsett reisen din i Sjelehagen</p><h3>Start din 7 dagers <em>gratis prøveperiode</em></h3><p>Kroppen din følger en rytme. La treningen din gjøre det samme.</p><a href="https://studio.sjelehagen.no/register">Start din reise →</a><svg class="big-leaf" viewBox="0 0 64 44"><use href="#logoleaves"/></svg></div>
+  <blockquote>«Å leve i takt med syklusen din handler ikke om å gi slipp på ambisjonene dine. Det handler om å nå dem uten å jobbe mot kroppen som skal bære deg dit.»<cite>Cecilie Vehre</cite></blockquote>
+  <div class="contact"><svg class="leaves" viewBox="0 0 64 44"><use href="#logoleaves"/></svg><a class="mail" href="mailto:hello@sjelehagen.no">hello@sjelehagen.no</a></div>
+</section>
+</body></html>
