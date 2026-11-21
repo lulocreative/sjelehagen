@@ -1243,6 +1243,10 @@ body::before{content:"";position:absolute;left:0;right:0;top:-240px;height:240px
 @media (min-width:900px){.pl-nav{display:none}}
 /* No scroll-triggered fade-ins: content is simply there */
 .rv{animation:none!important;opacity:1!important;transform:none!important}
+
+/* Pop-up headline: more prominent, balanced lines, never clipped */
+.promo-body h2#promoTitle{font-size:clamp(1.7rem,6.4vw,2.15rem)!important;font-weight:500!important;line-height:1.18!important;letter-spacing:-.015em!important;text-wrap:balance;overflow:visible!important;padding-bottom:.08em;max-width:18ch;margin:0 auto!important;color:var(--ink)!important}
+.promo-body h2#promoTitle em{font-weight:500!important}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
