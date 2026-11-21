@@ -1247,6 +1247,14 @@ body::before{content:"";position:absolute;left:0;right:0;top:-240px;height:240px
 /* Pop-up headline: more prominent, balanced lines, never clipped */
 .promo-body h2#promoTitle{font-size:clamp(1.7rem,6.4vw,2.15rem)!important;font-weight:500!important;line-height:1.18!important;letter-spacing:-.015em!important;text-wrap:balance;overflow:visible!important;padding-bottom:.08em;max-width:18ch;margin:0 auto!important;color:var(--ink)!important}
 .promo-body h2#promoTitle em{font-weight:500!important}
+
+/* Slider controls sized like the reference: slim bar, small round arrows (tap area stays 44px) */
+.pl-nav{gap:18px!important;margin-top:20px!important}
+.pl-track{height:2.5px!important;background:#e1e5e3!important}
+.pl-btns{gap:13px!important}
+.pl-btn{width:32px!important;height:32px!important;border-width:1px!important;position:relative}
+.pl-btn::before{content:"";position:absolute;inset:-6px}
+.pl-btn svg{width:15px!important;height:15px!important}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
