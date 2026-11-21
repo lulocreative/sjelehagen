@@ -701,6 +701,13 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
 .opt[aria-pressed="true"] .em{outline:2px solid currentColor;outline-offset:3px}
 .flow .opt[aria-pressed="true"] .em{outline-color:#fff}
 @media (max-width:599px){.phase-list .ic{width:34px!important;height:34px!important}.phase-list .ic svg{width:26px!important;height:26px!important}}
+/* Current page in the menu: a thin line under the link instead of a different text colour */
+.nav a[aria-current="page"]{position:relative;font-weight:600}
+.nav a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:#d9a07c}
+/* Day timeline icons */
+.day-list li{grid-template-columns:64px 44px 1fr!important;align-items:center}
+.dl-ic{width:44px;height:44px;display:grid;place-items:center}
+.dl-ic svg{width:28px;height:28px}
 </style>
 
 <style>
@@ -721,7 +728,12 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
 .preview h2 em{color:#e6bfa6}
 .preview .lede{color:color-mix(in srgb,var(--on-dark) 80%,transparent)}
 .pv-frame{position:relative;aspect-ratio:16/9;overflow:hidden;background:#1d2422;max-width:960px;margin:0 auto}
-.pv-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.62) saturate(.9)}
+.pv-frame{display:block;color:#fff;text-decoration:none;cursor:pointer}
+.pv-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.72);transition:transform .6s ease,filter .4s}
+.pv-frame:hover img{transform:scale(1.025);filter:brightness(.62)}
+.pv-frame:hover .pv-play i{background:rgba(255,252,246,.28)}
+.pv-free{position:absolute;left:14px;top:14px;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:#fff;color:#2f4d4a}
+.pv-play b{font-family:inherit!important;font-size:clamp(.95rem,2.2vw,1.1rem)!important;font-weight:500!important;text-shadow:0 1px 12px rgba(0,0,0,.35)}
 .pv-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
 .pv-play{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:14px;color:#fff;text-align:center;padding:20px}
 .pv-play i{width:clamp(64px,10vw,92px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:rgba(255,252,246,.16);border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:pulse 3.2s ease-in-out infinite}
@@ -820,7 +832,7 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
     <p class="lede ld d3">Korte, enkle ritualer og ayurvedisk inspirasjon som følger syklusen og årstidene. Små lommer av ro du kan få inn i hverdagen.</p>
     <div class="p-hero-ctas ld d4">
       <a class="btn btn-cta" href="https://studio.sjelehagen.no/register">Start 7 dager gratis <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a>
-      <a class="btn btn-ghost" href="#preview">Se forhåndsvisning</a>
+      <a class="btn btn-ghost" href="#preview">Se gratisklassen</a>
     </div>
   </div>
   <div class="p-hero-media"><img src="img/ritual.webp" srcset="img/ritual-400.webp 400w, img/ritual.webp 600w" sizes="(min-width:900px) 45vw, 100vw" alt="Cecilie ligger i meditasjon med hendene på bryst og mage" width="600" height="750" fetchpriority="high"></div>
@@ -828,13 +840,14 @@ h1 em,h2 em{font-family:var(--f-display)!important;font-style:italic!important;f
 
 <section class="preview" id="preview">
   <div class="wrap">
-    <div class="head center"><h2 class="rv">Et øyeblikk <em>med ro.</em></h2><p class="lede">En kort forhåndsvisning av et guidet ritual, så du kjenner hvor enkelt det er å begynne.</p></div>
-    <!-- Preview video: drop a file in video/ and set data-src (e.g. data-src="video/preview-self-care.mp4") to play it here -->
-    <div class="pv-frame" data-src="">
-      <img src="img/ritual.webp" alt="" loading="lazy">
-      <div class="pv-play"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></i><span class="pv-dur">5 min</span></div>
-    </div>
-    <div class="pv-info"><h3>Nadhi Shodhana (vekselspust)</h3><p class="pv-meta"><svg class="pv-clock" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>5 min · Syklisk egenomsorg · Cecilie</p><p class="pv-desc">En rolig pusteteknikk som balanserer nervesystemet og gir deg en liten lomme av ro.</p></div>
+    <div class="head center"><h2 class="rv">Et øyeblikk <em>med ro.</em></h2><p class="lede">Et gratis guidet ritual, så du kjenner hvor enkelt det er å begynne.</p></div>
+    <!-- Free class: the frame links to its public preview page in Instill (PV_URL) -->
+    <a class="pv-frame" href="https://chilehagen.instillvideo.app/video/68fd0cf67bcc647ec087f09a/preview" target="_blank" rel="noopener" aria-label="Se hele klassen gratis: Tungeskrape">
+      <img src="img/pv-self-care.webp" alt="" width="1280" height="720" loading="lazy">
+      <span class="pv-free">Gratis klasse</span>
+      <div class="pv-play"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></i><b>Se hele klassen gratis</b><span class="pv-dur">1:26</span></div>
+    </a>
+    <div class="pv-info"><h3>Tungeskrape</h3><p class="pv-meta"><svg class="pv-clock" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>1 min · Syklisk egenomsorg · Cecilie</p><p class="pv-desc">En enkel ayurvedisk morgenrutine som fjerner det som har samlet seg på tungen gjennom natten. Lær hvordan du bruker en tungeskrape, og hvorfor den fortjener en plass i morgenrutinen.</p></div>
   </div>
 </section>
 
