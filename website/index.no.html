@@ -1328,6 +1328,8 @@ body::before{content:""!important;display:block!important;position:absolute!impo
 .pv2-card .btn{margin-top:10px}
 .pv2-fine{text-align:center;font-size:.8rem;color:var(--ink-soft);margin:2px 0 0}
 @media (min-width:900px){.pv2-grid{grid-template-columns:1fr 1fr;gap:72px}}
+
+.pv2-tag{position:absolute;top:-10px;right:18px;font-size:.7rem;font-weight:600;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:#2f4d4a;color:#fff}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1667,7 +1669,7 @@ body::before{content:""!important;display:block!important;position:absolute!impo
     </div>
     <form class="pv2-card" action="https://studio.sjelehagen.no/register" method="get">
       <p class="pv2-label">Velg hvordan du betaler etter prøveperioden</p>
-      <label class="pv2-opt"><input type="radio" name="plan" value="0"><span class="pv2-dot"></span><span class="pv2-name">Månedlig<small>Fleksibelt, avslutt når du vil</small></span><span class="pv2-price">249<small>kr / mnd</small></span></label><label class="pv2-opt"><input type="radio" name="plan" value="1"><span class="pv2-dot"></span><span class="pv2-name">3 måneder<small>199 kr / mnd</small></span><span class="pv2-price">598<small>kr</small></span></label><label class="pv2-opt"><input type="radio" name="plan" value="2" checked><span class="pv2-dot"></span><span class="pv2-name">Årlig<small>167 kr / mnd · 4 måneder gratis</small></span><span class="pv2-price">1 999<small>kr</small></span></label>
+      <label class="pv2-opt"><input type="radio" name="plan" value="0"><span class="pv2-dot"></span><span class="pv2-name">Månedlig<small>Fleksibelt, avslutt når du vil</small></span><span class="pv2-price">249<small>kr / mnd</small></span></label><label class="pv2-opt"><input type="radio" name="plan" value="1"><span class="pv2-dot"></span><span class="pv2-name">3 måneder<small>199 kr / mnd</small></span><span class="pv2-price">598<small>kr</small></span></label><label class="pv2-opt"><input type="radio" name="plan" value="2" checked><span class="pv2-dot"></span><span class="pv2-tag">Best verdi</span><span class="pv2-name">Årlig<small>167 kr / mnd · 4 måneder gratis</small></span><span class="pv2-price">1 999<small>kr</small></span></label>
       <a class="btn btn-cta btn-block" href="https://studio.sjelehagen.no/register">Start 7 dager gratis <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a>
       <p class="pv2-fine">Du belastes ikke i dag.</p>
     </form>
