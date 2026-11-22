@@ -1337,6 +1337,20 @@ body::before{content:""!important;display:block!important;position:absolute!impo
 .pv2-inc li{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:center;font-size:1rem;color:var(--ink)}
 .pv2-inc li i{width:26px;height:26px;border-radius:50%;background:#6b7a66;display:grid;place-items:center}
 .pv2-inc li i svg{width:13px;height:13px;color:#f6ecc8}
+
+/* Pricing as one joined block: photo with the headline on the sky (no gradient) + price box */
+.pv2-grid{align-items:stretch!important;gap:0!important;box-shadow:0 30px 60px -40px rgba(40,50,30,.35)}
+.pv2-copy{position:relative;overflow:hidden;padding:48px 44px;min-height:600px;background:#dfe6ea url("img/pricing-photo.webp") 50% 100%/cover no-repeat;display:flex;align-items:flex-start;border-radius:3px 0 0 3px}
+.pv2-copy h2{color:#25302a!important;max-width:11ch;margin:0!important;font-size:clamp(2.4rem,4.2vw,3.6rem)!important}
+.pv2-copy h2 em{color:#a26a50!important}
+.pv2-card{align-content:center;box-shadow:none!important;border-radius:0 3px 3px 0!important;padding:34px 36px!important}
+.pv2-inc{margin:0 0 14px!important;padding-bottom:18px;border-bottom:1px solid #eee6d8}
+.pv2-trust-in{justify-content:center;font-size:.8rem!important;margin-top:4px!important}
+@media (max-width:899px){
+  .pv2-copy{min-height:0;aspect-ratio:1/1.2;padding:24px 22px;background-image:url("img/pricing-photo-560.webp");background-position:50% 100%;border-radius:3px 3px 0 0}
+  .pv2-copy h2{font-size:clamp(1.9rem,7.6vw,2.6rem)!important}
+  .pv2-card{border-radius:0 0 3px 3px!important;padding:24px 18px!important}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1670,15 +1684,15 @@ body::before{content:""!important;display:block!important;position:absolute!impo
   <div class="wrap pv2-grid">
     <div class="pv2-copy">
       <h2 class="rv">Prøv alle klassene <em>gratis i 7 dager.</em></h2>
-      <p class="lede">Ett studio, uansett hvilken plan du velger. Velg det som passer deg, og bytt når du vil.</p>
-      <div class="pv2-inc"><h3>Alle planer inkluderer</h3><ul><li><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>Alle 150+ klasser: pilates, yoga og mobilitet</span></li><li><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>Ukeplaner etter energi og syklusfase</span></li><li><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>Sesongoppskrifter og daglige ritualer</span></li><li><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>Cecilie svarer selv på spørsmålene dine</span></li></ul></div>
-      <ul class="pv2-trust"><li>Ingen trekk før dag 8</li><li>Påminnelse før prøveperioden slutter</li><li>Avslutt med to klikk</li></ul>
+      
+      
     </div>
     <form class="pv2-card" action="https://studio.sjelehagen.no/register" method="get">
+      <div class="pv2-inc"><h3>Alle planer inkluderer</h3><ul><li><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>Alle 150+ klasser: pilates, yoga og mobilitet</span></li><li><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>Ukeplaner etter energi og syklusfase</span></li><li><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>Sesongoppskrifter og daglige ritualer</span></li><li><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>Cecilie svarer selv på spørsmålene dine</span></li></ul></div>
       <p class="pv2-label">Velg hvordan du betaler etter prøveperioden</p>
       <label class="pv2-opt"><input type="radio" name="plan" value="0"><span class="pv2-dot"></span><span class="pv2-name">Månedlig<small>Fleksibelt, avslutt når du vil</small></span><span class="pv2-price">249<small>kr / mnd</small></span></label><label class="pv2-opt"><input type="radio" name="plan" value="1"><span class="pv2-dot"></span><span class="pv2-name">3 måneder<small>199 kr / mnd</small></span><span class="pv2-price">598<small>kr</small></span></label><label class="pv2-opt"><input type="radio" name="plan" value="2" checked><span class="pv2-dot"></span><span class="pv2-tag">Best verdi</span><span class="pv2-name">Årlig<small>167 kr / mnd · 4 måneder gratis</small></span><span class="pv2-price">1 999<small>kr</small></span></label>
       <a class="btn btn-cta btn-block" href="https://studio.sjelehagen.no/register">Start 7 dager gratis <svg class="arr" width="18" height="18"><use href="#arrow"/></svg></a>
-      <p class="pv2-fine">Du belastes ikke i dag.</p>
+      <ul class="pv2-trust pv2-trust-in"><li>Ingen trekk før dag 8</li><li>Påminnelse før prøveperioden slutter</li><li>Avslutt med to klikk</li></ul>
     </form>
   </div>
 </section>
