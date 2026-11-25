@@ -2169,5 +2169,9 @@ body::before{content:""!important;display:block!important;position:absolute!impo
   new MutationObserver(sync).observe(d, {attributes: true, attributeFilter: ['open']}); d.addEventListener('close', sync); sync(); })();
 </script>
 <script>/* pricing: always open on the Annual (Best value) plan, also after reload/back */
-addEventListener('pageshow',()=>{const r=document.querySelector('.pv2-card input[name=plan][value="2"]');if(r)r.checked=true;});</script>
+(()=>{const card=document.querySelector('.pv2-card');if(!card)return;const btn=card.querySelector('a.btn-cta');
+/* studio.sjelehagen.no/register?planGroupIndex: 1 Monthly, 2 Quarterly, 3 Yearly */
+const sync=()=>{const r=card.querySelector('input[name=plan]:checked');if(btn&&r)btn.href='https://studio.sjelehagen.no/register?planGroupIndex='+(+r.value+1);};
+card.addEventListener('change',sync);
+addEventListener('pageshow',()=>{const r=card.querySelector('input[name=plan][value="2"]');if(r)r.checked=true;sync();});sync();})();</script>
 </body></html>
