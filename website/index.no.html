@@ -1690,7 +1690,7 @@ body::before{content:""!important;display:block!important;position:absolute!impo
       
       
     </div>
-    <form class="pv2-card" action="https://studio.sjelehagen.no/register" method="get">
+    <form class="pv2-card" action="https://studio.sjelehagen.no/register" method="get" autocomplete="off">
       <div class="pv2-inc"><h3>Alle planer inkluderer</h3><ul><li><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>Alle 150+ klasser: pilates, yoga og mobilitet</span></li><li><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>Ukeplaner etter energi og syklusfase</span></li><li><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>Sesongoppskrifter og daglige ritualer</span></li><li><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>Cecilie svarer selv på spørsmålene dine</span></li></ul></div>
       <p class="pv2-label">Velg hvordan du betaler etter prøveperioden</p>
       <label class="pv2-opt"><input type="radio" name="plan" value="0"><span class="pv2-dot"></span><span class="pv2-name">Månedlig<small>Fleksibelt, avslutt når du vil</small></span><span class="pv2-price">249<small>kr / mnd</small></span></label><label class="pv2-opt"><input type="radio" name="plan" value="1"><span class="pv2-dot"></span><span class="pv2-name">3 måneder<small>199 kr / mnd</small></span><span class="pv2-price">598<small>kr</small></span></label><label class="pv2-opt"><input type="radio" name="plan" value="2" checked><span class="pv2-dot"></span><span class="pv2-name"><span class="pv2-nm">Årlig<span class="pv2-tag">Best verdi</span></span><small>167 kr / mnd · 4 måneder gratis</small></span><span class="pv2-price">1 999<small>kr</small></span></label>
@@ -2168,4 +2168,6 @@ body::before{content:""!important;display:block!important;position:absolute!impo
   const sync = () => document.documentElement.classList.toggle('promo-lock', d.open);
   new MutationObserver(sync).observe(d, {attributes: true, attributeFilter: ['open']}); d.addEventListener('close', sync); sync(); })();
 </script>
+<script>/* pricing: always open on the Annual (Best value) plan, also after reload/back */
+addEventListener('pageshow',()=>{const r=document.querySelector('.pv2-card input[name=plan][value="2"]');if(r)r.checked=true;});</script>
 </body></html>
